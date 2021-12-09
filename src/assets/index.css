@@ -1,3 +1,4 @@
+
 .empty-layout {
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -20,9 +21,13 @@
 .helper-text.invalid {
   color: #f44336;
 }
+
 .app-page {
   padding: 2rem;
+  height: 100vh;
+  box-shadow: 0px  2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
 }
+
 .app-main-layout {
   position: relative;
   min-height: 100vh;
@@ -35,7 +40,7 @@
   transition: transform 0.3s;
   transition: transform 0.3s, -webkit-transform 0.3s;
   bottom: 0 !important;
-  height: auto !important;
+  height: 100vh !important;
 }
 .app-sidenav.open {
   -webkit-transform: translateX(0);
@@ -73,6 +78,7 @@
   padding-right: 200px;
   transition: padding-left 0.3s;
   position: relative;
+  height: 10vh;
 }
 .app-content.full {
   padding-left: 0;

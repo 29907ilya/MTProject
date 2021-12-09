@@ -40,6 +40,9 @@
 
     <ul class="sidenav app-sidenav open">
       <li>
+        <a href="#" class="waves-effect waves-grey pointer">Профиль</a>
+      </li>
+      <li>
         <a href="#" class="waves-effect waves-grey pointer">Редактор сеансов</a>
       </li>
     </ul>
