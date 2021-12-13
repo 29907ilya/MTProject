@@ -1,6 +1,6 @@
 <template>
 
-  <ul class="sidenav app-sidenav open" >
+  <ul class="sidenav app-sidenav   open" >
 
       <router-link to="/profile">
       <li>

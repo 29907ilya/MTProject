@@ -22,6 +22,7 @@
 }
 .app-page {
   padding: 2rem;
+  width: auto;
 }
 .app-main-layout {
   position: relative;
@@ -31,7 +32,7 @@
   padding-top: 5px;
   position: absolute;
   top: 64px;
-  width: 180px;
+  width: 150px;
   transition: transform 0.3s;
   transition: transform 0.3s, -webkit-transform 0.3s;
   bottom: 0 !important;
@@ -69,7 +70,7 @@
 }
 .app-content {
   padding-top: 64px;
-  padding-left: 180px;
+  padding-left: 150px;
   transition: padding-left 0.3s;
   position: relative;
 }
@@ -157,4 +158,11 @@
 .history-chart {
   max-width: 600px;
   margin: 0 auto;
+}
+
+.col {
+  display: flex;
+  flex-wrap: wrap;
+  border: #000 solid 1px;
+  width: auto;
 }
