@@ -1,52 +1,85 @@
 <template>
-  <form class="card auth-card" @submit.prevent="submitHandler">
+  <form class="card auth-card" @submit.prevent="onSubmit">
     <div class="card-content">
-      <span class="card-title">Билеты в кино - Вход</span>
+      <span class="card-title">Movie Tickets | Sing In</span>
+
       <div class="input-field">
-        <input
-          id="email"
-          type="text"
-        />
         <label for="email">Email</label>
-        <small class="helper-text invalid">Email</small>
+        <input id="email" type="email" v-model="email" @blur="eBlur" />
+        <small class="helper-text invalid" v-if="eError">{{ eError }}</small>
       </div>
+
       <div class="input-field">
-        <input id="password" type="password" class="validate" />
-        <label for="password">Пароль</label>
-        <small class="helper-text invalid">Password</small>
+        <label for="password">Password</label>
+        <input id="password" type="password" v-model="password" @blur="pBlur" />
+        <small class="helper-text invalid" v-if="pError">{{ pError }}</small>
       </div>
     </div>
+
     <div class="card-action">
       <div>
         <button class="btn waves-effect waves-light auth-submit" type="submit">
-          Войти
+          Enter
           <i class="material-icons right">send</i>
         </button>
       </div>
 
       <p class="center">
-        Нет аккаунта?
-        <router-link to="/register">Зарегистрироваться</router-link>
+        No account?
+        <router-link to="/register">Registration</router-link>
       </p>
     </div>
   </form>
 </template>
 
 <script>
+import * as yup from 'yup'
+import { useField, useForm } from 'vee-validate'
 export default {
   name: 'login',
-  // setup() {
-  //   const {value: email, errorMessage: eError, handleBlur: eBlur} = useField('email')
-  //   const {value: password, errorMessage: pError, handleBlur: pBlur} = useField('password')
-  //   return {
-  //     email,
-  //     password,
-  //     eError,
-  //     pError,
-  //     eBlur,
-  //     pBlur
-  //   }
-  // },
+  setup () {
+    const { handleSubmit } = useForm()
+
+    const {
+      value: email,
+      errorMessage: eError,
+      handleBlur: eBlur
+    } = useField(
+      'email',
+      yup
+        .string()
+        .trim()
+        .required('This is a required field')
+        .email('Email must be valid')
+    )
+
+    const PASS_LENGTH = 6
+
+    const {
+      value: password,
+      errorMessage: pError,
+      handleBlur: pBlur
+    } = useField(
+      'password',
+      yup
+        .string()
+        .trim()
+        .required('This is a required field')
+        .min(PASS_LENGTH, `Password must be at least ${PASS_LENGTH} sumbols`)
+    )
+
+    const onSubmit = handleSubmit((values) => console.log('form:', values))
+
+    return {
+      email,
+      password,
+      eError,
+      pError,
+      eBlur,
+      pBlur,
+      onSubmit
+    }
+  },
   methods: {
     submitHandler () {
       this.$router.push('/')
