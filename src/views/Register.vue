@@ -122,6 +122,14 @@ export default {
   },
   methods: {
     submitHandler () {
+      const userData = {
+        email: this.email,
+        password: this.password,
+        name: this.name
+      }
+
+      console.log(userData)
+
       this.$router.push('/')
     }
   }

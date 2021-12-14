@@ -8,6 +8,19 @@
         <span class="black-text">{{ date }}</span>
       </div>
 
+      <div class="add">
+        <!-- <div>
+          <input type="text" placeholder="Search">
+        </div> -->
+        <div>
+          <select name="select" id="id">
+            <option value="1"></option>
+            <option value="2"></option>
+            <option value="3"></option>
+          </select>
+        </div>
+      </div>
+
       <ul class="right hide-on-small-and-down">
         <li>
           <a
@@ -56,7 +69,7 @@ export default {
   },
   mounted () {
     this.interval = setInterval(() => (
-      this.date = new Date().toLocaleDateString('ru', {
+      this.date = new Date().toLocaleDateString('en', {
         year: 'numeric',
         month: 'short',
         day: 'numeric',
@@ -78,3 +91,7 @@ export default {
 
 }
 </script>
+
+<style scoped>
+
+</style>

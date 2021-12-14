@@ -80,6 +80,7 @@ export default {
       onSubmit
     }
   },
+
   methods: {
     submitHandler () {
       this.$router.push('/')
