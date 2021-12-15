@@ -1,5 +1,6 @@
 <template>
   <div class="app-main-layout deep-purple lighten-5">
+
     <navbar />
     <sidebar/>
 
@@ -9,11 +10,9 @@
       </div>
     </main>
 
-    <!-- <div class="fixed-action-btn">
-      <a class="btn-floating btn-large blue" href="#">
-        <i class="large material-icons">add</i>
-      </a>
-    </div> -->
+    <div class="fixed-action-btn">
+
+    </div>
   </div>
 </template>
 

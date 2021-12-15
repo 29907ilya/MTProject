@@ -20,11 +20,11 @@ export default {
       try {
         const uid = await dispatch('getUid')
         return onValue(ref(getDatabase(), `/users/${uid}/info`), (snapshot) => {
-          const info = (snapshot.val() && snapshot.val()) || 'Anonymous'
+          const info = (snapshot.val() && snapshot.val()) || 'dear'
           console.log(info)
           commit('setName', info)
         }, {
-          onlyOnce: true
+          onlyOnce: false
         })
       } catch (error) { }
     }
