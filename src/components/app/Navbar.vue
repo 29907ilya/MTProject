@@ -29,7 +29,7 @@
             data-target="dropdown"
             ref="dropdown"
           >
-            USER NAME
+            Hi, {{name}}!
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
@@ -59,6 +59,11 @@ export default {
     return {
       date: new Date(),
       interval: null
+    }
+  },
+  computed: {
+    name () {
+      return this.$store.getters.info.name
     }
   },
   methods: {

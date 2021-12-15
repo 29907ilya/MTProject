@@ -1,4 +1,3 @@
-// import firebase from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 
 export default {
@@ -13,10 +12,10 @@ export default {
       }
     },
 
-    async logout () {
+    async logout ({ commit }) {
       const auth = getAuth()
       await signOut(auth)
-      console.log('exit')
+      commit('clearName')
     }
   }
 }
