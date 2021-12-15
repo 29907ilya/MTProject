@@ -62,8 +62,9 @@ export default {
     }
   },
   methods: {
-    logout () {
-      console.log('logout')
+    async logout () {
+      await this.$store.dispatch('logout')
+      window.M.toast({ html: 'You are logged out!' })
       this.$router.push('/login?message=logout')
     }
   },

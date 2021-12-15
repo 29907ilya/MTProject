@@ -1,7 +1,7 @@
 <template>
-  <form class="card auth-card" @submit.prevent="onSubmit">
+  <form class="card auth-card" @submit.prevent="handleSubmit">
     <div class="card-content">
-      <span class="card-title">Movie Tickets | Sing In</span>
+      <span class="card-title">Movie Tickets | Login</span>
 
       <div class="input-field">
         <label for="email">Email</label>
@@ -18,7 +18,11 @@
 
     <div class="card-action">
       <div>
-        <button class="btn waves-effect waves-light auth-submit" type="submit">
+        <button
+          class="btn waves-effect waves-light auth-submit"
+          type="submit"
+          @click="submitHandler"
+        >
           Enter
           <i class="material-icons right">send</i>
         </button>
@@ -68,7 +72,7 @@ export default {
         .min(PASS_LENGTH, `Password must be at least ${PASS_LENGTH} sumbols`)
     )
 
-    const onSubmit = handleSubmit((values) => console.log('form:', values))
+    const onSubmit = handleSubmit(() => console.log('form sent'))
 
     return {
       email,
@@ -82,8 +86,19 @@ export default {
   },
 
   methods: {
-    submitHandler () {
-      this.$router.push('/')
+    async submitHandler () {
+      const userData = {
+        email: this.email,
+        password: this.password
+      }
+
+      try {
+        await this.$store.dispatch('login', userData)
+        this.$router.push('/')
+        window.M.toast({ html: 'Welcome!' })
+      } catch (error) {
+        window.M.toast({ html: 'Login failed' })
+      }
     }
   }
 }

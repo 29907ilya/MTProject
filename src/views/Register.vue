@@ -1,5 +1,5 @@
 <template>
-  <form class="card auth-card" @submit.prevent="onSubmit">
+  <form class="card auth-card" @submit.prevent="handleSubmit">
     <div class="card-content">
       <span class="card-title">Movie Tickets | Registration</span>
 
@@ -30,14 +30,18 @@
             v-model="checkbox"
             @blur="cBlur"
           />
-          <span>Accept the rules</span>
-        </label><br>
+          <span>Accept the rules</span> </label
+        ><br />
         <small class="helper-text invalid" v-if="cError">{{ cError }}</small>
       </p>
     </div>
     <div class="card-action">
       <div>
-        <button class="btn waves-effect waves-light auth-submit" type="submit">
+        <button
+          class="btn waves-effect waves-light auth-submit"
+          type="submit"
+          @click="submitHandler"
+        >
           Registration
           <i class="material-icons right">send</i>
         </button>
@@ -100,7 +104,10 @@ export default {
       value: checkbox,
       errorMessage: cError,
       handleBlur: cBlur
-    } = useField('checkbox', yup.boolean().oneOf([true], 'You have to accept the rules'))
+    } = useField(
+      'checkbox',
+      yup.boolean().oneOf([true], 'You have to accept the rules')
+    )
 
     const onSubmit = handleSubmit((values) => console.log('form:', values))
 
@@ -121,16 +128,18 @@ export default {
     }
   },
   methods: {
-    submitHandler () {
+    async submitHandler () {
       const userData = {
         email: this.email,
         password: this.password,
         name: this.name
       }
 
-      console.log(userData)
-
-      this.$router.push('/')
+      try {
+        await this.$store.dispatch('register', userData)
+        window.M.toast({ html: 'Registration successfull!' })
+        this.$router.push('/')
+      } catch (error) {}
     }
   }
 }
