@@ -1,5 +1,5 @@
 <template>
-  <form class="card auth-card" @submit.prevent="handleSubmit">
+  <form class="card auth-card" @submit.prevent="onSubmit">
     <div class="card-content">
       <span class="card-title">Movie Tickets | Login</span>
 

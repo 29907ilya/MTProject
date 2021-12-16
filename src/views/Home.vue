@@ -83,9 +83,5 @@ export default {
 </script>
 
 <style scoped>
-.movie-container {
-  border: black solid 1px;
-  width: 18%;
-  margin: 10px;
-}
+
 </style>

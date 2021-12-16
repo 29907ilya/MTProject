@@ -1,5 +1,5 @@
 <template>
-  <form class="card auth-card" @submit.prevent="handleSubmit">
+  <form class="card auth-card" @submit.prevent="onSubmit">
     <div class="card-content">
       <span class="card-title">Movie Tickets | Registration</span>
 
@@ -139,7 +139,8 @@ export default {
         await this.$store.dispatch('register', userData)
         window.M.toast({ html: 'Registration successfull!' })
         this.$router.push('/')
-      } catch (error) {}
+      } catch (error) {
+      }
     }
   }
 }

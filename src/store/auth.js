@@ -7,7 +7,7 @@ export default {
         const auth = getAuth()
         await signInWithEmailAndPassword(auth, email, password)
       } catch (error) {
-        console.log(error)
+        console.log(error.message)
         throw error
       }
     },

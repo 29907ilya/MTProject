@@ -10,7 +10,7 @@ export default {
         const uid = await dispatch('getUid')
         await set(ref(getDatabase(), `/users/${uid}/info`), { email, password, uid, name })
       } catch (error) {
-        console.log(error)
+        console.log(error.message)
         throw error
       }
     },
