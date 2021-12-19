@@ -1,73 +1,14 @@
 <template>
   <div>
     <loader v-if="loading"></loader>
-    <div class="col" v-else>
-      <div class="movie-container">
-        <div class="movie-container__poster">Movie_Poster</div>
-        <span>Movie_Title</span>
-      </div>
-      <div class="movie-container">
-        <div class="movie-container__poster">Movie_Poster</div>
-        <span>Movie_Title</span>
-      </div>
-      <div class="movie-container">
-        <div class="movie-container__poster">Movie_Poster</div>
-        <span>Movie_Title</span>
-      </div>
-      <div class="movie-container">
-        <div class="movie-container__poster">Movie_Poster</div>
-        <span>Movie_Title</span>
-      </div>
-      <div class="movie-container">
-        <div class="movie-container__poster">Movie_Poster</div>
-        <span>Movie_Title</span>
-      </div>
-      <div class="movie-container">
-        <div class="movie-container__poster">Movie_Poster</div>
-        <span>Movie_Title</span>
-      </div>
-      <div class="movie-container">
-        <div class="movie-container__poster">Movie_Poster</div>
-        <span>Movie_Title</span>
-      </div>
-      <div class="movie-container">
-        <div class="movie-container__poster">Movie_Poster</div>
-        <span>Movie_Title</span>
-      </div>
-      <div class="movie-container">
-        <div class="movie-container__poster">Movie_Poster</div>
-        <span>Movie_Title</span>
-      </div>
-      <div class="movie-container">
-        <div class="movie-container__poster">Movie_Poster</div>
-        <span>Movie_Title</span>
-      </div>
-      <div class="movie-container">
-        <div class="movie-container__poster">Movie_Poster</div>
-        <span>Movie_Title</span>
-      </div>
-      <div class="movie-container">
-        <div class="movie-container__poster">Movie_Poster</div>
-        <span>Movie_Title</span>
-      </div>
-      <div class="movie-container">
-        <div class="movie-container__poster">Movie_Poster</div>
-        <span>Movie_Title</span>
-      </div>
-      <div class="movie-container">
-        <div class="movie-container__poster">Movie_Poster</div>
-        <span>Movie_Title</span>
-      </div>
-      <div class="movie-container">
-        <div class="movie-container__poster">Movie_Poster</div>
-        <span>Movie_Title</span>
-      </div>
-    </div>
+    <movie-list v-else></movie-list>
   </div>
 </template>
 
 <script>
 import Loader from '../components/app/Loader.vue'
+import MovieList from '../components/app/MovieList.vue'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'home',
@@ -76,12 +17,19 @@ export default {
       loading: false // <<<<<<<<<<<<<<<<<<<<<<<<================================= ИЗМЕНИТЬ НА TRUE
     }
   },
+  mounted () {
+    this.getMovieBase()
+    this.renderMovies()
+  },
+  methods: {
+    ...mapActions('movies', ['getMovieBase', 'renderMovies'])
+  },
   components: {
-    Loader
+    Loader,
+    MovieList
   }
 }
 </script>
 
 <style scoped>
-
 </style>

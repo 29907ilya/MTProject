@@ -1,7 +1,8 @@
 import { createStore } from 'vuex'
-import auth from './auth'
-import reg from './reg'
-import info from './info'
+import auth from './modules/auth'
+import reg from './modules/reg'
+import info from './modules/info'
+import movies from './modules/movies'
 
 export default createStore({
   state: {
@@ -11,6 +12,6 @@ export default createStore({
   actions: {
   },
   modules: {
-    auth, reg, info
+    auth, reg, info, movies
   }
 })

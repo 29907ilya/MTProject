@@ -2,7 +2,7 @@
   <div class="app-main-layout deep-purple lighten-5">
 
     <navbar />
-    <sidebar/>
+    <sidebar />
 
     <main class="app-content">
       <div class="app-page">
@@ -27,7 +27,7 @@ export default {
     }
   },
   async mounted () {
-    if (!Object.keys(this.$store.getters.info).length) {
+    if (!Object.keys(this.$store.getters.userName).length) {
       await this.$store.dispatch('fetchInfo')
     }
   },

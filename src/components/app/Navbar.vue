@@ -29,7 +29,7 @@
             data-target="dropdown"
             ref="dropdown"
           >
-            Good day {{name}}!
+            Good day {{userName}}!
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
@@ -62,8 +62,8 @@ export default {
     }
   },
   computed: {
-    name () {
-      return this.$store.getters.info.name
+    userName () {
+      return this.$store.getters.userName
     }
   },
   methods: {
