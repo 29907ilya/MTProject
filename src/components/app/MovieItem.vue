@@ -3,11 +3,11 @@
     <div class="movie-item-poster" :style="posterBg"></div>
     <div class="movie-info-wrap">
       <div class="movie-item-info">
-        <h3 class="movie-title">{{ movie.Title }}</h3>
-        <span class="movie-title"> {{ movie.Year }} </span>
+        <p class="movie-title">{{ movie.Title }}</p>
+        <span class="movie-year"> {{ movie.Year }} </span>
       </div>
       <div class="movie-item-control">
-
+      <a class="waves-effect waves-red btn-flat">Buy tickets</a>
       </div>
     </div>
   </div>
@@ -50,14 +50,35 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  z-index: -1;
 }
-/* .btn {
+.movie-info-wrap {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.movie-item:hover .movie-info-wrap{
+  opacity: .90;
+  background-color: rgb(0, 0, 0, 0.7);
+}
+.movie-item-info {
+  color: white;
+  font-size: 18px;
+}
+.btn-flat {
   position: relative;
   left: 50%;
+  width: 100%;
   transform: translate(-50%, 0);
-  margin-top: 10px;
+  text-align: center;
+  color: white;
+  border: solid 1px
 }
-.btn:hover {
-  color: black;
-} */
+.btn-flat:hover {
+  background-color: #e57373;
+}
 </style>

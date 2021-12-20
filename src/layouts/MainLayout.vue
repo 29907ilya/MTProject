@@ -1,5 +1,5 @@
 <template>
-  <div class="app-main-layout deep-purple lighten-5">
+  <div class="app-main-layout ">
 
     <navbar />
     <sidebar />
