@@ -79,6 +79,6 @@ export default {
   border: solid 1px
 }
 .btn-flat:hover {
-  background-color: #e57373;
+  background-color: #ef5350;
 }
 </style>

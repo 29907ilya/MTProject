@@ -2,12 +2,14 @@
   <div>
     <loader v-if="loading"></loader>
     <movie-list :list="moviesToRender" v-else></movie-list>
+    <pagination></pagination>
   </div>
 </template>
 
 <script>
 import Loader from '../components/app/Loader.vue'
 import MovieList from '../components/app/MovieList.vue'
+import Pagination from '../components/app/Pagination.vue'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
@@ -30,7 +32,8 @@ export default {
   },
   components: {
     Loader,
-    MovieList
+    MovieList,
+    Pagination
   }
 }
 </script>
