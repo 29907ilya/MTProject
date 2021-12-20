@@ -70,7 +70,7 @@
 }
 .app-content {
   padding-top: 64px;
-  padding-left: 150px;
+  padding-left: 160px;
   transition: padding-left 0.3s;
   position: relative;
 }
@@ -150,12 +150,11 @@
 .col {
   display: flex;
   flex-wrap: wrap;
-  border: #000 solid 1px;
+  /* border: #000 solid 1px; */
   width: auto;
 }
 
 .movie-container {
-  border: black solid 1px;
   width: 18%;
   margin: 10px;
 }

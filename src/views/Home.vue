@@ -1,28 +1,32 @@
 <template>
   <div>
     <loader v-if="loading"></loader>
-    <movie-list v-else></movie-list>
+    <movie-list :list="moviesToRender" v-else></movie-list>
   </div>
 </template>
 
 <script>
 import Loader from '../components/app/Loader.vue'
 import MovieList from '../components/app/MovieList.vue'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'home',
   data () {
     return {
-      loading: false // <<<<<<<<<<<<<<<<<<<<<<<<================================= ИЗМЕНИТЬ НА TRUE
+      loading: false,
+      moviesPerPage: 15,
+      currentPage: 1
     }
   },
   mounted () {
     this.getMovieBase()
-    this.renderMovies()
   },
   methods: {
-    ...mapActions('movies', ['getMovieBase', 'renderMovies'])
+    ...mapActions('movies', ['getMovieBase'])
+  },
+  computed: {
+    ...mapGetters('movies', ['moviesToRender'])
   },
   components: {
     Loader,

@@ -1,12 +1,5 @@
 import { getDatabase, ref, child, get } from 'firebase/database'
 
-// function setMoviesInState(movieBase) {
-//   return movieBase.reduce((acc, movie) => {
-//     acc[movie.Title] = movie;
-//     return acc;
-//   }, {});
-// }
-
 const movieStore = {
   namespaced: true,
   state: {
@@ -15,37 +8,31 @@ const movieStore = {
     currentPage: 1
   },
   getters: {
-    slicedBase: state => (from, to) => state.movieBase.slice(from, to),
+    moviesToRender: ({ movieBase }) => movieBase,
     currentPage: ({ currentPage }) => currentPage,
     moviesPerPage: ({ moviesPerPage }) => moviesPerPage
   },
   mutations: {
-    setMovieBase (state, response) {
-      state.movieBase = response
-      console.log(response)
+    setMovieBase (state, moviesToRender) {
+      state.movieBase = moviesToRender
     }
   },
   actions: {
-    async getMovieBase ({ commit }) {
-      const db = ref(getDatabase())
-      const response = (await get(child(db, 'MovieBase'))).val()
-      commit('setMovieBase', response)
-      console.log(response)
-    },
-    renderMovies ({ getters }) {
-      const { slicedBase, currentPage, moviesPerPage } = getters
-      const from = currentPage * currentPage - moviesPerPage
-      const to = currentPage * moviesPerPage
-      console.log(slicedBase)
-
-      const moviesToRender = slicedBase(from, to)
-      console.log(moviesToRender)
-
-      // const result = moviesToRender.map((key, value) => key[value])
-      // console.log(result);
+    async getMovieBase ({ commit, getters }) {
+      try {
+        const db = ref(getDatabase())
+        const response = (await get(child(db, 'MovieBase'))).val()
+        const { currentPage, moviesPerPage } = getters
+        const from = currentPage * moviesPerPage - moviesPerPage
+        const to = currentPage * moviesPerPage
+        const moviesToRender = response.slice(from, to)
+        console.log(moviesToRender)
+        commit('setMovieBase', moviesToRender)
+      } catch (error) {
+        console.log('Some mistake')
+      }
     }
   }
-
 }
 
 export default movieStore
