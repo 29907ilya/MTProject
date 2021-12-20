@@ -29,7 +29,7 @@ const movieStore = {
         console.log(moviesToRender)
         commit('setMovieBase', moviesToRender)
       } catch (error) {
-        console.log('Some mistake')
+        console.log(error.message)
       }
     }
   }

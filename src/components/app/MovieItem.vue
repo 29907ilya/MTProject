@@ -1,6 +1,15 @@
 <template>
   <div class="movie-item mb-3">
     <div class="movie-item-poster" :style="posterBg"></div>
+    <div class="movie-info-wrap">
+      <div class="movie-item-info">
+        <h3 class="movie-title">{{ movie.Title }}</h3>
+        <span class="movie-title"> {{ movie.Year }} </span>
+      </div>
+      <div class="movie-item-control">
+
+      </div>
+    </div>
   </div>
 </template>
 
@@ -42,4 +51,13 @@ export default {
   background-size: cover;
   background-position: center;
 }
+/* .btn {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin-top: 10px;
+}
+.btn:hover {
+  color: black;
+} */
 </style>
