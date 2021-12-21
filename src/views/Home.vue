@@ -1,8 +1,16 @@
 <template>
   <div>
     <loader v-if="loading"></loader>
-    <movie-list :list="moviesToRender" v-else></movie-list>
-    <pagination></pagination>
+
+      <template v-else>
+        <movie-list :list="moviesToRender"></movie-list>
+      <pagination
+        :current-page="currentPage"
+        :moviesPerPage="moviesPerPage"
+        :total="moviesLength"
+        @page-changed="onPageChanged"
+      ></pagination>
+      </template>
   </div>
 </template>
 
@@ -16,19 +24,26 @@ export default {
   name: 'home',
   data () {
     return {
-      loading: false,
-      moviesPerPage: 15,
-      currentPage: 1
+      loading: true,
+      moviesPerPage: 15
     }
   },
-  mounted () {
+  async mounted () {
     this.getMovieBase()
+    this.loading = false
   },
   methods: {
-    ...mapActions('movies', ['getMovieBase'])
+    ...mapActions('movies', ['changeCurrentPage', 'getMovieBase']),
+    onPageChanged (page) {
+      this.changeCurrentPage(page)
+    }
   },
   computed: {
-    ...mapGetters('movies', ['moviesToRender'])
+    ...mapGetters(
+      'movies',
+      ['moviesToRender', 'moviesLength', 'currentPage']
+
+    )
   },
   components: {
     Loader,

@@ -10,12 +10,14 @@
   "dependencies": {
     "@vuelidate/core": "^2.0.0-alpha.32",
     "@vuelidate/validators": "^2.0.0-alpha.25",
-    "balm-ui": "^8.47.0",
+    "balm-ui": "^9.39.0",
     "core-js": "^3.6.5",
     "firebase": "^9.6.1",
     "materialize-css": "^1.0.0-rc.2",
     "vee-validate": "^4.5.7",
     "vue": "^3.0.0",
+    "vue-ads-pagination": "^2.1.7",
+    "vue-pagination-tw": "^0.1.1",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0",
     "yup": "^0.32.11"

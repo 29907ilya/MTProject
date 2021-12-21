@@ -1,18 +1,40 @@
 <template>
   <ui-pagination
-  v-model="page"
-  :total="total"
-  position="center"
-></ui-pagination>
+    v-model="currentPageModel"
+    :page-size="moviesPerPage"
+    :total="total"
+    @update:modelValue="currentPageModel = $event"
+    position="center"
+  ></ui-pagination>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      page: 1,
-      total: 100
+  props: {
+    currentPage: {
+      type: Number,
+      default: 1
+    },
+    total: {
+      type: Number,
+      default: 1
+    },
+    moviesPerPage: {
+      type: Number,
+      default: 1
+    }
+  },
+  computed: {
+    currentPageModel: {
+      get () {
+        return this.currentPage
+      },
+      set (value) {
+        this.$emit('pageChanged', value)
+      }
     }
   }
 }
 </script>
+<style scoped>
+</style>

@@ -14,9 +14,11 @@
   </div>
 </template>
 <script>
+// import {mapGetters} from 'vuex'
 export default {
-  setup () {},
+
   computed: {
+    // ...mapGetters(["isLoading"]),
     color () {
       const colors = ['spinner-red-only', 'spinner-blue-only', 'spinner-green-only']
       return colors[Math.floor(Math.random() * 3)]

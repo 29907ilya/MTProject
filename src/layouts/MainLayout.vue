@@ -1,6 +1,5 @@
 <template>
-  <div class="app-main-layout ">
-
+  <div class="app-main-layout">
     <navbar />
     <sidebar />
 
@@ -10,9 +9,7 @@
       </div>
     </main>
 
-    <div class="fixed-action-btn">
-
-    </div>
+    <div class="fixed-action-btn"></div>
   </div>
 </template>
 
@@ -21,18 +18,16 @@ import Navbar from '../components/app/Navbar.vue'
 import Sidebar from '../components/app/Sidebar.vue'
 
 export default {
-  data () {
-    return {
-
-    }
-  },
   async mounted () {
     if (!Object.keys(this.$store.getters.userName).length) {
       await this.$store.dispatch('fetchInfo')
-    }
+    } else if (this.$store.getters.userName == null) {
+      await this.$store.dispatch('fetchInfo')
+    } else console.log('HI')
   },
   components: {
-    Navbar, Sidebar
+    Navbar,
+    Sidebar
   }
 }
 </script>
