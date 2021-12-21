@@ -25,6 +25,15 @@ export default {
         const info = (await get(child(db, `users/${uid}/info/name`))).val()
         console.log(info)
         commit('setName', info)
+
+        // второй способ
+        // return onValue(ref(getDatabase(), `/users/${uid}/info`), (snapshot) => {
+        //   const info = (snapshot.val() && snapshot.val()) || 'dear'
+        // console.log(info)
+        // commit('setName', info)
+        // }, {
+        //   onlyOnce: false
+        // })
       } catch (error) { }
     }
   }
