@@ -21,9 +21,7 @@ export default {
   async mounted () {
     if (!Object.keys(this.$store.getters.userName).length) {
       await this.$store.dispatch('fetchInfo')
-    } else if (this.$store.getters.userName == null) {
-      await this.$store.dispatch('fetchInfo')
-    } else console.log('HI')
+    }
   },
   components: {
     Navbar,

@@ -29,7 +29,7 @@
             data-target="dropdown"
             ref="dropdown"
           >
-            Good day {{userName}}!
+            {{userName}}
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
