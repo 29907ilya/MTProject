@@ -29,7 +29,7 @@
             data-target="dropdown"
             ref="dropdown"
           >
-            {{userName}}
+            {{ userName }}
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
@@ -53,7 +53,6 @@
 </template>
 
 <script>
-
 export default {
   data () {
     return {
@@ -63,7 +62,7 @@ export default {
   },
   computed: {
     userName () {
-      return this.$store.getters.userName
+      return this.$store.getters.userName.name
     }
   },
   methods: {
@@ -74,16 +73,18 @@ export default {
     }
   },
   mounted () {
-    this.interval = setInterval(() => (
-      this.date = new Date().toLocaleDateString('en', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric'
-      })
-    ), 0)
+    this.interval = setInterval(
+      () =>
+        (this.date = new Date().toLocaleDateString('en', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+          second: 'numeric'
+        })),
+      0
+    )
 
     window.M.Dropdown.init(this.$refs.dropdown, {
       constrainWidth: true,
@@ -94,10 +95,8 @@ export default {
     clearInterval(this.interval)
     console.log('done')
   }
-
 }
 </script>
 
 <style scoped>
-
 </style>

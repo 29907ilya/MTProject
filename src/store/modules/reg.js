@@ -2,8 +2,9 @@ import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 import { getDatabase, ref, set } from 'firebase/database'
 
 export default {
+
   actions: {
-    async register ({ dispatch }, { email, password, name }) {
+    async register ({ commit, dispatch }, { email, password, name }) {
       try {
         const auth = getAuth()
         await createUserWithEmailAndPassword(auth, email, password, name)

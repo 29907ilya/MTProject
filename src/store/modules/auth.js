@@ -11,11 +11,21 @@ export default {
         throw error
       }
     },
-
     async logout ({ commit }) {
       const auth = getAuth()
       await signOut(auth)
       commit('clearName')
     }
+    // checkAuth({ dispatch }) {
+    //   const auth = getAuth();
+    //   onAuthStateChanged(auth, (user) => {
+    //     if (user) {
+    //       const uid = user.uid;
+    //       console.log(uid);
+    //     } else {
+    //       console.log('no Auth user');
+    //     }
+    //   });
+    // },
   }
 }
