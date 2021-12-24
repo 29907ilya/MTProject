@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { getAuth } from 'firebase/auth'
+// import { getAuth } from 'firebase/auth'
 
 const routes = [
   {
@@ -48,26 +48,26 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  const auth = getAuth()
-  const currentUser = auth.currentUser
-  const requireAuth = to.matched.some(record => record.meta.auth)
+// router.beforeEach((to, from, next) => {
+//   const auth = getAuth()
+//   const currentUser = auth.currentUser
+//   const requireAuth = to.matched.some(record => record.meta.auth)
 
-  if (requireAuth && !currentUser) {
-    next('/login')
-  } else {
-    next()
-  }
+//   if (requireAuth && !currentUser) {
+//     next('/login')
+//   } else {
+//     next()
+//   }
 
-  //   const requiredAuth = to.meta.auth
+//   const requiredAuth = to.meta.auth
 
-  //   if(requiredAuth && store.getters['auth/isAuth']) {
-  //     next()
-  //   } else if (requiredAuth && !store.getters['auth/isAuth']) {
-  //     next('/login')
-  //   } else {
-  //     next()
-  //   }
-})
+//   if(requiredAuth && store.getters['auth/isAuth']) {
+//     next()
+//   } else if (requiredAuth && !store.getters['auth/isAuth']) {
+//     next('/login')
+//   } else {
+//     next()
+//   }
+// })
 
 export default router
