@@ -7,31 +7,16 @@
         <span class="movie-year"> {{ movie.Year }} </span>
       </div>
       <div class="movie-item-control">
-      <a class="waves-effect waves-red btn-flat" @click='switchModal'>Buy tickets</a>
+      <a class="waves-effect waves-red btn-flat">Buy tickets</a>
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
-// import { ref } from 'vue'
-
 export default {
-  emits: ['modal'],
-  // setup() {
-  //   const modal = ref(false)
-  //   console.log(Boolean(modal));
-  //   return {modal}
-  // },
   props: {
     movie: Object
-    // modal
-  },
-  methods: {
-    // switchModal () {
-    //   modal = true
-    // }
   },
   computed: {
     posterBg () {
