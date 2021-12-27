@@ -1,14 +1,17 @@
 <template>
   <teleport to="body">
-    <modal-window
-      @close="modal = false"
-      v-if="modal"
-    ></modal-window>
+    <div v-for="movie in list" :key="movie">
+      <modal-window
+        :movie="movie"
+        @close="modal = false"
+        v-if="modal"
+      ></modal-window>
+    </div>
   </teleport>
 
   <div class="col" v-if="this.list.length > 0">
-    <div class="movie-container" v-for="(movie, key) in list" :key="key">
-      <movie-item :movie="movie" @click="modal=true"></movie-item>
+    <div class="movie-container" v-for="movie in list" :key="movie">
+      <movie-item :movie="movie" @click="modal = true"> </movie-item>
     </div>
   </div>
 </template>
@@ -29,7 +32,8 @@ export default {
   components: {
     MovieItem,
     ModalWindow
-  }
+  },
+  methods: {}
 }
 </script>
 <style scoped>

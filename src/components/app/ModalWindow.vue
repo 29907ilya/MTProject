@@ -2,13 +2,13 @@
   <div class="modal-backdrop" @click="$emit('close')"></div>
   <div class="modal-window">
     <div class="logo_info">
-      <div>logo_info</div>
+      <div class="logo-poster" :style="posterBg"></div>
       <span>Duration</span>
       <span>Raiting</span>
     </div>
     <div class="options">
       <div class="title">
-        <span> Title </span>
+        <span> {{ movie.Title }} </span>
       </div>
       <div class="formalities">
         <div class="place_sessions">
@@ -29,10 +29,19 @@
 <script>
 export default {
   emits: ['close'],
+  props: {
+    movie: Object
+  },
   methods: {
     tap () {
-      console.log('click')
       window.M.toast({ html: 'You have bought a tickets!' })
+    }
+  },
+  computed: {
+    posterBg () {
+      return {
+        'background-image': `url(${this.movie.Poster})`
+      }
     }
   }
 }
@@ -61,6 +70,18 @@ export default {
   bottom: 0;
   background: rgba(58, 57, 57, 0.35);
   z-index: 10;
-  opacity: 0.8;
+  opacity: 0.1;
+}
+.modal-window {
+  display: flex;
+  flex-wrap: wrap;
+}
+.logo_info {
+  width: 150px;
+  height: 270px;
+}
+.logo-poster {
+  width: 150px;
+  height: 200px;
 }
 </style>

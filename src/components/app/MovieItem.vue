@@ -17,6 +17,7 @@
 export default {
   props: {
     movie: Object
+
   },
   computed: {
     posterBg () {

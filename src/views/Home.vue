@@ -2,15 +2,15 @@
   <div>
     <loader v-if="loading"></loader>
 
-      <template v-else>
-        <movie-list :list="moviesToRender"></movie-list>
+    <template v-else>
+      <movie-list :list="moviesToRender"></movie-list>
       <pagination
         :current-page="currentPage"
         :moviesPerPage="moviesPerPage"
         :total="moviesLength"
         @page-changed="onPageChanged"
       ></pagination>
-      </template>
+    </template>
   </div>
 </template>
 
@@ -39,11 +39,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(
-      'movies',
-      ['moviesToRender', 'moviesLength', 'currentPage']
-
-    )
+    ...mapGetters('movies', ['moviesToRender', 'moviesLength', 'currentPage'])
   },
   components: {
     Loader,
