@@ -7,17 +7,32 @@
         <span class="movie-year"> {{ movie.Year }} </span>
       </div>
       <div class="movie-item-control">
-      <a class="waves-effect waves-red btn-flat">Buy tickets</a>
+        <a class="waves-effect waves-red btn-flat" @click="modal = true"
+          >Buy tickets</a
+        >
       </div>
     </div>
   </div>
+
+  <teleport to="body">
+    <modal-window
+      :movie="movie"
+      @close="modal = false"
+      v-if="modal"
+    ></modal-window>
+  </teleport>
 </template>
 
 <script>
+import { ref } from 'vue'
+import ModalWindow from './ModalWindow.vue'
 export default {
+  setup () {
+    const modal = ref(false)
+    return { modal }
+  },
   props: {
     movie: Object
-
   },
   computed: {
     posterBg () {
@@ -25,6 +40,9 @@ export default {
         'background-image': `url(${this.movie.Poster})`
       }
     }
+  },
+  components: {
+    ModalWindow
   }
 }
 </script>
@@ -62,8 +80,8 @@ export default {
   opacity: 0;
   transition: all 0.3s ease;
 }
-.movie-item:hover .movie-info-wrap{
-  opacity: .90;
+.movie-item:hover .movie-info-wrap {
+  opacity: 0.9;
   background-color: rgb(0, 0, 0, 0.7);
 }
 .movie-item-info {
@@ -77,7 +95,7 @@ export default {
   transform: translate(-50%, 0);
   text-align: center;
   color: white;
-  border: solid 1px
+  border: solid 1px;
 }
 .btn-flat:hover {
   background-color: #ef5350;

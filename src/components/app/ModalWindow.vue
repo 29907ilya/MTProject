@@ -3,16 +3,16 @@
   <div class="modal-window">
     <div class="logo_info">
       <div class="logo-poster" :style="posterBg"></div>
-      <span>Duration</span>
-      <span>Raiting</span>
+      <span>{{ movie.Runtime }}</span>
+      <span>{{ movie.imdbRating }}</span>
     </div>
     <div class="options">
       <div class="title">
-        <span> {{ movie.Title }} </span>
+        <span> {{ movie.Title }}, {{ movie.Year }} </span>
       </div>
       <div class="formalities">
         <div class="place_sessions">
-          <div class="place">Place Name</div>
+          <movie-house></movie-house>
           <div class="sessions">Sessions</div>
         </div>
         <div class="seats_buy">
@@ -22,19 +22,21 @@
       </div>
     </div>
 
-    <div class="discription">Discription</div>
+    <div class="discription">{{ movie.Plot }}</div>
   </div>
 </template>
 
 <script>
+import MovieHouse from './MovieHouse.vue'
 export default {
   emits: ['close'],
   props: {
-    movie: Object
+    movie: Object,
+    idx: String
   },
   methods: {
     tap () {
-      window.M.toast({ html: 'You have bought a tickets!' })
+      window.M.toast({ html: 'You have bought your tickets!' })
     }
   },
   computed: {
@@ -43,11 +45,15 @@ export default {
         'background-image': `url(${this.movie.Poster})`
       }
     }
+  },
+  components: {
+    MovieHouse
   }
 }
 </script>
 
 <style>
+
 .modal-window {
   position: fixed;
   top: 120px;
@@ -77,11 +83,22 @@ export default {
   flex-wrap: wrap;
 }
 .logo_info {
-  width: 150px;
+  width: 200px;
   height: 270px;
 }
 .logo-poster {
-  width: 150px;
-  height: 200px;
+  position: absolute;
+  top: 20px;
+  bottom: 10px;
+  left: 20px;
+  right: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 180px;
+  height: 250px;
+}
+.title {
+  font-size: 24px;
 }
 </style>
