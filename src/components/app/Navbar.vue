@@ -13,11 +13,7 @@
           <input type="text" placeholder="Search">
         </div> -->
         <div>
-          <select name="select" id="id">
-            <option value="1"></option>
-            <option value="2"></option>
-            <option value="3"></option>
-          </select>
+          <h3>Search</h3>
         </div>
       </div>
 

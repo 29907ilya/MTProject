@@ -3,21 +3,22 @@
   <div class="modal-window">
     <div class="logo_info">
       <div class="logo-poster" :style="posterBg"></div>
-      <span>{{ movie.Runtime }}</span>
-      <span>{{ movie.imdbRating }}</span>
+      <div class="movie-info">
+        <div>&#128357; {{ movie.Runtime }}</div>
+        <div>&#10026; {{ movie.imdbRating }}</div>
+      </div>
     </div>
     <div class="options">
       <div class="title">
-        <span> {{ movie.Title }}, {{ movie.Year }} </span>
+        <p class="title">{{ movie.Title }}, {{ movie.Year }}</p>
       </div>
       <div class="formalities">
         <div class="place_sessions">
           <movie-house></movie-house>
-          <div class="sessions">Sessions</div>
+          <movie-sessions></movie-sessions>
         </div>
         <div class="seats_buy">
-          <div class="seats">Seats</div>
-          <button @click="tap">BUY</button>
+          <seats-plan></seats-plan>
         </div>
       </div>
     </div>
@@ -28,11 +29,13 @@
 
 <script>
 import MovieHouse from './MovieHouse.vue'
+import MovieSessions from './MovieSessions.vue'
+import SeatsPlan from './SeatsPlan.vue'
+
 export default {
   emits: ['close'],
   props: {
-    movie: Object,
-    idx: String
+    movie: Object
   },
   methods: {
     tap () {
@@ -47,25 +50,28 @@ export default {
     }
   },
   components: {
-    MovieHouse
+    MovieHouse,
+    MovieSessions,
+    SeatsPlan
   }
 }
 </script>
 
 <style>
-
 .modal-window {
   position: fixed;
-  top: 120px;
-  width: 600px;
+  top: 100px;
+  width: 660px;
   padding: 1rem;
-  background: rgb(179, 92, 92);
+  background: #ff5353;
   z-index: 100;
   left: 56%;
   border-radius: 10px;
   transform: translateX(-50%);
-  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   opacity: 0.99;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .modal-backdrop {
@@ -74,31 +80,61 @@ export default {
   right: 0;
   left: 0;
   bottom: 0;
-  background: rgba(58, 57, 57, 0.35);
+  background: rgba(58, 57, 57, 0.55);
   z-index: 10;
   opacity: 0.1;
 }
-.modal-window {
-  display: flex;
-  flex-wrap: wrap;
-}
+
 .logo_info {
-  width: 200px;
-  height: 270px;
+  width: 195px;
+  height: 280px;
 }
 .logo-poster {
   position: absolute;
   top: 20px;
   bottom: 10px;
   left: 20px;
-  right: 10px;
+  right: 20px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  width: 180px;
-  height: 250px;
+  width: 170px;
+  height: 240px;
+  border-radius: 4px;
+  box-shadow: 0 10px 12px rgba(0,0,0,0.65), 0 10px 10px rgba(0,0,0,0.22);
+
+}
+.movie-info {
+  margin: 255px 20px 20px 10px;
+  font-size:  16px;
+  font-weight: bold;
+  width: 150px;
+  display: flex;
+  justify-content: space-between;
+}
+.options {
+  width: 360px;
 }
 .title {
   font-size: 24px;
+  margin: 0;
+  text-shadow:
+    1px 1px 1px rgb(80, 80, 80),
+    -1px 1px 1px rgb(224, 71, 71);
+}
+.formalities {
+  display: flex;
+  border: black 1px solid;
+}
+.place_sessions {
+  width: 200px;
+  border: black 1px solid;
+}
+.seats_buy {
+  width: 200px;
+  border: black 1px solid;
+}
+.discription {
+  font-size: 16px;
 }
 </style>
