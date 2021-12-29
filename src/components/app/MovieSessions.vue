@@ -7,6 +7,7 @@
         <span>{{ session }}</span>
       </label>
     </form>
+
   </div>
 </template>
 
@@ -15,6 +16,7 @@ export default {
   data () {
     return {
       sessions: ['16:00', '18:00', '20:00']
+
     }
   }
 }
@@ -31,9 +33,11 @@ label {
   background-color: #f78888;
   border: 1px solid #ff5353;
   border-radius: 20px;
+  /* margin: 2px; */
 }
 [type="radio"]:checked + span:after {
   border: 2px solid #ef5350;
   background-color: #ef5350;
 }
+
 </style>

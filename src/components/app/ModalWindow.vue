@@ -21,6 +21,10 @@
           <seats-plan></seats-plan>
         </div>
       </div>
+      <div class="price">
+        <div>Price: {{ price }}$</div>
+        <div>Total: {{ price }}$</div>
+      </div>
     </div>
 
     <div class="discription">{{ movie.Plot }}</div>
@@ -36,6 +40,11 @@ export default {
   emits: ['close'],
   props: {
     movie: Object
+  },
+  data () {
+    return {
+      price: 5
+    }
   },
   methods: {
     tap () {
@@ -68,7 +77,7 @@ export default {
   left: 56%;
   border-radius: 10px;
   transform: translateX(-50%);
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   opacity: 0.99;
   display: flex;
   flex-wrap: wrap;
@@ -99,14 +108,13 @@ export default {
   background-size: cover;
   background-position: center;
   width: 170px;
-  height: 240px;
+  height: 230px;
   border-radius: 4px;
-  box-shadow: 0 10px 12px rgba(0,0,0,0.65), 0 10px 10px rgba(0,0,0,0.22);
-
+  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.65), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 .movie-info {
-  margin: 255px 20px 20px 10px;
-  font-size:  16px;
+  margin: 252px 20px 20px 10px;
+  font-size: 16px;
   font-weight: bold;
   width: 150px;
   display: flex;
@@ -118,23 +126,30 @@ export default {
 .title {
   font-size: 24px;
   margin: 0;
-  text-shadow:
-    1px 1px 1px rgb(80, 80, 80),
-    -1px 1px 1px rgb(224, 71, 71);
+  text-shadow: 1px 1px 1px rgb(80, 80, 80), -1px 1px 1px rgb(224, 71, 71);
 }
 .formalities {
   display: flex;
-  border: black 1px solid;
+  /* border: black 1px solid; */
 }
 .place_sessions {
   width: 200px;
-  border: black 1px solid;
+  /* border: black 1px solid; */
 }
 .seats_buy {
   width: 200px;
-  border: black 1px solid;
+  padding: 0;
 }
 .discription {
+  margin-top: 10px;
   font-size: 16px;
+  line-height: 1.1;
+}
+.price {
+  display: flex;
+  width: auto;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-weight: bold;
 }
 </style>
