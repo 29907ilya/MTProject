@@ -61,7 +61,7 @@ const router = createRouter({
 
 //   const requiredAuth = to.meta.auth
 
-//   if(requiredAuth && store.getters['auth/isAuth']) {
+//   if (requiredAuth && store.getters['auth/isAuth']) {
 //     next()
 //   } else if (requiredAuth && !store.getters['auth/isAuth']) {
 //     next('/login')

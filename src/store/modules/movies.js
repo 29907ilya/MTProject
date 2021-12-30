@@ -19,8 +19,8 @@ const movieStore = {
     setMovieBase (state, moviesToRender) {
       state.movieBase = moviesToRender
     },
-    setFullBase (state, response) {
-      state.fullBase = response
+    setFullBase (state, value) {
+      state.fullBase = value
     },
     setCurrentPage (state, value) {
       state.currentPage = value
@@ -53,6 +53,7 @@ const movieStore = {
         const db = ref(getDatabase())
         const response = (await get(child(db, 'MovieBase'))).val()
         const result = response.filter(key => key.Title.toLowerCase().includes(query.toLowerCase().trim()))
+        commit('setFullBase', result)
         const from = currentPage * moviesPerPage - moviesPerPage
         const to = currentPage * moviesPerPage
         const moviesToRender = result.slice(from, to)

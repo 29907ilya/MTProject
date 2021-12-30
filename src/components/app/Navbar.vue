@@ -57,7 +57,11 @@ export default {
   },
   computed: {
     userName () {
+      // try {
       return this.$store.getters.userName.name
+      // } catch (e) {
+      //   console.log(e.message)
+      // }
     },
     input: {
       get () {
