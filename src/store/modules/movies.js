@@ -12,6 +12,7 @@ const movieStore = {
     moviesToRender: ({ movieBase }) => movieBase,
     currentPage: ({ currentPage }) => currentPage,
     moviesPerPage: ({ moviesPerPage }) => moviesPerPage,
+    fullBase: ({ fullBase }) => fullBase,
     moviesLength: ({ fullBase }) => Object.keys(fullBase).length
   },
   mutations: {
@@ -44,6 +45,21 @@ const movieStore = {
     changeCurrentPage ({ commit, dispatch }, page) {
       commit('setCurrentPage', page)
       dispatch('getMovieBase')
+    },
+
+    async searchMovies ({ getters, commit }, query) {
+      try {
+        const { currentPage, moviesPerPage } = getters
+        const db = ref(getDatabase())
+        const response = (await get(child(db, 'MovieBase'))).val()
+        const result = response.filter(key => key.Title.toLowerCase().includes(query.toLowerCase().trim()))
+        const from = currentPage * moviesPerPage - moviesPerPage
+        const to = currentPage * moviesPerPage
+        const moviesToRender = result.slice(from, to)
+        commit('setMovieBase', moviesToRender)
+      } catch (e) {
+        console.warn(e.message)
+      }
     }
   }
 }

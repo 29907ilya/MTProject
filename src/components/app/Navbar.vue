@@ -8,12 +8,9 @@
         <span class="black-text">{{ date }}</span>
       </div>
 
-      <div class="add">
-        <!-- <div>
-          <input type="text" placeholder="Search">
-        </div> -->
+      <div class="search_field">
         <div>
-          <h3>Search</h3>
+          <input type="text" placeholder="Search" v-model="input">
         </div>
       </div>
 
@@ -49,23 +46,46 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   data () {
     return {
       date: new Date(),
-      interval: null
+      interval: null,
+      searchValue: ''
     }
   },
   computed: {
     userName () {
       return this.$store.getters.userName.name
+    },
+    input: {
+      get () {
+        return this.searchValue
+      },
+      set (val) {
+        if (this.timeout) clearTimeout(this.timeout)
+        this.timeout = setTimeout(() => {
+          this.searchValue = val
+        }, 700)
+      }
     }
   },
+  watch: {
+    searchValue: 'onSearchValueChanged'
+  },
   methods: {
+    ...mapActions('movies', ['searchMovies', 'getMovieBase']),
     async logout () {
       await this.$store.dispatch('logout')
       window.M.toast({ html: 'You are logged out!' })
       this.$router.push('/login?message=logout')
+    },
+    onSearchValueChanged (value) {
+      console.log(value)
+      if (value) {
+        this.searchMovies(value)
+      } else this.getMovieBase()
     }
   },
   mounted () {
@@ -76,8 +96,7 @@ export default {
           month: 'short',
           day: 'numeric',
           hour: 'numeric',
-          minute: 'numeric',
-          second: 'numeric'
+          minute: 'numeric'
         })),
       0
     )
@@ -95,4 +114,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>
