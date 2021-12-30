@@ -28,7 +28,6 @@ const movieStore = {
   actions: {
     async getMovieBase ({ commit, dispatch, getters }) {
       try {
-        // dispatch('toggleLoader', true, { root: true })
         const { currentPage, moviesPerPage } = getters
         const db = ref(getDatabase())
         const response = (await get(child(db, 'MovieBase'))).val()
@@ -40,7 +39,6 @@ const movieStore = {
       } catch (error) {
         console.log(error.message)
       } finally {
-        // dispatch('toggleLoader', false, { root: true })
       }
     },
     changeCurrentPage ({ commit, dispatch }, page) {

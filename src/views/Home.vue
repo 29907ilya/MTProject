@@ -29,7 +29,7 @@ export default {
     }
   },
   async mounted () {
-    this.getMovieBase()
+    await this.getMovieBase()
     this.loading = false
   },
   methods: {
@@ -39,7 +39,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('movies', ['moviesToRender', 'moviesLength', 'currentPage'])
+    ...mapGetters('movies', ['moviesToRender', 'moviesLength', 'currentPage'], 'isLoading')
   },
   components: {
     Loader,
