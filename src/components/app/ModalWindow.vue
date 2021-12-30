@@ -121,7 +121,7 @@ export default {
   justify-content: space-between;
 }
 .options {
-  width: 360px;
+  width: 400px;
 }
 .title {
   font-size: 24px;
@@ -133,11 +133,11 @@ export default {
   /* border: black 1px solid; */
 }
 .place_sessions {
-  width: 200px;
+  width: 220px;
   /* border: black 1px solid; */
 }
 .seats_buy {
-  width: 200px;
+  width: 220px;
   padding: 0;
 }
 .discription {

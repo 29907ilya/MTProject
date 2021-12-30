@@ -8,13 +8,12 @@
         :key="place"
         @click="toggle(place)"
       >
-        {{ index }}
+        {{ index+1 }}
       </li>
     </ol>
   </div>
   <div class="movie-item-control">
-    <a class="waves-effect waves-red btn-flat">Buy tickets</a
-    >
+    <a class="waves-effect waves-red btn-flat">Buy tickets</a>
   </div>
 </template>
 
@@ -25,22 +24,22 @@ export default {
       places: [
         { checked: false, disabled: false, price: 120 },
         { checked: false, disabled: false, price: 130 },
-        { checked: true, disabled: true, price: 120 },
+        { checked: false, disabled: true, price: 120 },
         { checked: false, disabled: false, price: 120 },
-        { checked: false, disabled: false, price: 150 },
-        { checked: true, disabled: true, price: 120 },
+        { checked: false, disabled: true, price: 150 },
+        { checked: false, disabled: true, price: 120 },
         { checked: false, disabled: false, price: 220 },
         { checked: false, disabled: false, price: 720 },
         { checked: false, disabled: false, price: 120 },
-        { checked: false, disabled: false, price: 130 },
-        { checked: true, disabled: true, price: 120 },
+        { checked: false, disabled: true, price: 130 },
+        { checked: false, disabled: true, price: 120 },
         { checked: false, disabled: false, price: 120 },
-        { checked: false, disabled: false, price: 150 },
-        { checked: true, disabled: true, price: 120 },
+        { checked: false, disabled: true, price: 150 },
+        { checked: false, disabled: true, price: 120 },
         { checked: false, disabled: false, price: 220 },
         { checked: false, disabled: false, price: 720 },
-        { checked: false, disabled: false, price: 150 },
-        { checked: true, disabled: true, price: 120 },
+        { checked: false, disabled: true, price: 150 },
+        { checked: false, disabled: true, price: 120 },
         { checked: false, disabled: false, price: 220 },
         { checked: false, disabled: false, price: 720 }
       ]
@@ -76,6 +75,10 @@ export default {
 ol {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0% !important;
 }
 li {
   width: 20px;
@@ -83,9 +86,9 @@ li {
   border: 1px solid black;
   margin: 3px;
   display: flex;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
+  justify-content: center;
+  align-items: center;
 }
 li.checked {
   background: rgb(143, 0, 199);
@@ -104,7 +107,7 @@ li.disabled {
   text-align: center;
   color: white;
   border: solid 1px;
-  background-color: #b33431
+  background-color: #b33431;
 }
 .btn-flat:hover {
   background-color: #e63c39;
