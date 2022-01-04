@@ -30,7 +30,7 @@ export default {
   },
   async mounted () {
     await this.getMovieBase()
-    await this.getCinema()
+    // await this.getCinema()
     this.loading = false
   },
   methods: {
