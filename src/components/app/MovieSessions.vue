@@ -3,7 +3,7 @@
     <span>Sessions</span>
     <form action="#">
       <label v-for="(session, i) in sessions" :key="i">
-        <input name="group" type="radio" v-model="checkedSession" />
+        <input name="group" type="radio" />
         <span>{{ session }}</span>
       </label>
     </form>

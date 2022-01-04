@@ -14,7 +14,7 @@
       </div>
       <div class="formalities">
         <div class="place_sessions">
-          <movie-house></movie-house>
+          <movie-house :cinemaList="cinemaName"></movie-house>
           <movie-sessions></movie-sessions>
         </div>
         <div class="seats_buy">
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+// import { mapGetters, mapActions } from 'vuex'
 import MovieHouse from './MovieHouse.vue'
 import MovieSessions from './MovieSessions.vue'
 import SeatsPlan from './SeatsPlan.vue'
@@ -47,11 +48,14 @@ export default {
     }
   },
   methods: {
+    // ...mapActions[("operations", ["getCinema"])],
+
     tap () {
       window.M.toast({ html: 'You have bought your tickets!' })
     }
   },
   computed: {
+    // ...mapGetters('operations', ['cinemaName']),
     posterBg () {
       return {
         'background-image': `url(${this.movie.Poster})`
@@ -89,9 +93,9 @@ export default {
   right: 0;
   left: 0;
   bottom: 0;
-  background: rgba(58, 57, 57, 0.55);
+  background: rgba(0, 0, 0, 0.55);
   z-index: 10;
-  opacity: 0.1;
+  opacity: 0.99;
 }
 
 .logo_info {

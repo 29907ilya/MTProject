@@ -22,7 +22,7 @@
             data-target="dropdown"
             ref="dropdown"
           >
-            {{ userName }}
+            Menu
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
@@ -56,13 +56,13 @@ export default {
     }
   },
   computed: {
-    userName () {
-      // try {
-      return this.$store.getters.userName.name
-      // } catch (e) {
-      //   console.log(e.message)
-      // }
-    },
+    // userName () {
+    //   try {
+    //   return this.$store.getters.userName.name
+    //   } catch (e) {
+    //     console.log(e.message)
+    //   }
+    // },
     input: {
       get () {
         return this.searchValue

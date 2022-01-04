@@ -22,10 +22,9 @@ const firebaseConfig = {
   databaseURL: 'https://mtproject-767cf-default-rtdb.europe-west1.firebasedatabase.app/'
 }
 
-// firebase.initializeApp(firebaseConfig)
 const firebaseApp = firebase.initializeApp(firebaseConfig)
 const authInstance = getAuth(firebaseApp)
-onAuthStateChanged(authInstance, user => console.log(user))
+onAuthStateChanged(authInstance, user => (user))
 
 const app = createApp(App)
 app.use(store).use(BalmUI).use(BalmUIPlus).use(router).mount('#app')

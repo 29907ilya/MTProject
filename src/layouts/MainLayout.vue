@@ -18,11 +18,11 @@ import Navbar from '../components/app/Navbar.vue'
 import Sidebar from '../components/app/Sidebar.vue'
 
 export default {
-  async mounted () {
-    if (!Object.keys(this.$store.getters.userName).length) {
-      await this.$store.dispatch('fetchInfo')
-    }
-  },
+  // async mounted () {
+  //   if (!Object.keys(this.$store.getters.userName).length) {
+  //     await this.$store.dispatch('fetchInfo')
+  //   }
+  // },
   components: {
     Navbar,
     Sidebar

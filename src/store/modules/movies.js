@@ -39,7 +39,6 @@ const movieStore = {
         commit('setMovieBase', moviesToRender)
       } catch (error) {
         console.log(error.message)
-      } finally {
       }
     },
     changeCurrentPage ({ commit, dispatch }, page) {

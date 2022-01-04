@@ -30,10 +30,11 @@ export default {
   },
   async mounted () {
     await this.getMovieBase()
+    await this.getCinema()
     this.loading = false
   },
   methods: {
-    ...mapActions('movies', ['changeCurrentPage', 'getMovieBase']),
+    ...mapActions('movies', ['changeCurrentPage', 'getMovieBase'], 'opearations', ['getCinema']),
     onPageChanged (page) {
       this.changeCurrentPage(page)
     }
