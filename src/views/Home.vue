@@ -30,16 +30,17 @@ export default {
   },
   async mounted () {
     await this.getMovieBase()
-    // await this.getCinema()
+    await this.getCinema
     this.loading = false
   },
   methods: {
-    ...mapActions('movies', ['changeCurrentPage', 'getMovieBase'], 'opearations', ['getCinema']),
+    ...mapActions('movies', ['changeCurrentPage', 'getMovieBase']),
     onPageChanged (page) {
       this.changeCurrentPage(page)
     }
   },
   computed: {
+    ...mapActions('operations', ['getCinema']),
     ...mapGetters('movies', ['moviesToRender', 'moviesLength', 'currentPage'], 'isLoading')
   },
   components: {

@@ -1,27 +1,29 @@
 <template>
   <div class="cinemaName">
-    <div><span>Choose movie:</span></div>
-    <select name="cinema" id="cinema" v-model="selectedCinema">
-      <option v-for="(cinema, i) in cinemaList" :key="i">{{ cinema }}</option>
+    <div><span>Choose cinema:</span></div>
+    <select name="cinema" id="cinema" v-model="selectedOption" @change="onChange">
+      <option v-for="(cinema, i) in cinemaList" :key="i">{{ cinema.PlaceName }}</option>
     </select>
   </div>
 </template>
 
 <script>
-// import { mapGetters, mapActions } from 'vuex'
 
 export default {
   props: {
     cinemaList: Object
   },
-  // async mounted() {
-  //   await this.getCinema();
-  // },
-  methods: {},
-  computed: {},
+
   data () {
     return {
-      selectedCinema: []
+      selectedOption: ''
+    }
+  },
+  methods: {
+    onChange () {
+      this.$emit('onChange', {
+        selectedOption: this.selectedOption
+      })
     }
   }
 }

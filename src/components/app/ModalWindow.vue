@@ -32,7 +32,7 @@
 </template>
 
 <script>
-// import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import MovieHouse from './MovieHouse.vue'
 import MovieSessions from './MovieSessions.vue'
 import SeatsPlan from './SeatsPlan.vue'
@@ -47,15 +47,14 @@ export default {
       price: 5
     }
   },
-  methods: {
-    // ...mapActions[("operations", ["getCinema"])],
 
+  methods: {
     tap () {
       window.M.toast({ html: 'You have bought your tickets!' })
     }
   },
   computed: {
-    // ...mapGetters('operations', ['cinemaName']),
+    ...mapGetters('operations', ['cinemaName']),
     posterBg () {
       return {
         'background-image': `url(${this.movie.Poster})`

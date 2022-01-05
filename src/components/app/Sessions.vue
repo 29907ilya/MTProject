@@ -7,15 +7,30 @@
 
       <form>
         <div class="input-field">
-          <movie-house></movie-house>
+          <h6>Choose movie:</h6>
+          <movie-selector
+            @onChange="showMovie"
+            :list="fullBase"
+          ></movie-selector>
         </div>
-
         <div class="input-field">
-          <input id="limit" type="time" />
-          <label for="limit">Time</label>
+          <movie-house
+            @onChange="showCinema"
+            :cinemaList="cinemaName"
+          ></movie-house>
         </div>
 
-        <button class="btn waves-effect waves-light" type="submit">
+        <h6>Choose date and time:</h6>
+        <div class="input-field">
+          <input id="limit" type="date" v-model="date" />
+          <input id="limit" type="time" v-model="time" />
+        </div>
+
+        <button
+          class="btn waves-effect waves-light"
+          type="submit"
+          @click.prevent="createSession"
+        >
           Add
           <i class="material-icons right">send</i>
         </button>
@@ -32,13 +47,12 @@
       <form>
         <div class="input-field">
           <ul>
-            <li>Sessions list with button "Delete"
+            <li>
+              Sessions list with button "Delete"
               <button>delete</button>
             </li>
-
           </ul>
         </div>
-
       </form>
     </div>
   </div>
@@ -46,11 +60,42 @@
 
 <script>
 import MovieHouse from './MovieHouse.vue'
+import MovieSelector from './MovieSelector.vue'
+import { mapGetters } from 'vuex'
 
 export default {
-  setup () {},
+  data () {
+    return {
+      movie: '',
+      date: '',
+      time: '',
+      cinema: ''
+    }
+  },
   components: {
-    MovieHouse
+    MovieHouse,
+    MovieSelector
+  },
+  methods: {
+    showCinema (value) {
+      this.cinema = value.selectedOption
+    },
+    showMovie (value) {
+      this.movie = value.selectedOption
+    },
+    createSession () {
+      const sessionInfo = {
+        movie: this.movie,
+        date: this.date,
+        time: this.time,
+        cinema: this.cinema
+      }
+      console.log(sessionInfo)
+    }
+  },
+  computed: {
+    ...mapGetters('operations', ['cinemaName']),
+    ...mapGetters('movies', ['fullBase'])
   }
 }
 </script>

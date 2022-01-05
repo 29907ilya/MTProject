@@ -8,14 +8,14 @@ const operationsStore = {
 
   },
   getters: {
-    cinemaName: ({ cinema }) => console.log(cinema)
+    cinemaName: ({ cinema }) => cinema
   },
   mutations: {
     setCinema (state, cinema) {
       state.cinema = cinema
-      console.log(state.cinema)
     }
   },
+
   actions: {
     async getCinema ({ commit }) {
       const db = ref(getDatabase())
@@ -23,8 +23,6 @@ const operationsStore = {
       console.log(cinema)
       commit('setCinema', cinema)
     }
-    // async addSession({ commit }) {
-    // }
   }
 }
 
