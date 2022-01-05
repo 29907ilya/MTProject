@@ -2,7 +2,6 @@ import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 import { getDatabase, ref, set } from 'firebase/database'
 
 export default {
-
   actions: {
     async register ({ commit, dispatch }, { email, password, name }) {
       try {

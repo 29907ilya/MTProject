@@ -29,7 +29,7 @@
         <button
           class="btn waves-effect waves-light"
           type="submit"
-          @click.prevent="createSession"
+          @click.prevent="addSession"
         >
           Add
           <i class="material-icons right">send</i>
@@ -83,19 +83,27 @@ export default {
     showMovie (value) {
       this.movie = value.selectedOption
     },
-    createSession () {
+    async addSession () {
       const sessionInfo = {
         movie: this.movie,
         date: this.date,
         time: this.time,
         cinema: this.cinema
       }
-      console.log(sessionInfo)
+
+      try {
+        await this.$store.dispatch('createSession', sessionInfo)
+        window.M.toast({ html: 'Session created!' })
+        console.log(sessionInfo)
+      } catch (error) {
+        console.log('nothing here')
+      }
     }
   },
   computed: {
     ...mapGetters('operations', ['cinemaName']),
     ...mapGetters('movies', ['fullBase'])
+    // ...mapActions({createSession: 'operations/createSession'})
   }
 }
 </script>
