@@ -5,18 +5,18 @@
     </div>
     <section>
       <div class="row">
-        <sessions></sessions>
+        <sessions-page></sessions-page>
       </div>
     </section>
   </div>
 </template>
 
 <script>
-import Sessions from '../components/app/Sessions.vue'
+import SessionsPage from '../components/app/SessionsPage.vue'
 export default {
   setup () {},
   components: {
-    Sessions
+    SessionsPage
   }
 }
 </script>

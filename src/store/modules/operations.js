@@ -3,16 +3,20 @@ import { getDatabase, ref, child, get, set } from 'firebase/database'
 const operationsStore = {
   namespaced: true,
   state: {
-    sessions: [],
+    sessions: {},
     cinema: []
 
   },
   getters: {
-    cinemaName: ({ cinema }) => cinema
+    cinemaName: ({ cinema }) => cinema,
+    sessions: ({ sessions }) => sessions
   },
   mutations: {
     setCinema (state, cinema) {
       state.cinema = cinema
+    },
+    setSessions (state, sessions) {
+      state.sessions = sessions
     }
   },
 
@@ -32,6 +36,12 @@ const operationsStore = {
         time: time,
         cinema: cinema
       })
+    },
+    async getSessions ({ commit }) {
+      const db = ref(getDatabase())
+      const sessions = (await get(child(db, 'Sessions/'))).val()
+      console.log(sessions)
+      commit('setSessions', sessions)
     }
   }
 }

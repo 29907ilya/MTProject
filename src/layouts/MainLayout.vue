@@ -22,10 +22,11 @@ export default {
   async mounted () {
     await this.getMovieBase
     await this.getCinema
+    await this.getSessions
     this.loading = false
   },
   computed: {
-    ...mapActions('operations', ['getCinema']),
+    ...mapActions('operations', ['getCinema', 'getSessions']),
     ...mapActions('movies', ['getMovieBase'])
   },
   components: {

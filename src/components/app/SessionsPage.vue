@@ -46,9 +46,15 @@
 
       <form>
         <div class="input-field">
-          <ul>
+          <h6>Choose movie:</h6>
+          <movie-selector
+            @onChange="showMovie"
+            :list="fullBase"
+          ></movie-selector>
+
+          <ul v-for="movie in sessions" :key="movie">
             <li>
-              Sessions list with button "Delete"
+              {{ movie.date }}, {{ movie.time }}, {{ movie.cinema }}
               <button>delete</button>
             </li>
           </ul>
@@ -61,6 +67,7 @@
 <script>
 import MovieHouse from './MovieHouse.vue'
 import MovieSelector from './MovieSelector.vue'
+
 import { mapGetters } from 'vuex'
 
 export default {
@@ -69,7 +76,8 @@ export default {
       movie: '',
       date: '',
       time: '',
-      cinema: ''
+      cinema: '',
+      sortedSession: ''
     }
   },
   components: {
@@ -103,7 +111,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters('operations', ['cinemaName']),
+    ...mapGetters('operations', ['cinemaName', 'sessions']),
     ...mapGetters('movies', ['fullBase'])
   }
 }
