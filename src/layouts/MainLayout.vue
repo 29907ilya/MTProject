@@ -16,13 +16,18 @@
 <script>
 import Navbar from '../components/app/Navbar.vue'
 import Sidebar from '../components/app/Sidebar.vue'
+import { mapActions } from 'vuex'
 
 export default {
-  // async mounted () {
-  //   if (!Object.keys(this.$store.getters.userName).length) {
-  //     await this.$store.dispatch('fetchInfo')
-  //   }
-  // },
+  async mounted () {
+    await this.getMovieBase
+    await this.getCinema
+    this.loading = false
+  },
+  computed: {
+    ...mapActions('operations', ['getCinema']),
+    ...mapActions('movies', ['getMovieBase'])
+  },
   components: {
     Navbar,
     Sidebar

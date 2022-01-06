@@ -8,10 +8,12 @@
         <div>&#10026; {{ movie.imdbRating }}</div>
       </div>
     </div>
+
     <div class="options">
       <div class="title">
         <p class="title">{{ movie.Title }}, {{ movie.Year }}</p>
       </div>
+
       <div class="formalities">
         <div class="place_sessions">
           <movie-house :cinemaList="cinemaName"></movie-house>

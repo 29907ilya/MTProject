@@ -24,15 +24,14 @@ const operationsStore = {
       commit('setCinema', cinema)
     },
 
-    async createSession ({ movie, date, time, cinema }) {
+    async createSession ({ dispatch }, { movie, date, time, cinema }) {
       const db = getDatabase()
-      await set(ref(db, 'Sessions/'), {
+      await set(ref(db, 'Sessions/id' + Math.round(Math.random() * 1e7)), {
         movie: movie,
         date: date,
         time: time,
         cinema: cinema
       })
-      console.log('++++')
     }
   }
 }

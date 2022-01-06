@@ -83,6 +83,7 @@ export default {
     showMovie (value) {
       this.movie = value.selectedOption
     },
+
     async addSession () {
       const sessionInfo = {
         movie: this.movie,
@@ -92,18 +93,18 @@ export default {
       }
 
       try {
-        await this.$store.dispatch('createSession', sessionInfo)
+        await this.$store.dispatch('operations/createSession', sessionInfo)
         window.M.toast({ html: 'Session created!' })
         console.log(sessionInfo)
       } catch (error) {
-        console.log('nothing here')
+        console.log(error)
       }
     }
   },
+
   computed: {
     ...mapGetters('operations', ['cinemaName']),
     ...mapGetters('movies', ['fullBase'])
-    // ...mapActions({createSession: 'operations/createSession'})
   }
 }
 </script>
