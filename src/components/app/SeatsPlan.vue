@@ -22,7 +22,7 @@ export default {
   data () {
     return {
       places: [
-        { checked: false, disabled: false, price: 120 },
+        { checked: false, disabled: false, price: 5 },
         { checked: false, disabled: false, price: 130 },
         { checked: false, disabled: true, price: 120 },
         { checked: false, disabled: false, price: 120 },

@@ -13,6 +13,7 @@
             :list="fullBase"
           ></movie-selector>
         </div>
+
         <div class="input-field">
           <movie-house
             @onChange="showCinema"
@@ -38,7 +39,7 @@
     </div>
   </div>
 
-  <div class="col s12 m6">
+  <!-- <div class="col s12 m6">
     <div>
       <div class="page-subtitle">
         <h4>Remove</h4>
@@ -47,10 +48,16 @@
       <form>
         <div class="input-field">
           <h6>Choose movie:</h6>
-          <movie-selector
-            @onChange="showMovie"
-            :list="fullBase"
-          ></movie-selector>
+          <select
+            name="movie"
+            id="movie"
+            v-model="selectedOption"
+            @change="onChange"
+          >
+            <option v-for="(movie, i) in fullBase" :key="i">
+              {{ movie.Title }}
+            </option>
+          </select>
 
           <ul v-for="movie in sessions" :key="movie">
             <li>
@@ -61,7 +68,7 @@
         </div>
       </form>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -77,7 +84,9 @@ export default {
       date: '',
       time: '',
       cinema: '',
-      sortedSession: ''
+
+      sortedSession: '',
+      selectedOption: ''
     }
   },
   components: {
@@ -97,7 +106,8 @@ export default {
         movie: this.movie,
         date: this.date,
         time: this.time,
-        cinema: this.cinema
+        cinema: this.cinema,
+        seats: this.seatsList
       }
 
       try {
@@ -111,7 +121,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters('operations', ['cinemaName', 'sessions']),
+    ...mapGetters('operations', ['cinemaName', 'sessions', 'seatsList']),
     ...mapGetters('movies', ['fullBase'])
   }
 }

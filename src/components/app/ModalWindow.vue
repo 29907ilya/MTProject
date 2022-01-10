@@ -16,6 +16,7 @@
 
       <div class="formalities">
         <div class="place_sessions">
+
           <movie-house :cinemaList="cinemaName"></movie-house>
           <movie-sessions></movie-sessions>
         </div>
