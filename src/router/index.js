@@ -24,6 +24,16 @@ const routes = [
     component: () => import('../views/Home.vue')
   },
   {
+    path: '/profile',
+    name: 'profile',
+    meta: {
+      layout: 'main',
+      auth: true,
+      isAdmin: true
+    },
+    component: () => import('../views/Profile.vue')
+  },
+  {
     path: '/sessions',
     name: 'sessions',
     meta: {
@@ -34,13 +44,13 @@ const routes = [
     component: () => import('../views/Sessions.vue')
   },
   {
-    path: '/profile',
-    name: 'profile',
+    path: '/cinemas',
+    name: 'cinemas',
     meta: {
       layout: 'main',
       auth: true
     },
-    component: () => import('../views/Profile.vue')
+    component: () => import('../views/Cinemas.vue')
   }
 ]
 const router = createRouter({

@@ -165,3 +165,11 @@ li.router-link-exact-active {
   background-color: #eee8f6;
   cursor: pointer;
 }
+
+.input-list {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  width: 250px;
+  line-height: 2;
+}

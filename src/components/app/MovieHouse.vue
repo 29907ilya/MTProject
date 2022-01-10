@@ -1,14 +1,20 @@
 <template>
   <div class="cinemaName">
     <div><span>Choose cinema:</span></div>
-    <select name="cinema" id="cinema" v-model="selectedOption" @change="onChange">
-      <option v-for="(cinema, i) in cinemaList" :key="i">{{ cinema.PlaceName }}</option>
+    <select
+      name="cinema"
+      id="cinema"
+      v-model="selectedOption"
+      @change="onChange"
+    >
+      <option v-for="(cinema, id) in cinemaList" :key="id">
+        {{ cinema.name }}
+      </option>
     </select>
   </div>
 </template>
 
 <script>
-
 export default {
   props: {
     cinemaList: Object
@@ -16,14 +22,18 @@ export default {
 
   data () {
     return {
-      selectedOption: ''
+      selectedOption: '',
+      id: ''
     }
   },
   methods: {
     onChange () {
       this.$emit('onChange', {
         selectedOption: this.selectedOption
+
       })
+      console.log(this.selectedOption)
+      console.log(this.id)
     }
   }
 }

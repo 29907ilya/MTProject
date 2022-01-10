@@ -1,4 +1,4 @@
-import { getDatabase, ref, child, get, set } from 'firebase/database'
+import { getDatabase, ref, child, get, push, remove } from 'firebase/database'
 
 const operationsStore = {
   namespaced: true,
@@ -28,15 +28,27 @@ const operationsStore = {
   actions: {
     async getCinema ({ commit }) {
       const db = ref(getDatabase())
-      const cinema = (await get(child(db, 'Places'))).val()
+      const cinema = (await get(child(db, 'Cinemas'))).val()
       const seats = (await get(child(db, 'Seats'))).val()
       commit('setCinema', cinema)
       commit('setSeats', seats)
     },
 
+    async createCinema ({ commit, dispatch }, { name }) {
+      const db = getDatabase()
+      await push(ref(db, 'Cinemas'), {
+        name: name
+      })
+    },
+
+    async removeCinema ({ dispatch }, id) {
+      const db = getDatabase()
+      await remove(ref(db, `Cinemas/${id}`))
+    },
+
     async createSession ({ dispatch }, { movie, date, time, cinema, seats }) {
       const db = getDatabase()
-      await set(ref(db, 'Sessions/id' + Math.round(Math.random() * 1e7)), {
+      await push(ref(db, 'Sessions'), {
         movie: movie,
         date: date,
         time: time,
@@ -46,7 +58,7 @@ const operationsStore = {
     },
     async getSessions ({ commit }) {
       const db = ref(getDatabase())
-      const sessions = (await get(child(db, 'Sessions/'))).val()
+      const sessions = (await get(child(db, 'Sessions'))).val()
       commit('setSessions', sessions)
     }
   }

@@ -23,6 +23,17 @@
       </li>
     </router-link>
 
+    <router-link to="/cinemas" v-slot="{ isActive, isExactActive }">
+      <li
+        :class="[
+          isActive && 'router-link-active',
+          isExactActive && 'router-link-exact-active',
+        ]"
+      >
+        <a href="#" class="waves-effect waves-red pointer">Cinemas</a>
+      </li>
+    </router-link>
+
     <router-link to="/sessions" v-slot="{ isActive, isExactActive }">
       <li
         :class="[
