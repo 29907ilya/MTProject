@@ -101,6 +101,9 @@
 .page-title {
   margin-bottom: 2rem;
 }
+.page-info {
+  margin-bottom: 25px;
+}
 .app-loader,
 .currency-line,
 .page-title {
@@ -165,11 +168,13 @@ li.router-link-exact-active {
   background-color: #eee8f6;
   cursor: pointer;
 }
-
 .input-list {
   display: flex;
   justify-content: space-between;
   font-size: 20px;
   width: 250px;
   line-height: 2;
+}
+.input-field {
+  margin: 10px
 }

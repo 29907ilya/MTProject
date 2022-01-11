@@ -83,10 +83,7 @@ export default {
       movie: '',
       date: '',
       time: '',
-      cinema: '',
-
-      sortedSession: '',
-      selectedOption: ''
+      cinema: ''
     }
   },
   components: {

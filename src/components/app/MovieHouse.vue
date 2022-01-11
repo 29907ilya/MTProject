@@ -1,13 +1,13 @@
 <template>
   <div class="cinemaName">
-    <div><span>Choose cinema:</span></div>
+    <div>Choose cinema:</div>
     <select
       name="cinema"
       id="cinema"
       v-model="selectedOption"
       @change="onChange"
     >
-      <option v-for="(cinema, id) in cinemaList" :key="id">
+      <option v-for="(cinema, id) in cinemaList" :value="id" :key="id">
         {{ cinema.name }}
       </option>
     </select>
@@ -19,21 +19,16 @@ export default {
   props: {
     cinemaList: Object
   },
-
   data () {
     return {
-      selectedOption: '',
-      id: ''
+      selectedOption: ''
     }
   },
+
   methods: {
     onChange () {
-      this.$emit('onChange', {
-        selectedOption: this.selectedOption
-
-      })
+      this.$emit('onChange', { selectedOption: this.selectedOption })
       console.log(this.selectedOption)
-      console.log(this.id)
     }
   }
 }
@@ -47,7 +42,6 @@ export default {
 }
 select {
   display: inline;
-  // background-color: #f78888;
   font-size: 16px;
   width: 100px;
   height: 100%;
