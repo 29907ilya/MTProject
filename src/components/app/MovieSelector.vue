@@ -1,6 +1,6 @@
 <template>
   <select name="movie" id="movie" v-model="selectedOption" @change="onChange">
-    <option v-for="(movie, i) in list" :key="i">
+    <option v-for="(movie, id) in list" :value="id" :key="id">
       {{ movie.Title }}
     </option>
   </select>
@@ -9,7 +9,7 @@
 <script>
 export default {
   props: {
-    list: Array
+    list: Object
   },
 
   data () {

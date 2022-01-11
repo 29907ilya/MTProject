@@ -41,7 +41,28 @@ const operationsStore = {
       })
     },
 
-    async removeCinema ({ dispatch }, id) {
+    async createMovie ({ commit, dispatch }, {
+      title,
+      year,
+      runtime,
+      raiting,
+      discription,
+      poster,
+      id
+    }) {
+      const db = getDatabase()
+      await push(ref(db, 'MovieBase'), {
+        Title: title,
+        Year: year,
+        Runtime: runtime,
+        imdbRating: raiting,
+        Discription: discription,
+        Poster: poster,
+        Id: id
+      })
+    },
+
+    async removeCinema ({ commit, dispatch }, id) {
       const db = getDatabase()
       await remove(ref(db, `Cinemas/${id}`))
     },

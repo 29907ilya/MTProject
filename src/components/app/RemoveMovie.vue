@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="page-subtitle">
-      <h5>Remove cinema</h5>
+      <h5>Remove movie</h5>
     </div>
 
     <div class="input-field">
-      <div class="input-list" v-for="(cinema, id) in cinemaName" :key="id">
+      <div class="input-list" v-for="(movie, id) in cinemaName" :key="id">
         {{ cinema.name }}
 
         <button

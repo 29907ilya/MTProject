@@ -30,7 +30,7 @@
           isExactActive && 'router-link-exact-active',
         ]"
       >
-        <a href="#" class="waves-effect waves-red pointer">Cinemas</a>
+        <a href="#" class="waves-effect waves-red pointer">Load info</a>
       </li>
     </router-link>
 

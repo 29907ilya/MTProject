@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Cinemas</h3>
+      <h3>Load cinema and movie</h3>
     </div>
     <section>
       <div class="row">

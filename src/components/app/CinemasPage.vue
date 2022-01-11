@@ -2,18 +2,19 @@
   <div class="col xl8">
     <div class="page-info">
       <div class="page-subtitle">
-        <h4>Add cinema</h4>
+        <h5>Add cinema</h5>
       </div>
 
-      <h6>Enter cinema name</h6>
+      <h6>Enter cinema title</h6>
       <div class="input-field">
-        <input id="text" type="text" v-model="name" />
+        <label for="title">Title</label>
+        <input id="title" type="text" v-model="name" />
       </div>
 
       <button
         class="btn waves-effect waves-light"
         type="submit"
-        @click.prevent="addCinema"
+        @click.prevent="added"
       >
         Add Cinema
         <i class="material-icons right">send</i>
@@ -28,10 +29,10 @@
   <div class="col xl8">
     <div>
       <div class="page-subtitle">
-        <h4>Add movie</h4>
+        <h5>Add movie</h5>
       </div>
 
-      <h6>Enter movie formalities</h6>
+      <h6>Enter movie info</h6>
       <div class="input-field">
         <label for="title">Title</label>
         <input id="title" type="text" v-model="title" />
@@ -41,8 +42,8 @@
         <input id="year" type="text" v-model="year" />
       </div>
       <div class="input-field">
-        <label for="duration">Duration</label>
-        <input id="duration" type="text" v-model="duration" />
+        <label for="runtime">Runtime</label>
+        <input id="runtime" type="text" v-model="runtime" />
       </div>
       <div class="input-field">
         <label for="raiting">Raiting</label>
@@ -55,6 +56,10 @@
       <div class="input-field">
         <label for="poster">Poster</label>
         <input id="poster" type="text" v-model="poster" />
+      </div>
+      <div class="input-field">
+        <label for="poster">ID</label>
+        <input id="poster" type="text" v-model="id" />
       </div>
 
       <button
@@ -80,6 +85,12 @@ export default {
   data () {
     return {
       name: '',
+      title: '',
+      year: '',
+      runtime: '',
+      raiting: '',
+      discription: '',
+      poster: '',
       id: ''
     }
   },
@@ -103,7 +114,35 @@ export default {
     async removeCinema (id) {
       try {
         await this.$store.dispatch('operations/removeCinema', id)
+        console.log(id)
         window.M.toast({ html: 'Cinema removed!' })
+      } catch (error) {
+        console.log(error)
+      }
+    },
+
+    async addMovie () {
+      const movieInfo = {
+        title: this.title,
+        year: this.year,
+        runtime: this.runtime,
+        raiting: this.raiting,
+        discription: this.discription,
+        poster: this.poster,
+        id: this.id
+      }
+
+      try {
+        await this.$store.dispatch('operations/createMovie', movieInfo)
+        window.M.toast({ html: 'Movie added!' })
+        // this.title = "";
+        // this.year = "";
+        // this.runtime = "";
+        // this.raiting = "";
+        // this.discription = "";
+        // this.poster = "";
+        // this.id = "";
+        console.log(movieInfo)
       } catch (error) {
         console.log(error)
       }

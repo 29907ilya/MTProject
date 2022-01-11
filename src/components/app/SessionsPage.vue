@@ -2,7 +2,7 @@
   <div class="col s12 m6">
     <div>
       <div class="page-subtitle">
-        <h4>Add session</h4>
+        <h5>Add session</h5>
       </div>
 
       <form>
@@ -42,7 +42,7 @@
   <!-- <div class="col s12 m6">
     <div>
       <div class="page-subtitle">
-        <h4>Remove</h4>
+        <h5>Remove session</h5>
       </div>
 
       <form>

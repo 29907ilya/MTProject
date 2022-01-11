@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <div class="discription">{{ movie.Plot }}</div>
+    <div class="discription">{{ movie.Discription }}</div>
   </div>
 </template>
 

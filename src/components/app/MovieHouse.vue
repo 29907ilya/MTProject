@@ -28,7 +28,6 @@ export default {
   methods: {
     onChange () {
       this.$emit('onChange', { selectedOption: this.selectedOption })
-      console.log(this.selectedOption)
     }
   }
 }

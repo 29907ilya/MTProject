@@ -3,10 +3,10 @@ import { getDatabase, ref, child, get } from 'firebase/database'
 const movieStore = {
   namespaced: true,
   state: {
-    movieBase: [],
+    movieBase: {},
     moviesPerPage: 15,
     currentPage: 1,
-    fullBase: []
+    fullBase: {}
   },
   getters: {
     moviesToRender: ({ movieBase }) => movieBase,
@@ -27,20 +27,21 @@ const movieStore = {
     }
   },
   actions: {
-    async getMovieBase ({ commit, dispatch, getters }) {
-      try {
-        const { currentPage, moviesPerPage } = getters
-        const db = ref(getDatabase())
-        const response = (await get(child(db, 'MovieBase'))).val()
-        commit('setFullBase', response)
-        const from = currentPage * moviesPerPage - moviesPerPage
-        const to = currentPage * moviesPerPage
-        const moviesToRender = response.slice(from, to)
-        commit('setMovieBase', moviesToRender)
-      } catch (error) {
-        console.log(error.message)
-      }
-    },
+    // async getMovieBase ({ commit, dispatch, getters }) {
+    //   try {
+    //     const { currentPage, moviesPerPage } = getters
+    //     const db = ref(getDatabase())
+    //     const response = (await get(child(db, 'MovieBase'))).val()
+    //     commit('setFullBase', response)
+    //     const from = currentPage * moviesPerPage - moviesPerPage
+    //     const to = currentPage * moviesPerPage
+    //     const result = Object.keys(response)
+    //     const moviesToRender = ({ ...result }).slice(from, to)
+    //     commit('setMovieBase', moviesToRender)
+    //   } catch (error) {
+    //     console.log(error.message)
+    //   }
+    // },
     changeCurrentPage ({ commit, dispatch }, page) {
       commit('setCurrentPage', page)
       dispatch('getMovieBase')
