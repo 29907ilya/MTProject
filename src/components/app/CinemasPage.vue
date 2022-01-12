@@ -14,7 +14,7 @@
       <button
         class="btn waves-effect waves-light"
         type="submit"
-        @click.prevent="added"
+        @click.prevent="addCinema"
       >
         Add Cinema
         <i class="material-icons right">send</i>
@@ -22,7 +22,10 @@
     </div>
 
     <div class="col xl4">
-      <remove-cinema @removeCinema="removeCinema"></remove-cinema>
+      <remove-cinema
+        :list="cinemaList"
+        @removeCinema="removeCinema"
+      ></remove-cinema>
     </div>
   </div>
 
@@ -73,13 +76,16 @@
     </div>
 
     <div class="col xl4">
-      <remove-cinema @removeCinema="removeCinema"></remove-cinema>
+      <remove-movie :list="movieList"  @removeMovie="removeMovie"></remove-movie>
     </div>
   </div>
 </template>
 
 <script>
 import RemoveCinema from './RemoveCinema.vue'
+import RemoveMovie from './RemoveMovie.vue'
+
+import { mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -100,10 +106,9 @@ export default {
       const cinemaInfo = {
         name: this.name
       }
-
       try {
         await this.$store.dispatch('operations/createCinema', cinemaInfo)
-        window.M.toast({ html: 'Cinema added!' })
+        window.M.toast({ html: `Cinema "${cinemaInfo.name}" added!` })
         this.name = ''
         console.log(cinemaInfo)
       } catch (error) {
@@ -116,6 +121,16 @@ export default {
         await this.$store.dispatch('operations/removeCinema', id)
         console.log(id)
         window.M.toast({ html: 'Cinema removed!' })
+      } catch (error) {
+        console.log(error)
+      }
+    },
+
+    async removeMovie (id) {
+      try {
+        await this.$store.dispatch('operations/removeMovie', id)
+        console.log(id)
+        window.M.toast({ html: 'Movie removed!' })
       } catch (error) {
         console.log(error)
       }
@@ -134,14 +149,14 @@ export default {
 
       try {
         await this.$store.dispatch('operations/createMovie', movieInfo)
-        window.M.toast({ html: 'Movie added!' })
-        // this.title = "";
-        // this.year = "";
-        // this.runtime = "";
-        // this.raiting = "";
-        // this.discription = "";
-        // this.poster = "";
-        // this.id = "";
+        window.M.toast({ html: `Movie "${movieInfo.title}" added` })
+        this.title = ''
+        this.year = ''
+        this.runtime = ''
+        this.raiting = ''
+        this.discription = ''
+        this.poster = ''
+        this.id = ''
         console.log(movieInfo)
       } catch (error) {
         console.log(error)
@@ -149,7 +164,11 @@ export default {
     }
   },
   components: {
-    RemoveCinema
+    RemoveCinema,
+    RemoveMovie
+  },
+  computed: {
+    ...mapGetters('operations', ['cinemaList', 'movieList'])
   }
 }
 </script>

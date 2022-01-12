@@ -5,13 +5,13 @@
     </div>
 
     <div class="input-field">
-      <div class="input-list" v-for="(movie, id) in cinemaName" :key="id">
-        {{ cinema.name }}
+      <div class="input-list" v-for="(movie, id) in list" :key="id">
+        <div class="input-title">{{ movie.Title }}</div>
 
         <button
           class="btn waves-effect waves-light"
           type="submit"
-          @click="$emit('removeCinema', id)"
+          @click="$emit('removeMovie', id)"
         >
           Remove
           <i class="material-icons right">send</i>
@@ -22,10 +22,9 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 export default {
-  computed: {
-    ...mapGetters('operations', ['cinemaName'])
+  props: {
+    list: Object
   }
 }
 </script>

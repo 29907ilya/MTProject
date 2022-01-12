@@ -5,7 +5,7 @@
     </div>
 
     <div class="input-field">
-      <div class="input-list" v-for="(cinema, id) in cinemaName" :key="id">
+      <div class="input-list" v-for="(cinema, id) in list" :key="id">
         {{ cinema.name }}
 
         <button
@@ -22,10 +22,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+
 export default {
-  computed: {
-    ...mapGetters('operations', ['cinemaName'])
+  props: {
+    list: Object
   }
 }
 </script>

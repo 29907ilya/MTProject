@@ -3,19 +3,23 @@ import { getDatabase, ref, child, get, push, remove } from 'firebase/database'
 const operationsStore = {
   namespaced: true,
   state: {
-    sessions: {},
-    cinema: {},
-    seats: {}
-
+    sessions: [],
+    cinema: [],
+    movie: [],
+    seats: []
   },
   getters: {
-    cinemaName: ({ cinema }) => cinema,
+    cinemaList: ({ cinema }) => cinema,
+    movieList: ({ movie }) => movie,
     sessions: ({ sessions }) => sessions,
     seatsList: ({ seats }) => seats
   },
   mutations: {
     setCinema (state, cinema) {
       state.cinema = cinema
+    },
+    setMovie (state, movie) {
+      state.movie = movie
     },
     setSeats (state, seats) {
       state.seats = seats
@@ -34,11 +38,18 @@ const operationsStore = {
       commit('setSeats', seats)
     },
 
+    async getMovie ({ commit }) {
+      const db = ref(getDatabase())
+      const movie = (await get(child(db, 'MovieBase'))).val()
+      commit('setMovie', movie)
+    },
+
     async createCinema ({ commit, dispatch }, { name }) {
       const db = getDatabase()
       await push(ref(db, 'Cinemas'), {
         name: name
       })
+      dispatch('getCinema')
     },
 
     async createMovie ({ commit, dispatch }, {
@@ -60,11 +71,19 @@ const operationsStore = {
         Poster: poster,
         Id: id
       })
+      dispatch('getMovie')
     },
 
     async removeCinema ({ commit, dispatch }, id) {
       const db = getDatabase()
       await remove(ref(db, `Cinemas/${id}`))
+      dispatch('getCinema')
+    },
+
+    async removeMovie ({ commit, dispatch }, id) {
+      const db = getDatabase()
+      await remove(ref(db, `MovieBase/${id}`))
+      dispatch('getMovie')
     },
 
     async createSession ({ dispatch }, { movie, date, time, cinema, seats }) {
