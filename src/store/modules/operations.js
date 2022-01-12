@@ -95,6 +95,7 @@ const operationsStore = {
         cinema: cinema,
         seats: seats
       })
+      dispatch('getSessions')
     },
     async getSessions ({ commit }) {
       const db = ref(getDatabase())
