@@ -36,31 +36,30 @@
       </button>
     </div>
 
-<div class="col xl4">
-    <div>
-      <div class="page-subtitle">
-        <h5>Remove session</h5>
-      </div>
+    <div class="col xl4">
+      <div>
+        <div class="page-subtitle">
+          <h5>Remove session</h5>
+        </div>
 
-      <div class="input-field">
-        <movie-house
-          @onChange="showCinema"
-          :cinemaList="cinemaList"
-        ></movie-house>
+        <div class="input-field">
+          <movie-house
+            @onChange="showCinema"
+            :cinemaList="cinemaList"
+          ></movie-house>
 
-        <!-- <button @click="selectedCinema">click</button> -->
+          <!-- <button @click="selectedCinema">click</button> -->
 
-        <remove-session
-          :list="selectedCinema"
-          :cinema-id="cinemaId"
-          @removeSession="removeSession"
-        ></remove-session>
+          <remove-session
+            :list="sessions"
+            :cinema-id="cinemaId"
+            @removeSession="removeSession"
+          ></remove-session>
+
+        </div>
       </div>
     </div>
   </div>
-
-  </div>
-
 </template>
 
 <script>
@@ -111,26 +110,44 @@ export default {
       }
     },
     async removeSession (id) {
-      try {
-        await this.$store.dispatch('operations/removeSession', id)
-        console.log(id)
-        window.M.toast({ html: 'Session removed!' })
-      } catch (error) {
-        console.log(error)
-      }
+      // try {
+      //   await this.$store.dispatch('operations/removeSession', id)
+      //   console.log(id)
+      //   window.M.toast({ html: 'Session removed!' })
+      // } catch (error) {
+      //   console.log(error)
+      // }
     }
   },
 
   computed: {
-    selectedCinema (cinemaId) {
-      const sessionArr = JSON.parse(
-        JSON.stringify(Object.values(this.sessions))
-      )
-      console.log(sessionArr)
-      const id = this.cinemaId
-      const result = sessionArr.filter((val) => val.cinema === id)
-      return result
-    },
+    // selectedCinema (cinemaId) {
+    //   const x = JSON.parse(JSON.stringify(Object.entries(this.sessions)))
+    //   const y = Object.entries(this.sessions)
+    //   const id = this.cinemaId
+    //   console.log(x)
+    //   console.log(y)
+
+    // const resultX = x.filter((val, key) => val.Object.values(val.cinema) === id)
+    // const resultY = y.filter((val) => val.cinema === id)
+    // console.log(resultX)
+    // console.log(resultY);
+
+    // return resultX
+
+    // const sessionArr = JSON.parse(
+    //   JSON.stringify(Object.values(this.sessions))
+    // )
+    // console.log(sessionArr);
+
+    // const id = this.cinemaId
+    // const result = sessionArr.filter((val) => val.cinema === id)
+    // console.log(result);
+    // return result;
+
+    // const sessionId = JSON.parse(JSON.stringify(Object.entries(this.sessions)));
+    // console.log(sessionId);
+    // },
 
     ...mapGetters('operations', [
       'cinemaList',
