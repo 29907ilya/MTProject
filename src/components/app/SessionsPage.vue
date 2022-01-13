@@ -1,5 +1,5 @@
 <template>
-  <div class="col s12 m6">
+  <div class="col xl8">
     <div>
       <div class="page-subtitle">
         <h5>Add session</h5>
@@ -35,9 +35,8 @@
         <i class="material-icons right">send</i>
       </button>
     </div>
-  </div>
 
-  <div class="col s12 m6">
+<div class="col xl4">
     <div>
       <div class="page-subtitle">
         <h5>Remove session</h5>
@@ -49,21 +48,25 @@
           :cinemaList="cinemaList"
         ></movie-house>
 
-        <button @click="selectedCinema">click</button>
+        <!-- <button @click="selectedCinema">click</button> -->
 
-        <!-- <remove-movie
+        <remove-session
           :list="selectedCinema"
-          @removeMovie="removeMovie"
-        ></remove-movie> -->
+          :cinema-id="cinemaId"
+          @removeSession="removeSession"
+        ></remove-session>
       </div>
     </div>
   </div>
+
+  </div>
+
 </template>
 
 <script>
 import MovieHouse from './MovieHouse.vue'
 import MovieSelector from './MovieSelector.vue'
-// import RemoveMovie from './RemoveMovie.vue'
+import RemoveSession from './RemoveSession.vue'
 
 import { mapGetters } from 'vuex'
 
@@ -78,21 +81,10 @@ export default {
   },
   components: {
     MovieHouse,
-    MovieSelector
-    // RemoveMovie
+    MovieSelector,
+    RemoveSession
   },
   methods: {
-    // selectedCinema () {
-    //   const arr = []
-    //   const id = this.cinemaId
-    //   const sessions = this.sessions
-    //   for (const [i, key] in sessions) {
-    //     if (sessions[key] == id) {
-    //       arr.push(sessions[key])
-    //     }
-    //   }
-    //   console.log(arr)
-    // },
     showCinema (value) {
       this.cinemaId = value.selectedOption
       console.log(this.cinemaId)
@@ -117,10 +109,28 @@ export default {
       } catch (error) {
         console.log(error)
       }
+    },
+    async removeSession (id) {
+      try {
+        await this.$store.dispatch('operations/removeSession', id)
+        console.log(id)
+        window.M.toast({ html: 'Session removed!' })
+      } catch (error) {
+        console.log(error)
+      }
     }
   },
 
   computed: {
+    selectedCinema (cinemaId) {
+      const sessionArr = JSON.parse(
+        JSON.stringify(Object.values(this.sessions))
+      )
+      console.log(sessionArr)
+      const id = this.cinemaId
+      const result = sessionArr.filter((val) => val.cinema === id)
+      return result
+    },
 
     ...mapGetters('operations', [
       'cinemaList',
@@ -128,7 +138,6 @@ export default {
       'sessions',
       'seatsList'
     ])
-    // ...mapGetters('movies', ['fullBase'])
   }
 }
 </script>

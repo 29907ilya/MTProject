@@ -184,3 +184,7 @@ li.router-link-exact-active {
 .input-field button {
   width: 100px;
 }
+
+html {
+  overflow-y: scroll
+}

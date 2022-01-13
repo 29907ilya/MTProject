@@ -3,7 +3,7 @@ import { getDatabase, ref, child, get, push, remove } from 'firebase/database'
 const operationsStore = {
   namespaced: true,
   state: {
-    sessions: [],
+    sessions: {},
     cinema: [],
     movie: [],
     seats: []
