@@ -7,7 +7,7 @@
       v-model="selectedOption"
       @change="onChange"
     >
-      <option v-for="(cinema, id) in cinemaList" :value="id" :key="id">
+      <option v-for="(cinema, id) in cinemaList" :key="id">
         {{ cinema.name }}
       </option>
     </select>

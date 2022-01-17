@@ -39,20 +39,19 @@
     <div class="col xl4">
       <div>
         <div class="page-subtitle">
-          <h5>Remove session</h5>
+          <h5>Existing sessions</h5>
         </div>
 
         <div class="input-field">
-          <movie-house
+          <!-- <movie-house
             @onChange="showCinema"
             :cinemaList="cinemaList"
-          ></movie-house>
+          ></movie-house> -->
 
           <!-- <button @click="selectedCinema">click</button> -->
 
           <remove-session
-            :list="selectedCinema"
-            :cinema-id="cinemaId"
+            :list="sortedSession"
             @removeSession="removeSession"
           ></remove-session>
 
@@ -66,7 +65,6 @@
 import MovieHouse from './MovieHouse.vue'
 import MovieSelector from './MovieSelector.vue'
 import RemoveSession from './RemoveSession.vue'
-
 import { mapGetters } from 'vuex'
 
 export default {
@@ -75,7 +73,7 @@ export default {
       movie: '',
       date: '',
       time: '',
-      cinemaId: ''
+      cinema: ''
     }
   },
   components: {
@@ -85,11 +83,12 @@ export default {
   },
   methods: {
     showCinema (value) {
-      this.cinemaId = value.selectedOption
-      console.log(this.cinemaId)
+      this.cinema = value.selectedOption
+      console.log(this.cinema)
     },
     showMovie (value) {
       this.movie = value.selectedOption
+      console.log(this.movie)
     },
 
     async addSession () {
@@ -97,7 +96,7 @@ export default {
         movie: this.movie,
         date: this.date,
         time: this.time,
-        cinema: this.cinemaId,
+        cinema: this.cinema,
         seats: this.seatsList
       }
 
@@ -121,6 +120,12 @@ export default {
   },
 
   computed: {
+
+    sortedSession () {
+      const sorted = Object.values(this.sessions).sort((a, b) => (a.date > b.date ? 1 : -1))
+      return sorted
+    },
+
     selectedCinema (cinemaId) {
     //   const x = JSON.parse(JSON.stringify(Object.entries(this.sessions)))
     //   const y = Object.entries(this.sessions)

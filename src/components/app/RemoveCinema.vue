@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-subtitle">
-      <h5>Remove cinema</h5>
+      <h5>Existing cinemas</h5>
     </div>
 
     <div class="input-field">

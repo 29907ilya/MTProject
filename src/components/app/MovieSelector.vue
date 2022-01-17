@@ -1,6 +1,6 @@
 <template>
   <select name="movie" id="movie" v-model="selectedOption" @change="onChange">
-    <option v-for="(movie, id) in list" :value="id" :key="id">
+    <option v-for="(movie, id) in list" :key="id">
       {{ movie.Title }}
     </option>
   </select>

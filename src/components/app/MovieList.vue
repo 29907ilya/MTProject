@@ -11,7 +11,7 @@ import MovieItem from './MovieItem.vue'
 
 export default {
   props: {
-    list: Array
+    list: Object
   },
   components: {
     MovieItem

@@ -1,7 +1,6 @@
 <template>
   <div>
     <loader v-if="loading"></loader>
-
     <template v-else>
       <movie-list :list="moviesToRender"></movie-list>
       <pagination
@@ -25,7 +24,7 @@ export default {
   data () {
     return {
       loading: true,
-      moviesPerPage: 15
+      moviesPerPage: 10
     }
   },
   async mounted () {
@@ -39,8 +38,7 @@ export default {
     }
   },
   computed: {
-    // ...mapActions('operations', ['getCinema']),
-    ...mapGetters('movies', ['moviesToRender', 'moviesLength', 'currentPage'], 'isLoading')
+    ...mapGetters('movies', ['moviesToRender', 'moviesLength', 'currentPage'])
   },
   components: {
     Loader,
@@ -51,5 +49,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

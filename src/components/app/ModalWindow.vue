@@ -8,8 +8,27 @@
         <div>&#10026; {{ movie.imdbRating }}</div>
       </div>
     </div>
+    <div class="title_discription">
+      <div class="title">
+        <p class="title">{{ movie.Title }}, {{ movie.Year }}</p>
+      </div>
+      <div class="discription">{{ movie.Discription }}</div>
+    </div>
 
     <div class="options">
+      <div class="sessions" v-for="item in sortedSession" :key="item">
+        <div class="session-item">
+          {{ item.cinema }} <br>
+          {{ item.date }} <br>
+          {{ item.time }} <br>
+
+        </div>
+      </div>
+      <div class="seats">
+        <!-- {{ item.seats }} -->
+      </div>
+    </div>
+    <!-- <div class="options">
       <div class="title">
         <p class="title">{{ movie.Title }}, {{ movie.Year }}</p>
       </div>
@@ -17,7 +36,7 @@
       <div class="formalities">
         <div class="place_sessions">
 
-          <movie-house :cinemaList="cinemaName"></movie-house>
+          <movie-house :cinemaList="cinemaList"></movie-house>
           <movie-sessions></movie-sessions>
         </div>
         <div class="seats_buy">
@@ -28,17 +47,17 @@
         <div>Price: {{ price }}$</div>
         <div>Total: {{ price }}$</div>
       </div>
-    </div>
+    </div> -->
 
-    <div class="discription">{{ movie.Discription }}</div>
+    <!-- <div class="discription">{{ movie.Discription }}</div> -->
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import MovieHouse from './MovieHouse.vue'
-import MovieSessions from './MovieSessions.vue'
-import SeatsPlan from './SeatsPlan.vue'
+// import MovieHouse from './MovieHouse.vue'
+// import MovieSessions from './MovieSessions.vue'
+// import SeatsPlan from './SeatsPlan.vue'
 
 export default {
   emits: ['close'],
@@ -57,17 +76,38 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('operations', ['cinemaName']),
+    ...mapGetters('operations', ['cinemaList', 'sessions']),
     posterBg () {
       return {
         'background-image': `url(${this.movie.Poster})`
       }
+    },
+    sortedSession () {
+      const title = this.movie.Title
+      const sessionList = this.sessions
+      const result = {}
+      for (const i in sessionList) {
+        const item = sessionList[i]
+        if (item.movie === title) {
+          result[i] = item
+        }
+      }
+      return result
+
+      // const sortedSession = []
+      // for (let key in sessionList) {
+      //   sortedSession.push(Array([key], sessionList[key]) );
+      // }
+      // console.log(sortedSession);
+
+      // const sessionToRender = sortedSession.filter(value => value.movie == title)
+      // console.log(sessionToRender);
     }
   },
   components: {
-    MovieHouse,
-    MovieSessions,
-    SeatsPlan
+    // MovieHouse,
+    // MovieSessions,
+    // SeatsPlan
   }
 }
 </script>
@@ -76,7 +116,7 @@ export default {
 .modal-window {
   position: fixed;
   top: 100px;
-  width: 660px;
+  width: 900px;
   padding: 1rem;
   background: #ff5353;
   z-index: 100;
@@ -101,7 +141,8 @@ export default {
 }
 
 .logo_info {
-  width: 195px;
+  width: 25%px;
+  float: left;
   height: 280px;
 }
 .logo-poster {
@@ -119,16 +160,44 @@ export default {
   box-shadow: 0 10px 12px rgba(0, 0, 0, 0.65), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 .movie-info {
-  margin: 252px 20px 20px 10px;
+  margin: 252px 30px 20px 10px;
   font-size: 16px;
   font-weight: bold;
   width: 150px;
   display: flex;
   justify-content: space-between;
 }
-.options {
-  width: 400px;
+.title_discription {
+  width: 75%;
+  float: right;
 }
+
+.sessions {
+  width: 70%;
+  float: left;
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.session-item {
+  width: 100px;
+  border: black 2px solid;
+  border-radius: 5px;
+
+}
+.session-item button {
+color: black;
+}
+
+.seats {
+  width: 30%;
+  float: right;
+  padding: 5px;
+}
+
+/* .options {
+  width: 400px;
+} */
 .title {
   font-size: 24px;
   margin: 0;
@@ -148,7 +217,7 @@ export default {
 }
 .discription {
   margin-top: 10px;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.1;
 }
 .price {

@@ -4,7 +4,7 @@ const movieStore = {
   namespaced: true,
   state: {
     movieBase: {},
-    moviesPerPage: 15,
+    moviesPerPage: 10,
     currentPage: 1,
     fullBase: {}
   },
@@ -27,21 +27,21 @@ const movieStore = {
     }
   },
   actions: {
-    // async getMovieBase ({ commit, dispatch, getters }) {
-    //   try {
-    //     const { currentPage, moviesPerPage } = getters
-    //     const db = ref(getDatabase())
-    //     const response = (await get(child(db, 'MovieBase'))).val()
-    //     commit('setFullBase', response)
-    //     const from = currentPage * moviesPerPage - moviesPerPage
-    //     const to = currentPage * moviesPerPage
-    //     const result = Object.keys(response)
-    //     const moviesToRender = ({ ...result }).slice(from, to)
-    //     commit('setMovieBase', moviesToRender)
-    //   } catch (error) {
-    //     console.log(error.message)
-    //   }
-    // },
+    async getMovieBase ({ commit, dispatch, getters }) {
+      try {
+        const { currentPage, moviesPerPage } = getters
+        const db = ref(getDatabase())
+        const response = (await get(child(db, 'MovieBase'))).val()
+        commit('setFullBase', response)
+        const from = currentPage * moviesPerPage - moviesPerPage
+        const to = currentPage * moviesPerPage
+        const result = Object.values(response)
+        const moviesToRender = result.slice(from, to)
+        commit('setMovieBase', moviesToRender)
+      } catch (error) {
+        console.log(error.message)
+      }
+    },
     changeCurrentPage ({ commit, dispatch }, page) {
       commit('setCurrentPage', page)
       dispatch('getMovieBase')
@@ -52,7 +52,9 @@ const movieStore = {
         const { currentPage, moviesPerPage } = getters
         const db = ref(getDatabase())
         const response = (await get(child(db, 'MovieBase'))).val()
-        const result = response.filter(key => key.Title.toLowerCase().includes(query.toLowerCase().trim()))
+        console.log(response)
+
+        const result = Object.values(response).filter(key => key.Title.toLowerCase().includes(query.toLowerCase().trim()))
         commit('setFullBase', result)
         const from = currentPage * moviesPerPage - moviesPerPage
         const to = currentPage * moviesPerPage
