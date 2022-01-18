@@ -3,7 +3,7 @@
     <div class="input-field">
       <div class="input-list" v-for="(item, id) in list" :key="id">
         <div class="input-title">{{ id+1 }}) {{ item.date }}, {{ item.time }} <br>
-        {{ item.cinema }}, {{ item.movie }}</div>
+        {{ item.cinema }}, {{ item.movie }} <hr></div>
 
         <button
           class="btn waves-effect waves-light"

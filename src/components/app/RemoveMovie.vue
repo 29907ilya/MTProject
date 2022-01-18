@@ -6,7 +6,7 @@
 
     <div class="input-field">
       <div class="input-list" v-for="(movie, id) in list" :key="id">
-        <div class="input-title"> {{ movie.Title }}</div>
+        <div class="input-title"> {{ movie.Title }} <hr></div>
 
         <button
           class="btn waves-effect waves-light"

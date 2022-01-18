@@ -30,7 +30,7 @@ export default {
 <style scoped>
 select {
   display: inline;
-  /* background-color: #f78888; */
+  background-color: #ff5353;
   font-size: 16px;
   width: 100px;
   height: 100%;

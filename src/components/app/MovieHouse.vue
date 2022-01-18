@@ -46,6 +46,7 @@ select {
   height: 100%;
   padding: 0%;
   border: 1px solid #ff5353;
+  background-color: #ff5353;
   border-radius: 2px;
 }
 </style>>

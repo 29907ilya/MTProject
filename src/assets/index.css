@@ -37,6 +37,7 @@
   transition: transform 0.3s, -webkit-transform 0.3s;
   bottom: 0 !important;
   height: auto !important;
+  background-color: #eee8f6;
 }
 .app-sidenav.open {
   -webkit-transform: translateX(0);
@@ -125,30 +126,6 @@
 .form {
   max-width: 500px;
 }
-.breadcrumb-wrap,
-.breadcrumb-wrap a,
-.breadcrumb-wrap a:before {
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-.breadcrumb-wrap {
-  position: relative;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-.breadcrumb-wrap a,
-.breadcrumb-wrap a:before {
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  color: rgba(0, 0, 0, 0.7) !important;
-}
-.history-chart {
-  max-width: 600px;
-  margin: 0 auto;
-}
 
 .col {
   display: flex;
@@ -165,7 +142,7 @@
 
 li.router-link-active,
 li.router-link-exact-active {
-  background-color: #eee8f6;
+  background-color: #d4d4d4;
   cursor: pointer;
 }
 .input-list {
@@ -186,5 +163,6 @@ li.router-link-exact-active {
 }
 
 html {
-  overflow-y: scroll
+  overflow-y: scroll;
+  background-color: #eee8f6;
 }

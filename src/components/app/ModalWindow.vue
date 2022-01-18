@@ -1,13 +1,13 @@
 <template>
-  <div class="modal-backdrop" @click="$emit('close')"></div>
+  <div class="modal-backdrop" @click="closeModal"></div>
   <div class="modal-window">
     <div class="logo_info">
       <div class="logo-poster" :style="posterBg"></div>
-      <div class="movie-info">
+    </div>
+    <div class="movie-info">
         <div>&#128357; {{ movie.Runtime }}</div>
         <div>&#10026; {{ movie.imdbRating }}</div>
       </div>
-    </div>
     <div class="title_discription">
       <div class="title">
         <p class="title">{{ movie.Title }}, {{ movie.Year }}</p>
@@ -16,46 +16,33 @@
     </div>
 
     <div class="options">
-      <div class="sessions" v-for="item in sortedSession" :key="item">
-        <div class="session-item">
-          {{ item.cinema }} <br>
-          {{ item.date }} <br>
-          {{ item.time }} <br>
-
-        </div>
-      </div>
-      <div class="seats">
-        <!-- {{ item.seats }} -->
+      <div class="sessions" v-for="(item, id) in sortedSession" :value="id" :key="id">
+        <a href="#" @click="order = true" >
+          <div class="session-item">
+            <p>{{ item.cinema }}<br /></p>
+            <span>{{ item.time }}<br /></span>
+            {{ item.date }}<br />
+          </div>
+          <button @click="showItem">click</button>
+        </a>
       </div>
     </div>
-    <!-- <div class="options">
-      <div class="title">
-        <p class="title">{{ movie.Title }}, {{ movie.Year }}</p>
-      </div>
-
-      <div class="formalities">
-        <div class="place_sessions">
-
-          <movie-house :cinemaList="cinemaList"></movie-house>
-          <movie-sessions></movie-sessions>
-        </div>
-        <div class="seats_buy">
-          <seats-plan></seats-plan>
-        </div>
-      </div>
-      <div class="price">
-        <div>Price: {{ price }}$</div>
-        <div>Total: {{ price }}$</div>
-      </div>
-    </div> -->
-
-    <!-- <div class="discription">{{ movie.Discription }}</div> -->
   </div>
+
+  <teleport to="body">
+    <order-page
+      :movie="movie"
+
+      @close="order = false"
+      v-if="order"
+    ></order-page>
+  </teleport>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-// import MovieHouse from './MovieHouse.vue'
+import { ref } from 'vue'
+import OrderPage from './OrderPage.vue'
 // import MovieSessions from './MovieSessions.vue'
 // import SeatsPlan from './SeatsPlan.vue'
 
@@ -64,18 +51,23 @@ export default {
   props: {
     movie: Object
   },
-  data () {
-    return {
-      price: 5
-    }
+  setup () {
+    const order = ref(false)
+    return { order }
   },
 
   methods: {
-    tap () {
-      window.M.toast({ html: 'You have bought your tickets!' })
+    closeModal () {
+      if (confirm('Close window?')) {
+        this.$emit('close')
+      }
     }
+
   },
   computed: {
+    // showItem () {
+    //   console.log(this.item)
+    // },
     ...mapGetters('operations', ['cinemaList', 'sessions']),
     posterBg () {
       return {
@@ -105,7 +97,7 @@ export default {
     }
   },
   components: {
-    // MovieHouse,
+    OrderPage
     // MovieSessions,
     // SeatsPlan
   }
@@ -115,8 +107,8 @@ export default {
 <style>
 .modal-window {
   position: fixed;
-  top: 100px;
-  width: 900px;
+  top: 70px;
+  width: 800px;
   padding: 1rem;
   background: #ff5353;
   z-index: 100;
@@ -171,33 +163,46 @@ export default {
   width: 75%;
   float: right;
 }
-
-.sessions {
-  width: 70%;
-  float: left;
-  padding: 5px;
+.options {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.sessions {
+  width: 150px;
+  padding: 5px;
+  cursor: pointer;
+  text-shadow: 1px 1px 1px rgb(49, 49, 180);
 }
 .session-item {
-  width: 100px;
-  border: black 2px solid;
+  margin: 2px;
+  border: rgb(59, 59, 59) 2px solid;
   border-radius: 5px;
-
+  display: block;
+  text-align: center;
+  color: black;
+  box-shadow: 0 4px 8px rgba(0, 75, 161, 0.25), 0 5px 5px rgba(0, 4, 253, 0.22);
 }
-.session-item button {
-color: black;
+.session-item:hover {
+  transform: scale(1.03);
+  transition: all 0.3s ease;
 }
 
+.session-item span {
+  font-weight: 500;
+  font-size: 17px;
+}
+.session-item p {
+  font-weight: 500;
+  font-size: 18px;
+  margin: 3px;
+}
 .seats {
   width: 30%;
   float: right;
   padding: 5px;
 }
 
-/* .options {
-  width: 400px;
-} */
 .title {
   font-size: 24px;
   margin: 0;
