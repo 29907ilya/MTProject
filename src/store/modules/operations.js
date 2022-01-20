@@ -6,13 +6,17 @@ const operationsStore = {
     sessions: {},
     cinema: [],
     movie: [],
-    seats: []
+    seats: [],
+    sessionToRender: {},
+    seatsToRender: {}
   },
   getters: {
     cinemaList: ({ cinema }) => cinema,
     movieList: ({ movie }) => movie,
     sessions: ({ sessions }) => sessions,
-    seatsList: ({ seats }) => seats
+    seatsList: ({ seats }) => seats,
+    sessionToRender: ({ sessionToRender }) => sessionToRender,
+    seatsToRender: ({ seatsToRender }) => seatsToRender
   },
   mutations: {
     setCinema (state, cinema) {
@@ -26,6 +30,12 @@ const operationsStore = {
     },
     setSessions (state, sessions) {
       state.sessions = sessions
+    },
+    sessionToRender (state, sessionToRender) {
+      state.sessionToRender = sessionToRender
+    },
+    seatsToRender (state, seatsToRender) {
+      state.seatsToRender = seatsToRender
     }
   },
 
@@ -36,15 +46,23 @@ const operationsStore = {
       const seats = (await get(child(db, 'Seats'))).val()
       commit('setCinema', cinema)
       commit('setSeats', seats)
-      console.log(cinema)
-      console.log(seats)
     },
 
     async getMovie ({ commit }) {
       const db = ref(getDatabase())
       const movie = (await get(child(db, 'MovieBase'))).val()
       commit('setMovie', movie)
-      console.log(movie)
+    },
+
+    async sessionToRender ({ commit, dispatch }, { sessionID }) {
+      console.log(sessionID)
+      const db = ref(getDatabase())
+      const sessionToRender = (await get(child(db, `Sessions/${sessionID}`))).val()
+      const seatsToRender = (await get(child(db, `Sessions/${sessionID}/seats`))).val()
+      console.log(sessionToRender)
+      console.log(seatsToRender)
+      commit('sessionToRender', sessionToRender)
+      commit('seatsToRender', seatsToRender)
     },
 
     async createCinema ({ commit, dispatch }, { name }) {
@@ -110,7 +128,6 @@ const operationsStore = {
     async getSessions ({ commit }) {
       const db = ref(getDatabase())
       const sessions = (await get(child(db, 'Sessions'))).val()
-      console.log(sessions)
       commit('setSessions', sessions)
     }
   }

@@ -5,9 +5,9 @@
       <div class="logo-poster" :style="posterBg"></div>
     </div>
     <div class="movie-info">
-        <div>&#128357; {{ movie.Runtime }}</div>
-        <div>&#10026; {{ movie.imdbRating }}</div>
-      </div>
+      <div>&#128357; {{ movie.Runtime }}</div>
+      <div>&#10026; {{ movie.imdbRating }}</div>
+    </div>
     <div class="title_discription">
       <div class="title">
         <p class="title">{{ movie.Title }}, {{ movie.Year }}</p>
@@ -15,28 +15,36 @@
       <div class="discription">{{ movie.Discription }}</div>
     </div>
 
-    <div class="options">
-      <div class="sessions" v-for="(item, id) in sortedSession" :value="id" :key="id">
-        <a href="#" @click="order = true" >
+    <div class="options" >
+      <div
+        class="sessions"
+        v-for="(item, key) in sortedSession"
+        :key="key"
+        @click="showKey(key)"
+      >
+        <a href="#" @click="order = true">
           <div class="session-item">
             <p>{{ item.cinema }}<br /></p>
             <span>{{ item.time }}<br /></span>
             {{ item.date }}<br />
           </div>
-          <button @click="showItem">click</button>
         </a>
       </div>
+      <teleport to="body">
+        <order-page
+          :movie="movie"
+          :sessionToRender="sessionToRender"
+          @close="order = false"
+          v-if="order"
+        ></order-page>
+      </teleport>
     </div>
+
+    <!-- <div v-else>
+      <p>Sorry, there are no existing sessions yet</p>
+    </div> -->
   </div>
 
-  <teleport to="body">
-    <order-page
-      :movie="movie"
-
-      @close="order = false"
-      v-if="order"
-    ></order-page>
-  </teleport>
 </template>
 
 <script>
@@ -61,14 +69,24 @@ export default {
       if (confirm('Close window?')) {
         this.$emit('close')
       }
+    },
+    async showKey (key) {
+      const sessionID = {
+        sessionID: key
+      }
+      console.log(sessionID)
+      try {
+        await this.$store.dispatch('operations/sessionToRender', sessionID)
+      } catch (error) {
+        console.log(error.message)
+      }
+    },
+    show () {
+      console.log(this.sessionToRender)
     }
-
   },
   computed: {
-    // showItem () {
-    //   console.log(this.item)
-    // },
-    ...mapGetters('operations', ['cinemaList', 'sessions']),
+    ...mapGetters('operations', ['cinemaList', 'sessions', 'sessionToRender']),
     posterBg () {
       return {
         'background-image': `url(${this.movie.Poster})`
@@ -176,6 +194,7 @@ export default {
 }
 .session-item {
   margin: 2px;
+  background: #ff5353;
   border: rgb(59, 59, 59) 2px solid;
   border-radius: 5px;
   display: block;
@@ -184,8 +203,9 @@ export default {
   box-shadow: 0 4px 8px rgba(0, 75, 161, 0.25), 0 5px 5px rgba(0, 4, 253, 0.22);
 }
 .session-item:hover {
-  transform: scale(1.03);
+  transform: scale(1.05);
   transition: all 0.3s ease;
+  background: #fd4444;
 }
 
 .session-item span {
@@ -194,7 +214,7 @@ export default {
 }
 .session-item p {
   font-weight: 500;
-  font-size: 18px;
+  font-size: 19px;
   margin: 3px;
 }
 .seats {
@@ -208,28 +228,9 @@ export default {
   margin: 0;
   text-shadow: 1px 1px 1px rgb(80, 80, 80), -1px 1px 1px rgb(224, 71, 71);
 }
-.formalities {
-  display: flex;
-  /* border: black 1px solid; */
-}
-.place_sessions {
-  width: 220px;
-  /* border: black 1px solid; */
-}
-.seats_buy {
-  width: 220px;
-  padding: 0;
-}
 .discription {
   margin-top: 10px;
   font-size: 18px;
   line-height: 1.1;
-}
-.price {
-  display: flex;
-  width: auto;
-  justify-content: space-between;
-  margin-top: 10px;
-  font-weight: bold;
 }
 </style>
