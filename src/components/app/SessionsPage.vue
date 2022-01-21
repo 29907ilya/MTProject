@@ -51,7 +51,7 @@
           <!-- <button @click="selectedCinema">click</button> -->
 
           <remove-session
-            :list="sortedSession"
+            :list="sessions"
             @removeSession="removeSession"
           ></remove-session>
 
@@ -121,10 +121,10 @@ export default {
 
   computed: {
 
-    sortedSession () {
-      const sorted = Object.values(this.sessions).sort((a, b) => (a.date > b.date ? 1 : -1))
-      return sorted
-    },
+    // sortedSession () {
+    //   const sorted = this.sessions.sort((a, b) => (a.date > b.date ? 1 : -1))
+    //   return sorted
+    // },
 
     selectedCinema (cinemaId) {
     //   const x = JSON.parse(JSON.stringify(Object.entries(this.sessions)))

@@ -52,6 +52,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { getDatabase, ref, update } from 'firebase/database'
 
 export default {
   emits: ['close'],
@@ -61,21 +62,27 @@ export default {
   },
   data () {
     return {
-      info: this.sessionToRender
+      checkedSeats: []
     }
   },
-  watch: {
-    showSeats (seats) {
-      console.log(seats.checked)
-    }
-  },
+
   methods: {
-    buyTickets (seat) {
-      let boughtSeat = seat.checked
-      if (seat.checked) {
-        boughtSeat = seat.disabled
-      }
-      console.log(boughtSeat)
+    async buyTickets (seatsToRender, currentSessionId) {
+      (this.seatsToRender).map(function (key) {
+        if (key.checked) {
+          key.disabled = true
+        }
+      })
+      console.log(this.seatsToRender)
+      const id = this.currentSessionId
+      console.log(id)
+
+      const db = getDatabase()
+
+      await (update(ref(db, `Sessions/${id}`), {
+        seats: this.seatsToRender
+      }))
+      console.log('+++')
     },
 
     closeModal () {
@@ -91,7 +98,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('operations', ['seatsToRender']),
+    ...mapGetters('operations', ['seatsToRender', 'currentSessionId']),
     price () {
       let price = ''
       Object.values(this.seatsToRender).map((seat) => (price = seat.price))

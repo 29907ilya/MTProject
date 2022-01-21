@@ -51,8 +51,6 @@
 import { mapGetters } from 'vuex'
 import { ref } from 'vue'
 import OrderPage from './OrderPage.vue'
-// import MovieSessions from './MovieSessions.vue'
-// import SeatsPlan from './SeatsPlan.vue'
 
 export default {
   emits: ['close'],
@@ -74,7 +72,7 @@ export default {
       const sessionID = {
         sessionID: key
       }
-      console.log(sessionID)
+      // console.log(sessionID)
       try {
         await this.$store.dispatch('operations/sessionToRender', sessionID)
       } catch (error) {

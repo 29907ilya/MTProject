@@ -8,7 +8,8 @@ const operationsStore = {
     movie: [],
     seats: [],
     sessionToRender: {},
-    seatsToRender: {}
+    seatsToRender: [],
+    sessionID: ''
   },
   getters: {
     cinemaList: ({ cinema }) => cinema,
@@ -16,7 +17,8 @@ const operationsStore = {
     sessions: ({ sessions }) => sessions,
     seatsList: ({ seats }) => seats,
     sessionToRender: ({ sessionToRender }) => sessionToRender,
-    seatsToRender: ({ seatsToRender }) => seatsToRender
+    seatsToRender: ({ seatsToRender }) => Array.from(seatsToRender),
+    currentSessionId: ({ sessionID }) => sessionID
   },
   mutations: {
     setCinema (state, cinema) {
@@ -30,6 +32,9 @@ const operationsStore = {
     },
     setSessions (state, sessions) {
       state.sessions = sessions
+    },
+    currentSessionId (state, sessionID) {
+      state.sessionID = sessionID
     },
     sessionToRender (state, sessionToRender) {
       state.sessionToRender = sessionToRender
@@ -59,8 +64,9 @@ const operationsStore = {
       const db = ref(getDatabase())
       const sessionToRender = (await get(child(db, `Sessions/${sessionID}`))).val()
       const seatsToRender = (await get(child(db, `Sessions/${sessionID}/seats`))).val()
-      console.log(sessionToRender)
+      // console.log(sessionToRender)
       console.log(seatsToRender)
+      commit('currentSessionId', sessionID)
       commit('sessionToRender', sessionToRender)
       commit('seatsToRender', seatsToRender)
     },
