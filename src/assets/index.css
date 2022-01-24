@@ -161,7 +161,15 @@ li.router-link-exact-active {
 .input-field button {
   width: 100px;
 }
+.close-btn {
+  position: absolute;
+top: 5px;
+left: 770px;
+padding: 0 7px 0 7px;
+border: rgb(0, 81, 173) 1px solid;
+border-radius: 20px;
 
+}
 
 html {
   overflow-y: scroll;

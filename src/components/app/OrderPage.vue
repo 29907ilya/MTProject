@@ -47,6 +47,9 @@
         </div>
       </div>
     </div>
+    <a href="#" @click="closeModal">
+      <div class="close-btn">x</div>
+    </a>
   </div>
 </template>
 
@@ -59,11 +62,6 @@ export default {
   props: {
     movie: Object,
     sessionToRender: Object
-  },
-  data () {
-    return {
-      checkedSeats: []
-    }
   },
 
   methods: {

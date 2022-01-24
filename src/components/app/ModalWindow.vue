@@ -40,6 +40,10 @@
       </teleport>
     </div>
 
+    <a href="#" @click="closeModal">
+      <div class="close-btn">x</div>
+    </a>
+
     <!-- <div v-else>
       <p>Sorry, there are no existing sessions yet</p>
     </div> -->
@@ -153,6 +157,7 @@ export default {
   float: left;
   height: 280px;
 }
+
 .logo-poster {
   position: absolute;
   top: 20px;
