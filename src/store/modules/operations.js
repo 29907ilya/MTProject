@@ -140,28 +140,3 @@ const operationsStore = {
 }
 
 export default operationsStore
-
-// const obj = {
-//   -Mt9c5aDh85r5tda4HOi: {cinema: '-Mt4wS9PANdwUBgtjc4s', date: '2022-02-01', movie: '-Mt9ZUCu91i2ZUpP3rjf', seats: Array(20), time: '17:00'}
-// -Mt9c7k_3llaMuaKFXqM: {cinema: '-Mt4wS9PANdwUBgtjc4s', date: '2022-02-01', movie: '-Mt9ZUCu91i2ZUpP3rjf', seats: Array(20), time: '21:00'}
-// -Mt9cFxJm5NRD_uO5gzT: {cinema: '-Mt4wS9PANdwUBgtjc4s', date: '2022-02-01', movie: '-Mt9_3_wMdzRDKk6XNWA', seats: Array(20), time: '22:00'}
-// -Mt9cHMb2tjOQn4AYwwx: {cinema: '-Mt4wS9PANdwUBgtjc4s', date: '2022-02-01', movie: '-Mt9_3_wMdzRDKk6XNWA', seats: Array(20), time: '20:00'}
-// -Mt9cLKLXyvw5qx7AEog: {cinema: '-Mt4wS9PANdwUBgtjc4s', date: '2022-02-01', movie: '-Mt9_SJoAqerbxU7TmFQ', seats: Array(20), time: '15:00'}
-// -Mt9cNo5iDyGgw7eKbRP: {cinema: '-Mt4wS9PANdwUBgtjc4s', date: '2022-02-01', movie: '-Mt9_hc_hE6WrLM2-VBb', seats: Array(20), time: '13:00'}
-// -Mt9cPW3BTHZjivnjqWb: {cinema: '-Mt7Deq64i_ZZW_q6Z1O', date: '2022-02-01', movie: '-Mt9_hc_hE6WrLM2-VBb', seats: Array(20), time: '14:00'}
-// -Mt9cQjTssMarHuzo0kH: {cinema: '-Mt7Deq64i_ZZW_q6Z1O', date: '2022-02-01', movie: '-Mt9_hc_hE6WrLM2-VBb', seats: Array(20), time: '17:00'}
-// -Mt9cS6KF7gscVMNe0C4: {cinema: '-Mt7Es0LtgI1CN4BppRZ', date: '2022-02-01', movie: '-Mt9_hc_hE6WrLM2-VBb', seats: Array(20), time: '22:00'}
-// -Mt9cTUtdvrm1vjMqPTA: {cinema: '-Mt7Es0LtgI1CN4BppRZ', date: '2022-02-01', movie: '-Mt9_hc_hE6WrLM2-VBb', seats: Array(20), time: '14:00'}
-// -Mt9cWGyAH0ajXuYgM3t: {cinema: '-Mt7Es0LtgI1CN4BppRZ', date: '2022-02-01', movie: '-Mt9a31SSg---kLbSu3T', seats: Array(20), time: '15:00'}
-// -Mt9cX0I0mU3ZEnuQ8cH: {cinema: '-Mt7Es0LtgI1CN4BppRZ', date: '2022-02-01', movie: '-Mt9a31SSg---kLbSu3T', seats: Array(20), time: '18:00'}
-// -Mt9cXjaISG_maIaivP-: {cinema: '-Mt7Es0LtgI1CN4BppRZ', date: '2022-02-01', movie: '-Mt9a31SSg---kLbSu3T', seats: Array(20), time: '23:00'}
-// -Mt9cYpu5FFcd04zn3dk: {cinema: '-Mt7Deq64i_ZZW_q6Z1O', date: '2022-02-01', movie: '-Mt9a31SSg---kLbSu3T', seats: Array(20), time: '23:00'}
-// -Mt9cZszZeVzA8W2r7io: {cinema: '-Mt7Deq64i_ZZW_q6Z1O', date: '2022-02-01', movie: '-Mt9a31SSg---kLbSu3T', seats: Array(20), time: '20:00'}
-// -Mt9c_crKe6la2uUBZFi: {cinema: '-Mt4wS9PANdwUBgtjc4s', date: '2022-02-01', movie: '-Mt9a31SSg---kLbSu3T', seats: Array(20), time: '20:00'}
-// -Mt9cad8DS0n1fVt4Jqv: {cinema: '-Mt4wS9PANdwUBgtjc4s', date: '2022-02-01', movie: '-Mt9a31SSg---kLbSu3T', seats: Array(20), time: '22:00'}
-// -Mt9ce5Wis4DZEiH6BA9: {cinema: '-Mt4wS9PANdwUBgtjc4s', date: '2022-02-01', movie: '-Mt9aYiZH2t3K38pglFw', seats: Array(20), time: '19:00'}
-// -Mt9cf6GxYjG9r0G9fyo: {cinema: '-Mt4wS9PANdwUBgtjc4s', date: '2022-02-01', movie: '-Mt9aYiZH2t3K38pglFw', seats: Array(20), time: '23:00'}
-// -Mt9chGT2smJRirvZ-wV: {cinema: '-Mt7Deq64i_ZZW_q6Z1O', date: '2022-02-01', movie: '-Mt9aYiZH2t3K38pglFw', seats: Array(20), time: '22:00'}
-// -Mt9cjDUOpwZi_Tru82O: {cinema: '-Mt7Es0LtgI1CN4BppRZ', date: '2022-02-01', movie: '-Mt9aYiZH2t3K38pglFw', seats: Array(20), time: '19:00'}
-// -Mt9ckC46dKhgbrFbr8G: {cinema: '-Mt7Es0LtgI1CN4BppRZ', date: '2022-02-01', movie: '-Mt9aYiZH2t3K38pglFw', seats: Array(20), time: '16:00'}
-// }

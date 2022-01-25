@@ -10,7 +10,7 @@
 
       <div class="search_field">
         <div>
-          <input type="text" placeholder="Search" v-model="input">
+          <input type="text" placeholder="Search" v-model="input" />
         </div>
       </div>
 
@@ -22,7 +22,7 @@
             data-target="dropdown"
             ref="dropdown"
           >
-            Menu
+            Good day {{ userName || "anonymous" }}!
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
@@ -56,13 +56,9 @@ export default {
     }
   },
   computed: {
-    // userName () {
-    //   try {
-    //   return this.$store.getters.userName.name
-    //   } catch (e) {
-    //     console.log(e.message)
-    //   }
-    // },
+    userName () {
+      return this.$store.getters.userName.name
+    },
     input: {
       get () {
         return this.searchValue
@@ -118,5 +114,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

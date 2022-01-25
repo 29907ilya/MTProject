@@ -73,14 +73,11 @@ export default {
       })
       console.log(this.seatsToRender)
       const id = this.currentSessionId
-      console.log(id)
-
       const db = getDatabase()
-
       await (update(ref(db, `Sessions/${id}`), {
         seats: this.seatsToRender
       }))
-      console.log('+++')
+      window.M.toast({ html: 'You have bought tickets!' })
     },
 
     closeModal () {

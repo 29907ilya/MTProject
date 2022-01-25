@@ -76,7 +76,6 @@ export default {
       const sessionID = {
         sessionID: key
       }
-      // console.log(sessionID)
       try {
         await this.$store.dispatch('operations/sessionToRender', sessionID)
       } catch (error) {
@@ -105,21 +104,10 @@ export default {
         }
       }
       return result
-
-      // const sortedSession = []
-      // for (let key in sessionList) {
-      //   sortedSession.push(Array([key], sessionList[key]) );
-      // }
-      // console.log(sortedSession);
-
-      // const sessionToRender = sortedSession.filter(value => value.movie == title)
-      // console.log(sessionToRender);
     }
   },
   components: {
     OrderPage
-    // MovieSessions,
-    // SeatsPlan
   }
 }
 </script>

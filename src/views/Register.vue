@@ -138,7 +138,7 @@ export default {
       try {
         await this.$store.dispatch('register', userData)
         window.M.toast({ html: 'Registration successfull!' })
-        this.$router.push('/')
+        this.$router.push('/login')
       } catch (error) {
       }
     }

@@ -23,9 +23,12 @@ export default {
     await this.getCinema
     await this.getMovie
     await this.getSessions
+    await this.fetchInfo
   },
   computed: {
-    ...mapActions('operations', ['getCinema', 'getMovie', 'getSessions'])
+    ...mapActions('operations', ['getCinema', 'getMovie', 'getSessions']),
+    ...mapActions(['fetchInfo'])
+
   },
   components: {
     Navbar,
