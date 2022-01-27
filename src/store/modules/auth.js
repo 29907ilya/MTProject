@@ -2,20 +2,26 @@ import { getAuth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPas
 import { getDatabase, ref, set } from 'firebase/database'
 
 const authStore = {
-  state: {
-    userProfile: {}
-  },
-  mutations: {
-    setUserProfile (state, val) {
-      state.userProfile = val
-    }
-  },
   actions: {
     async login ({ commit, dispatch }, { email, password }) {
       try {
-        commit('setLoading', true)
         const auth = getAuth()
         await signInWithEmailAndPassword(auth, email, password)
+        const uid = await dispatch('getUid')
+        const adminUID = 'IBcunnyJHtgv1UQ1kVwSZzFMG9k2'
+        console.log(uid)
+        console.log(adminUID)
+        console.log(uid === adminUID)
+
+        if (uid === adminUID) {
+          commit('setAdmin', true)
+          commit('setAuth', true)
+          console.log('Admin is here!!!')
+        } else {
+          commit('setAdmin', false)
+          commit('setAuth', true)
+          console.log('User is here!!!')
+        }
       } catch (error) {
         console.log(error.message)
         throw error
@@ -37,14 +43,13 @@ const authStore = {
     getUid () {
       const auth = getAuth()
       const user = auth.currentUser
-      console.log(user)
+      // console.log(user)
       return user ? user.uid : '>>> No uid in database <<<'
     },
 
     async logout ({ commit }) {
       const auth = getAuth()
       await signOut(auth)
-      commit('setUserProfile', {})
     }
   }
 }

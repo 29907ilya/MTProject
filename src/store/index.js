@@ -6,23 +6,16 @@ import operations from './modules/operations'
 
 export default createStore({
   state: {
-    loading: false,
-    information: null
+    auth: false,
+    isAdmin: false
   },
-  getters: {
-    getInformation (state) {
-      return state.information
-    },
-    getLoading (state) {
-      return state.loading
-    }
-  },
+
   mutations: {
-    setInformation (state, payload) {
-      state.information = payload
+    setAuth (state, payload) {
+      state.auth = payload
     },
-    setLoading (state, payload) {
-      state.loading = payload
+    setAdmin (state, payload) {
+      state.isAdmin = payload
     }
   },
   actions: {

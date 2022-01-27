@@ -12,7 +12,7 @@
       </li>
     </router-link>
 
-    <router-link to="/profile" v-slot="{ isActive, isExactActive }">
+    <!-- <router-link to="/profile" v-slot="{ isActive, isExactActive }">
       <li
         :class="[
           isActive && 'router-link-active',
@@ -21,7 +21,7 @@
       >
         <a href="#" class="waves-effect waves-red pointer">Profile</a>
       </li>
-    </router-link>
+    </router-link> -->
 
     <router-link to="/cinemas" v-slot="{ isActive, isExactActive }">
       <li

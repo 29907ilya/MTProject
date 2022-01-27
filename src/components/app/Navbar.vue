@@ -1,6 +1,7 @@
 <template>
   <nav class="navbar red accent-2">
     <div class="nav-wrapper">
+      <a href="#"><div @click="$router.push('/')" class="home">&#8962;</div></a>
       <div class="navbar-left">
         <!-- <a href="#" @click.prevent="$emit('click')">
           <i class="material-icons black-text">dehaze</i>
@@ -114,4 +115,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>

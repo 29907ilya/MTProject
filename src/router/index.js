@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import { getAuth } from 'firebase/auth'
+import store from '../store'
 
 const routes = [
   {
@@ -7,7 +7,7 @@ const routes = [
     name: 'login',
     meta: {
       layout: 'empty',
-      guest: true
+      requiresAuth: false
     },
     component: () => import('../views/Login.vue')
   },
@@ -16,7 +16,7 @@ const routes = [
     name: 'register',
     meta: {
       layout: 'empty',
-      guest: true
+      requiresAuth: false
     },
     component: () => import('../views/Register.vue')
   },
@@ -25,7 +25,7 @@ const routes = [
     name: 'home',
     meta: {
       layout: 'main',
-      auth: true
+      requiresAuth: true
     },
     component: () => import('../views/Home.vue')
   },
@@ -34,7 +34,7 @@ const routes = [
     name: 'profile',
     meta: {
       layout: 'main',
-      auth: true
+      requiresAuth: true
     },
     component: () => import('../views/Profile.vue')
   },
@@ -43,7 +43,8 @@ const routes = [
     name: 'sessions',
     meta: {
       layout: 'main',
-      auth: true
+      requiresAuth: true,
+      isAdmin: true
     },
     component: () => import('../views/Sessions.vue')
   },
@@ -52,7 +53,8 @@ const routes = [
     name: 'cinemas',
     meta: {
       layout: 'main',
-      auth: true
+      requiresAuth: true,
+      isAdmin: true
     },
     component: () => import('../views/Cinemas.vue')
   }
@@ -60,6 +62,11 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+  if (requiresAuth && store.info === '') { next('/login') } else { next() }
 })
 
 export default router

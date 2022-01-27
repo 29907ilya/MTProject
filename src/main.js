@@ -10,6 +10,7 @@ import 'materialize-css/dist/js/materialize.min'
 import * as firebase from 'firebase/app'
 
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
+
 import 'firebase/database'
 
 const firebaseConfig = {

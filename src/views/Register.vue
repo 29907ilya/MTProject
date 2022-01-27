@@ -58,11 +58,9 @@
 <script>
 import * as yup from 'yup'
 import { useField, useForm } from 'vee-validate'
-
 export default {
   setup () {
     const { handleSubmit } = useForm()
-
     const {
       value: email,
       errorMessage: eError,
@@ -75,9 +73,7 @@ export default {
         .required('This is a required field')
         .email('Email must be valid')
     )
-
     const PASS_LENGTH = 6
-
     const {
       value: password,
       errorMessage: pError,
@@ -90,7 +86,6 @@ export default {
         .required('This is a required field')
         .min(PASS_LENGTH, `Password must be at least ${PASS_LENGTH} sumbols`)
     )
-
     const {
       value: name,
       errorMessage: nError,
@@ -99,7 +94,6 @@ export default {
       'name',
       yup.string().trim().required('This is a required field')
     )
-
     const {
       value: checkbox,
       errorMessage: cError,
@@ -108,9 +102,7 @@ export default {
       'checkbox',
       yup.boolean().oneOf([true], 'You have to accept the rules')
     )
-
     const onSubmit = handleSubmit((values) => console.log('form:', values))
-
     return {
       email,
       password,
@@ -134,7 +126,6 @@ export default {
         password: this.password,
         name: this.name
       }
-
       try {
         await this.$store.dispatch('register', userData)
         window.M.toast({ html: 'Registration successfull!' })
