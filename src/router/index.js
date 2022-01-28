@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import store from '../store'
+// import { getAuth } from 'firebase/auth'
+// import store from '../store'
 
 const routes = [
   {
@@ -64,9 +65,16 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
-  if (requiresAuth && store.info === '') { next('/login') } else { next() }
-})
+// router.beforeEach(async (to, from, next)=>{
+//   const auth = getAuth()
+//   const currentUser = await auth.currentUser
 
+//   console.log(currentUser);
+//   let requriesAuth = to.matched.some(record => record.meta.requiresAuth);
+//   if(requriesAuth && !currentUser){
+//       next('/login')
+//   }else{
+//       next()
+//   }
+// })
 export default router

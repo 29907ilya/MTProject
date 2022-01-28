@@ -20,15 +20,14 @@ import { mapActions } from 'vuex'
 
 export default {
   async mounted () {
+    await this.fetchInfo
     await this.getCinema
     await this.getMovie
     await this.getSessions
-    await this.fetchInfo
   },
   computed: {
-    ...mapActions('operations', ['getCinema', 'getMovie', 'getSessions']),
-    ...mapActions(['fetchInfo'])
-
+    ...mapActions(['fetchInfo']),
+    ...mapActions('operations', ['getCinema', 'getMovie', 'getSessions'])
   },
   components: {
     Navbar,

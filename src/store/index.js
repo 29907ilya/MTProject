@@ -6,13 +6,13 @@ import operations from './modules/operations'
 
 export default createStore({
   state: {
-    auth: false,
+    isAuth: false,
     isAdmin: false
   },
 
   mutations: {
     setAuth (state, payload) {
-      state.auth = payload
+      state.isAuth = payload
     },
     setAdmin (state, payload) {
       state.isAdmin = payload

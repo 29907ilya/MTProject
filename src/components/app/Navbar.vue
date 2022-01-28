@@ -3,9 +3,6 @@
     <div class="nav-wrapper">
       <a href="#"><div @click="$router.push('/')" class="home">&#8962;</div></a>
       <div class="navbar-left">
-        <!-- <a href="#" @click.prevent="$emit('click')">
-          <i class="material-icons black-text">dehaze</i>
-        </a> -->
         <span class="black-text">{{ date }}</span>
       </div>
 
@@ -23,7 +20,7 @@
             data-target="dropdown"
             ref="dropdown"
           >
-            Good day {{ userName || "anonymous" }}!
+            Good day {{ userName || '"name"' }}!
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
@@ -58,7 +55,7 @@ export default {
   },
   computed: {
     userName () {
-      return this.$store.getters.userName.name
+      return this.$store.getters.getUser
     },
     input: {
       get () {
@@ -109,7 +106,6 @@ export default {
   },
   beforeUnmount () {
     clearInterval(this.interval)
-    console.log('done')
   }
 }
 </script>

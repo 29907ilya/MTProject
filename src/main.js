@@ -9,7 +9,7 @@ import store from './store'
 import 'materialize-css/dist/js/materialize.min'
 import * as firebase from 'firebase/app'
 
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
+// import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 import 'firebase/database'
 
@@ -23,9 +23,19 @@ const firebaseConfig = {
   databaseURL: 'https://mtproject-767cf-default-rtdb.europe-west1.firebasedatabase.app/'
 }
 
-const firebaseApp = firebase.initializeApp(firebaseConfig)
-const authInstance = getAuth(firebaseApp)
-onAuthStateChanged(authInstance, user => (user))
+// const firebaseApp = firebase.initializeApp(firebaseConfig)
+// const authInstance = getAuth(firebaseApp)
+// onAuthStateChanged(authInstance, user => (user))
+
+firebase.initializeApp(firebaseConfig)
+// getAuth().onAuthStateChanged((user) => {
+//   if (user) {
+//     console.log('user is here');
+//     console.log(user);
+//   } else {
+//     console.log('no user here');
+//   }
+// });
 
 const app = createApp(App)
 app.use(store).use(BalmUI).use(BalmUIPlus).use(router).mount('#app')
