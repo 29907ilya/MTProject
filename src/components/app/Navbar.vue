@@ -55,7 +55,7 @@ export default {
   },
   computed: {
     userName () {
-      return this.$store.getters.getUser
+      return this.$store.getters.getUser.name
     },
     input: {
       get () {

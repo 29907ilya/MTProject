@@ -81,7 +81,7 @@ const authStore = {
       try {
         const db = ref(getDatabase())
         const uid = await dispatch('getUid')
-        const info = (await get(child(db, `users/${uid}/info/name`))).val()
+        const info = (await get(child(db, `users/${uid}/info`))).val()
         console.log(info || 'no name')
         // localStorage.setItem('info')
         commit('setUser', info)
