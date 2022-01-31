@@ -12,7 +12,7 @@
       </li>
     </router-link>
 
-    <!-- <router-link to="/profile" v-slot="{ isActive, isExactActive }">
+    <router-link to="/profile" v-slot="{ isActive, isExactActive }">
       <li
         :class="[
           isActive && 'router-link-active',
@@ -21,27 +21,27 @@
       >
         <a href="#" class="waves-effect waves-red pointer">Profile</a>
       </li>
-    </router-link> -->
+    </router-link>
 
-    <router-link to="/cinemas" v-slot="{ isActive, isExactActive }">
+    <router-link to="/cinemas" v-slot="{ isActive, isExactActive }" >
       <li
         :class="[
           isActive && 'router-link-active',
           isExactActive && 'router-link-exact-active',
         ]"
       >
-        <a href="#" class="waves-effect waves-red pointer">Load info</a>
+        <a href="#" class="waves-effect waves-red pointer" v-if="isAdminAuth">Load info</a>
       </li>
     </router-link>
 
-    <router-link to="/sessions" v-slot="{ isActive, isExactActive }">
+    <router-link to="/sessions" v-slot="{ isActive, isExactActive }" >
       <li
         :class="[
           isActive && 'router-link-active',
           isExactActive && 'router-link-exact-active',
         ]"
       >
-        <a href="#" class="waves-effect waves-red pointer">Sessions</a>
+        <a href="#" class="waves-effect waves-red pointer" v-if="isAdminAuth">Sessions</a>
       </li>
     </router-link>
 
@@ -49,5 +49,11 @@
 </template>
 
 <script>
-export default {}
+import { mapGetters } from 'vuex'
+export default {
+
+  computed: {
+    ...mapGetters(['isAdminAuth'])
+  }
+}
 </script>

@@ -1,50 +1,41 @@
-import { getAuth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword } from 'firebase/auth'
 import { getDatabase, ref, set, child, get } from 'firebase/database'
 import createPersistedState from 'vuex-persistedstate'
 
 const authStore = {
   plugins: [createPersistedState()],
   state: {
-    user: null,
-    login: false
+    user: [],
+    isAdminAuth: false
   },
   getters: {
     getUser: state => state.user,
-    showLogin: state => console.log(state.login)
+    isAdminAuth: state => state.isAdminAuth
   },
   mutations: {
-    setLogin (state, payload) {
-      state.login = payload
-      console.log(state.login)
+    setAdmin (state, payload) {
+      state.isAdminAuth = payload
     },
     setUser (state, user) {
       state.user = user
     },
     clearName (state) {
-      state.info = {}
+      state.isAdminAuth = false
     }
   },
   actions: {
-    //   setUser(context, user){
-    //     context.commit('setUser', user);
-    // },
     async login ({ commit, dispatch }, { email, password }) {
       try {
-        // const uid = await dispatch('getUid')
-        // const adminUID = 'IBcunnyJHtgv1UQ1kVwSZzFMG9k2'
-        // console.log(uid)
-        // console.log(adminUID)
-        // if (uid === adminUID) {
-        //   commit('setAdmin', true)
-        //   commit('setAuth', true)
-        //   console.log('Admin is here!!!')
-        // } else {
-        //   commit('setAdmin', false)
-        //   commit('setAuth', true)
-        //   console.log('User is here!!!')
-        // }
         const auth = getAuth()
         await signInWithEmailAndPassword(auth, email, password)
+        const db = ref(getDatabase())
+        const uid = await dispatch('getUid')
+        const isAdminAuth = (await get(child(db, `users/${uid}/info/role`))).val()
+        console.log(isAdminAuth)
+        if (isAdminAuth) {
+          commit('setAdmin', true)
+          console.log(isAdminAuth)
+        } else console.log('not an admin')
       } catch (error) {
         console.log(error.message)
         throw error
@@ -64,30 +55,36 @@ const authStore = {
     },
 
     async getUid () {
-      return new Promise(function (resolve) {
-        const auth = getAuth()
-        onAuthStateChanged(auth, (user) => {
-          const uid = user.uid
-          resolve(uid)
-        })
-      })
+      // return new Promise(function (resolve) {
+      //   const auth = getAuth()
+      //   onAuthStateChanged(auth, (user) => {
+      //     const uid = user.uid
+      //     console.log(uid);
+      //     resolve(uid)
+      //   })
+      // })
+
+      const auth = getAuth()
+      const user = auth.currentUser
+      return user ? user.uid : 'no user here'
     },
 
     async logout ({ commit }) {
       const auth = getAuth()
       await signOut(auth)
       commit('clearName')
+      // const currentUser = auth.currentUser
+      // console.log(currentUser);
     },
 
     async fetchInfo ({ dispatch, commit }) {
       try {
         const db = ref(getDatabase())
         const uid = await dispatch('getUid')
-        console.log(uid)
         const info = (await get(child(db, `users/${uid}/info/name`))).val()
         console.log(info || 'no name')
+        // localStorage.setItem('info')
         commit('setUser', info)
-        commit('setLogin', true)
       } catch (error) { }
     }
   }

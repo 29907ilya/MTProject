@@ -19,6 +19,7 @@ import Sidebar from '../components/app/Sidebar.vue'
 import { mapActions } from 'vuex'
 
 export default {
+
   async mounted () {
     await this.fetchInfo
     await this.getCinema

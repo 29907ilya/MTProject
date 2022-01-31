@@ -3,13 +3,12 @@ import App from './App.vue'
 import BalmUI from 'balm-ui' // Official Google Material Components
 import BalmUIPlus from 'balm-ui/dist/balm-ui-plus.js' // BalmJS Team Material Components
 import 'balm-ui/dist/balm-ui.css'
-import router from './router'
 import store from './store'
-
+import router from './router'
 import 'materialize-css/dist/js/materialize.min'
 import * as firebase from 'firebase/app'
 
-// import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 import 'firebase/database'
 
@@ -23,9 +22,9 @@ const firebaseConfig = {
   databaseURL: 'https://mtproject-767cf-default-rtdb.europe-west1.firebasedatabase.app/'
 }
 
-// const firebaseApp = firebase.initializeApp(firebaseConfig)
-// const authInstance = getAuth(firebaseApp)
-// onAuthStateChanged(authInstance, user => (user))
+const firebaseApp = firebase.initializeApp(firebaseConfig)
+const authInstance = getAuth(firebaseApp)
+onAuthStateChanged(authInstance, user => console.log(user))
 
 firebase.initializeApp(firebaseConfig)
 // getAuth().onAuthStateChanged((user) => {
