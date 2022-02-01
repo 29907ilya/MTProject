@@ -76,7 +76,7 @@
     </div>
 
     <div class="col xl4">
-      <remove-movie :list="movieList"  @removeMovie="removeMovie"></remove-movie>
+      <remove-movie :list="movieList" @removeMovie="removeMovie"></remove-movie>
     </div>
   </div>
 </template>
@@ -84,7 +84,6 @@
 <script>
 import RemoveCinema from './RemoveCinema.vue'
 import RemoveMovie from './RemoveMovie.vue'
-
 import { mapGetters } from 'vuex'
 
 export default {

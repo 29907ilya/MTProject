@@ -15,7 +15,6 @@
 import CinemasPage from '../components/app/CinemasPage.vue'
 
 export default {
-  setup () {},
   components: {
     CinemasPage
   }

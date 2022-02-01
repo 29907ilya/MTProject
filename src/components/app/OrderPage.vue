@@ -66,17 +66,16 @@ export default {
 
   methods: {
     async buyTickets (seatsToRender, currentSessionId) {
-      (this.seatsToRender).map(function (key) {
+      this.seatsToRender.map(function (key) {
         if (key.checked) {
           key.disabled = true
         }
       })
-      console.log(this.seatsToRender)
       const id = this.currentSessionId
       const db = getDatabase()
-      await (update(ref(db, `Sessions/${id}`), {
+      await update(ref(db, `Sessions/${id}`), {
         seats: this.seatsToRender
-      }))
+      })
       window.M.toast({ html: 'You have bought tickets!' })
     },
 
@@ -147,7 +146,6 @@ hr {
   border: 1px solid rgb(71, 65, 65);
   width: 100%;
 }
-
 ol {
   display: flex;
   flex-wrap: wrap;
@@ -157,7 +155,6 @@ ol {
   padding: 0% !important;
 }
 li {
-  /* background-image: url('src/assets/seat.png'); */
   width: 35px;
   height: 35px;
   border: 1px solid black;

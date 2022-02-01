@@ -102,7 +102,7 @@ export default {
       'checkbox',
       yup.boolean().oneOf([true], 'You have to accept the rules')
     )
-    const onSubmit = handleSubmit((values) => console.log('form:', values))
+    const onSubmit = handleSubmit()
     return {
       email,
       password,
@@ -130,8 +130,7 @@ export default {
         await this.$store.dispatch('register', userData)
         window.M.toast({ html: 'Registration successfull!' })
         this.$router.push('/login')
-      } catch (error) {
-      }
+      } catch (error) {}
     }
   }
 }

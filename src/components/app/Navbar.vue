@@ -98,7 +98,6 @@ export default {
         })),
       0
     )
-
     window.M.Dropdown.init(this.$refs.dropdown, {
       constrainWidth: true,
       coverTrigger: false
@@ -111,5 +110,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

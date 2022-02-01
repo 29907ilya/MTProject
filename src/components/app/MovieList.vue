@@ -15,9 +15,9 @@ export default {
   },
   components: {
     MovieItem
-  },
-  methods: {}
+  }
 }
 </script>
+
 <style scoped>
 </style>

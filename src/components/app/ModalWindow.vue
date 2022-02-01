@@ -15,7 +15,7 @@
       <div class="discription">{{ movie.Discription }}</div>
     </div>
 
-    <div class="options" >
+    <div class="options">
       <div
         class="sessions"
         v-for="(item, key) in sortedSession"
@@ -43,12 +43,7 @@
     <a href="#" @click="closeModal">
       <div class="close-btn">x</div>
     </a>
-
-    <!-- <div v-else>
-      <p>Sorry, there are no existing sessions yet</p>
-    </div> -->
   </div>
-
 </template>
 
 <script>
@@ -81,9 +76,6 @@ export default {
       } catch (error) {
         console.log(error.message)
       }
-    },
-    show () {
-      console.log(this.sessionToRender)
     }
   },
   computed: {
@@ -128,7 +120,6 @@ export default {
   display: flex;
   flex-wrap: wrap;
 }
-
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -139,13 +130,11 @@ export default {
   z-index: 10;
   opacity: 0.99;
 }
-
 .logo_info {
   width: 25%px;
   float: left;
   height: 280px;
 }
-
 .logo-poster {
   position: absolute;
   top: 20px;
@@ -198,7 +187,6 @@ export default {
   transition: all 0.3s ease;
   background: #fd4444;
 }
-
 .session-item span {
   font-weight: 500;
   font-size: 17px;
@@ -213,7 +201,6 @@ export default {
   float: right;
   padding: 5px;
 }
-
 .title {
   font-size: 24px;
   margin: 0;

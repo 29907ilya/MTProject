@@ -3,7 +3,6 @@
     <div class="page-subtitle">
       <h5>Existing cinemas</h5>
     </div>
-
     <div class="input-field">
       <div class="input-list" v-for="(cinema, id) in list" :key="id">
         {{ cinema.name }}
@@ -17,13 +16,11 @@
           <i class="material-icons right">send</i>
         </button>
       </div>
-
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
   props: {
     list: Object

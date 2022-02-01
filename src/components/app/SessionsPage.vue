@@ -43,18 +43,10 @@
         </div>
 
         <div class="input-field">
-          <!-- <movie-house
-            @onChange="showCinema"
-            :cinemaList="cinemaList"
-          ></movie-house> -->
-
-          <!-- <button @click="selectedCinema">click</button> -->
-
           <remove-session
             :list="sessions"
             @removeSession="removeSession"
           ></remove-session>
-
         </div>
       </div>
     </div>
@@ -120,26 +112,7 @@ export default {
   },
 
   computed: {
-
-    // sortedSession () {
-    //   const sorted = this.sessions.sort((a, b) => (a.date > b.date ? 1 : -1))
-    //   return sorted
-    // },
-
     selectedCinema (cinemaId) {
-    //   const x = JSON.parse(JSON.stringify(Object.entries(this.sessions)))
-    //   const y = Object.entries(this.sessions)
-    //   const id = this.cinemaId
-    //   console.log(x)
-    //   console.log(y)
-
-      // const resultX = x.filter((val, key) => val.Object.values(val.cinema) === id)
-      // const resultY = y.filter((val) => val.cinema === id)
-      // console.log(resultX)
-      // console.log(resultY);
-
-      // return resultX
-
       const sessionArr = JSON.parse(
         JSON.stringify(Object.values(this.sessions))
       )
@@ -149,9 +122,6 @@ export default {
       const result = sessionArr.filter((val) => val.cinema === id)
       console.log(result)
       return result
-
-    // const sessionId = JSON.parse(JSON.stringify(Object.entries(this.sessions)));
-    // console.log(sessionId);
     },
 
     ...mapGetters('operations', [

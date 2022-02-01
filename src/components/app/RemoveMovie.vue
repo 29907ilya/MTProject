@@ -6,7 +6,10 @@
 
     <div class="input-field">
       <div class="input-list" v-for="(movie, id) in list" :key="id">
-        <div class="input-title"> {{ movie.Title }} <hr></div>
+        <div class="input-title">
+          {{ movie.Title }}
+          <hr />
+        </div>
 
         <button
           class="btn waves-effect waves-light"
@@ -16,10 +19,8 @@
           Remove
           <i class="material-icons right">send</i>
         </button>
-
       </div>
     </div>
-
   </div>
 </template>
 

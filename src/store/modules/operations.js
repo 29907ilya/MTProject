@@ -60,12 +60,9 @@ const operationsStore = {
     },
 
     async sessionToRender ({ commit, dispatch }, { sessionID }) {
-      console.log(sessionID)
       const db = ref(getDatabase())
       const sessionToRender = (await get(child(db, `Sessions/${sessionID}`))).val()
       const seatsToRender = (await get(child(db, `Sessions/${sessionID}/seats`))).val()
-      // console.log(sessionToRender)
-      console.log(seatsToRender)
       commit('currentSessionId', sessionID)
       commit('sessionToRender', sessionToRender)
       commit('seatsToRender', seatsToRender)

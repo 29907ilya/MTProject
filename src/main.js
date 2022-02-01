@@ -7,9 +7,7 @@ import store from './store'
 import router from './router'
 import 'materialize-css/dist/js/materialize.min'
 import * as firebase from 'firebase/app'
-
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
-
 import 'firebase/database'
 
 const firebaseConfig = {
@@ -24,17 +22,7 @@ const firebaseConfig = {
 
 const firebaseApp = firebase.initializeApp(firebaseConfig)
 const authInstance = getAuth(firebaseApp)
-onAuthStateChanged(authInstance, user => console.log(user))
-
-firebase.initializeApp(firebaseConfig)
-// getAuth().onAuthStateChanged((user) => {
-//   if (user) {
-//     console.log('user is here');
-//     console.log(user);
-//   } else {
-//     console.log('no user here');
-//   }
-// });
+onAuthStateChanged(authInstance, user => (user))
 
 const app = createApp(App)
 app.use(store).use(BalmUI).use(BalmUIPlus).use(router).mount('#app')

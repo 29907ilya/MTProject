@@ -31,11 +31,9 @@ const authStore = {
         const db = ref(getDatabase())
         const uid = await dispatch('getUid')
         const isAdminAuth = (await get(child(db, `users/${uid}/info/role`))).val()
-        console.log(isAdminAuth)
         if (isAdminAuth) {
           commit('setAdmin', true)
-          console.log(isAdminAuth)
-        } else console.log('not an admin')
+        }
       } catch (error) {
         console.log(error.message)
         throw error
@@ -55,15 +53,6 @@ const authStore = {
     },
 
     async getUid () {
-      // return new Promise(function (resolve) {
-      //   const auth = getAuth()
-      //   onAuthStateChanged(auth, (user) => {
-      //     const uid = user.uid
-      //     console.log(uid);
-      //     resolve(uid)
-      //   })
-      // })
-
       const auth = getAuth()
       const user = auth.currentUser
       return user ? user.uid : 'no user here'
@@ -73,8 +62,6 @@ const authStore = {
       const auth = getAuth()
       await signOut(auth)
       commit('clearName')
-      // const currentUser = auth.currentUser
-      // console.log(currentUser);
     },
 
     async fetchInfo ({ dispatch, commit }) {
@@ -82,8 +69,6 @@ const authStore = {
         const db = ref(getDatabase())
         const uid = await dispatch('getUid')
         const info = (await get(child(db, `users/${uid}/info`))).val()
-        console.log(info || 'no name')
-        // localStorage.setItem('info')
         commit('setUser', info)
       } catch (error) { }
     }

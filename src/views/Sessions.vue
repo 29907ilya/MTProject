@@ -14,7 +14,6 @@
 <script>
 import SessionsPage from '../components/app/SessionsPage.vue'
 export default {
-  setup () {},
   components: {
     SessionsPage
   }

@@ -78,8 +78,6 @@
 .app-content.full {
   padding-left: 0;
 }
-
-
 .page-subtitle h4,
 .page-title h3,
 .page-title h4 {
@@ -107,14 +105,12 @@
   justify-content: center;
   padding-top: 2rem;
 }
-
 .pointer {
   cursor: pointer;
 }
 .form {
   max-width: 500px;
 }
-
 .col {
   display: flex;
   flex-wrap: wrap;
@@ -122,12 +118,10 @@
   /* border: #000 solid 1px; */
   width: auto;
 }
-
 .movie-container {
   width: 18%;
   margin: 10px;
 }
-
 li.router-link-active,
 li.router-link-exact-active {
   background-color: #d4d4d4;
@@ -151,13 +145,12 @@ li.router-link-exact-active {
 }
 .close-btn {
   position: absolute;
-top: 5px;
-left: 770px;
-padding: 0 7px 0 7px;
-border: rgb(115, 121, 128) 1px solid;
-border-radius: 20px;
+  top: 5px;
+  left: 770px;
+  padding: 0 7px 0 7px;
+  border: rgb(115, 121, 128) 1px solid;
+  border-radius: 20px;
 }
-
 .home {
   font-size: 30px;
   padding: 20px;

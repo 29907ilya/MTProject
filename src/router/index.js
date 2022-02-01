@@ -69,8 +69,6 @@ router.beforeEach(async (to, from, next) => {
   const auth = getAuth()
   const currentUser = auth.currentUser
   const admin = store.state.isAdminAuth
-  console.log(admin)
-
   const requriesAuth = to.matched.some(record => record.meta.requiresAuth)
   // const isAdmin = to.matched.some(record => record.meta.isAdmin)
 

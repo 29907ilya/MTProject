@@ -73,7 +73,7 @@ export default {
         .min(PASS_LENGTH, `Password must be at least ${PASS_LENGTH} sumbols`)
     )
 
-    const onSubmit = handleSubmit(() => console.log('form sent'))
+    const onSubmit = handleSubmit()
 
     return {
       email,

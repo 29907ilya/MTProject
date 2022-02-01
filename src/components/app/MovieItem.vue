@@ -26,6 +26,7 @@
 <script>
 import { ref } from 'vue'
 import ModalWindow from './ModalWindow.vue'
+
 export default {
   setup () {
     const modal = ref(false)

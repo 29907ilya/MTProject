@@ -52,8 +52,6 @@ const movieStore = {
         const { currentPage, moviesPerPage } = getters
         const db = ref(getDatabase())
         const response = (await get(child(db, 'MovieBase'))).val()
-        console.log(response)
-
         const result = Object.values(response).filter(key => key.Title.toLowerCase().includes(query.toLowerCase().trim()))
         commit('setFullBase', result)
         const from = currentPage * moviesPerPage - moviesPerPage

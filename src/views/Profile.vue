@@ -5,8 +5,12 @@
     </div>
     <section>
       <div class="row">
-        <p>Nice to see you, <span class="profile">{{ userName.name }}</span></p>
-        <p>Your e-mail is: <span class="profile">{{ userName.email }}</span></p>
+        <p>
+          Nice to see you, <span class="profile">{{ userName.name }}</span>
+        </p>
+        <p>
+          Your e-mail is: <span class="profile">{{ userName.email }}</span>
+        </p>
       </div>
     </section>
   </div>
@@ -18,7 +22,6 @@ export default {
     userName () {
       return this.$store.getters.getUser
     }
-
   }
 }
 </script>

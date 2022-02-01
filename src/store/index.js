@@ -1,6 +1,5 @@
 import { createStore } from 'vuex'
 import auth from './modules/auth'
-import info from './modules/info'
 import movies from './modules/movies'
 import operations from './modules/operations'
 
@@ -9,7 +8,6 @@ export default createStore({
     isAuth: false,
     isAdmin: false
   },
-
   mutations: {
     setAuth (state, payload) {
       state.isAuth = payload
@@ -23,7 +21,6 @@ export default createStore({
   modules: {
     auth,
     movies,
-    operations,
-    info
+    operations
   }
 })
