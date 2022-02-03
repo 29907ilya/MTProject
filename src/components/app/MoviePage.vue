@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-backdrop" @click="closeModal"></div>
+
   <div class="modal-window">
     <div class="logo_info">
       <div class="logo-poster" :style="posterBg"></div>
@@ -44,6 +44,7 @@
       <div class="close-btn">x</div>
     </a>
   </div>
+
 </template>
 
 <script>
@@ -52,10 +53,16 @@ import { ref } from 'vue'
 import OrderPage from './OrderPage.vue'
 
 export default {
-  emits: ['close'],
-  props: {
-    movie: Object
-  },
+
+  // data() {
+  //   return {
+  //     movie: this.$route.params.movie,
+  //   };
+  // },
+  // emits: ['close'],
+  // props: {
+  //   movie: Object
+  // },
   setup () {
     const order = ref(false)
     return { order }
@@ -106,12 +113,12 @@ export default {
 
 <style>
 .modal-window {
-  position: fixed;
+  /* position: fixed; */
   top: 70px;
   width: 800px;
   padding: 1rem;
   background: #ff5353;
-  z-index: 100;
+  /* z-index: 100; */
   left: 56%;
   border-radius: 10px;
   transform: translateX(-50%);

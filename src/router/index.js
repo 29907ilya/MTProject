@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { getAuth } from 'firebase/auth'
-import store from '../store/modules/auth'
+// import { getAuth } from 'firebase/auth'
+// import store from '../store/modules/auth'
 
 const routes = [
   {
@@ -22,13 +22,21 @@ const routes = [
     component: () => import('../views/Register.vue')
   },
   {
-    path: '/',
-    name: 'home',
+    path: '/movies',
+    name: 'movies',
     meta: {
       layout: 'main',
       requiresAuth: true
     },
     component: () => import('../views/Home.vue')
+  },
+  {
+    path: '/movies/:id',
+    meta: {
+      layout: 'main',
+      requiresAuth: true
+    },
+    component: () => import('../components/app/MoviePage.vue')
   },
   {
     path: '/profile',
@@ -65,20 +73,20 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach(async (to, from, next) => {
-  const auth = getAuth()
-  const currentUser = auth.currentUser
-  const admin = store.state.isAdminAuth
-  const requriesAuth = to.matched.some(record => record.meta.requiresAuth)
-  // const isAdmin = to.matched.some(record => record.meta.isAdmin)
+// router.beforeEach(async (to, from, next) => {
+//   const auth = getAuth()
+//   const currentUser = auth.currentUser
+//   const admin = store.state.isAdminAuth
+//   const requriesAuth = to.matched.some(record => record.meta.requiresAuth)
+//   // const isAdmin = to.matched.some(record => record.meta.isAdmin)
 
-  if (requriesAuth && !currentUser) {
-    next('/login')
-  } else if (to.meta.isAdmin && !admin) {
-    next('/')
-  } else {
-    next()
-  }
-})
+//   if (requriesAuth && !currentUser) {
+//     next('/login')
+//   } else if (to.meta.isAdmin && !admin) {
+//     next('/home')
+//   } else {
+//     next()
+//   }
+// })
 
 export default router

@@ -95,7 +95,7 @@ export default {
 
       try {
         await this.$store.dispatch('login', userData)
-        this.$router.push('/')
+        this.$router.push('/movies')
         window.M.toast({ html: 'Welcome!' })
       } catch (error) {
         window.M.toast({ html: 'Login failed' })

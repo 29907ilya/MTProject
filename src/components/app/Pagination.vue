@@ -1,11 +1,11 @@
 <template>
-  <ui-pagination
-    v-model="currentPageModel"
-    :page-size="moviesPerPage"
-    :total="total"
-    @update:modelValue="currentPageModel = $event"
-    position="center"
-  ></ui-pagination>
+    <ui-pagination
+      v-model="currentPageModel"
+      :page-size="moviesPerPage"
+      :total="total"
+      @update:modelValue="currentPageModel = $event"
+      position="center"
+    ></ui-pagination>
 </template>
 
 <script>
@@ -37,4 +37,5 @@ export default {
 }
 </script>
 <style scoped>
+
 </style>

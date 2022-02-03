@@ -2,13 +2,16 @@
   <div>
     <loader v-if="loading"></loader>
     <template v-else>
+
       <movie-list :list="moviesToRender"></movie-list>
+
       <pagination
         :current-page="currentPage"
         :moviesPerPage="moviesPerPage"
         :total="moviesLength"
         @page-changed="onPageChanged"
       ></pagination>
+
     </template>
   </div>
 </template>
@@ -20,7 +23,7 @@ import Pagination from '../components/app/Pagination.vue'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  name: 'home',
+  name: 'movies',
   data () {
     return {
       loading: true,

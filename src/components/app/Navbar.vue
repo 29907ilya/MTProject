@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar red accent-2">
     <div class="nav-wrapper">
-      <a href="#"><div @click="$router.push('/')" class="home">&#8962;</div></a>
+      <a href="#"><div @click="$router.push('/movies')" class="home">&#8962;</div></a>
       <div class="navbar-left">
         <span class="black-text">{{ date }}</span>
       </div>
@@ -20,7 +20,8 @@
             data-target="dropdown"
             ref="dropdown"
           >
-            Good day {{ userName || '"name"' }}!
+            Good day
+            <!-- {{ userName || '"name"' }}! -->
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
@@ -54,9 +55,9 @@ export default {
     }
   },
   computed: {
-    userName () {
-      return this.$store.getters.getUser.name
-    },
+    // userName () {
+    //   return this.$store.getters.getUser.name
+    // },
     input: {
       get () {
         return this.searchValue

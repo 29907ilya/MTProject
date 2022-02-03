@@ -20,7 +20,14 @@
 .helper-text.invalid {
   color: #f44336;
 }
+.main-app {
+  margin-left: 180px;
+  margin-right: 25px;
+  padding-top: 100px;
+}
 .app-page {
+  display: flex;
+  flex-wrap: wrap ;
   padding: 2rem;
   width: auto;
 }
@@ -157,6 +164,10 @@ li.router-link-exact-active {
 }
 .profile {
   font-size: 20px;
+}
+
+.row {
+  margin: 0;
 }
 html {
   overflow-y: scroll;

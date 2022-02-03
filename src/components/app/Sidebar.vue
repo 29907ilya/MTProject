@@ -1,7 +1,7 @@
 <template>
   <ul class="sidenav app-sidenav open">
 
-    <router-link to="/" v-slot="{ isActive, isExactActive }">
+    <router-link to="/movies" v-slot="{ isActive, isExactActive }">
       <li
         :class="[
           isActive && 'router-link-active',

@@ -1,4 +1,5 @@
 <template>
+
   <div class="movie-item mb-3">
     <div class="movie-item-poster" :style="posterBg"></div>
     <div class="movie-info-wrap">
@@ -7,31 +8,19 @@
         <span class="movie-year"> {{ movie.Year }} </span>
       </div>
       <div class="movie-item-control">
-        <a class="waves-effect waves-red btn-flat" @click="modal = true"
-          >Buy tickets</a
-        >
+        <a class="waves-effect waves-red btn-flat">Buy tickets</a>
       </div>
     </div>
   </div>
 
-  <teleport to="body">
-    <modal-window
-      :movie="movie"
-      @close="modal = false"
-      v-if="modal"
-    ></modal-window>
-  </teleport>
+  <modal-window :movie="movie"></modal-window>
+
 </template>
 
 <script>
-import { ref } from 'vue'
-import ModalWindow from './ModalWindow.vue'
+import ModalWindow from './MoviePage.vue'
 
 export default {
-  setup () {
-    const modal = ref(false)
-    return { modal }
-  },
   props: {
     movie: Object
   },
@@ -49,13 +38,16 @@ export default {
 </script>
 
 <style scoped>
+
 .movie-item {
+  width: 200px;
   position: relative;
   cursor: pointer;
   border-radius: 5px;
   overflow: hidden;
   transition: all 0.2s ease;
   height: 300px;
+  margin-bottom: 25px;
 }
 .movie-item:hover {
   box-shadow: 0px 5px 20px rgb(0, 0, 0, 0.7);

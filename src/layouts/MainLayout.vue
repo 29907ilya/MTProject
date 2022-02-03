@@ -2,14 +2,9 @@
   <div class="app-main-layout">
     <navbar />
     <sidebar />
-
-    <main class="app-content">
-      <div class="app-page">
-        <router-view />
-      </div>
-    </main>
-
-    <div class="fixed-action-btn"></div>
+    <div class="main-app">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -35,3 +30,6 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+</style>
