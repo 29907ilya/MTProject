@@ -26,7 +26,7 @@ const routes = [
     name: 'movies',
     meta: {
       layout: 'main',
-      requiresAuth: true
+      requiresAuth: false
     },
     component: () => import('../views/Home.vue')
   },
@@ -34,7 +34,7 @@ const routes = [
     path: '/movies/:id',
     meta: {
       layout: 'main',
-      requiresAuth: true
+      requiresAuth: false
     },
     component: () => import('../components/app/MoviePage.vue')
   },

@@ -5,12 +5,12 @@
       <div class="logo-poster" :style="posterBg"></div>
     </div>
     <div class="movie-info">
-      <div>&#128357; {{ movie.Runtime }}</div>
-      <div>&#10026; {{ movie.imdbRating }}</div>
+      <div>&#128357; {{ movieItem.Runtime }}</div>
+      <div>&#10026; {{ movieItem.imdbRating }}</div>
     </div>
     <div class="title_discription">
       <div class="title">
-        <p class="title">{{ movie.Title }}, {{ movie.Year }}</p>
+        <p class="title">{{ movieItem.Title }}, {{ movieItem.Year }}</p>
       </div>
 
       <div class="session-glodal">
@@ -47,7 +47,7 @@
         </div>
       </div>
     </div>
-    <a href="#" @click="closeModal">
+    <a href="#" @click="closeModalButton">
       <div class="close-btn">x</div>
     </a>
   </div>
@@ -60,7 +60,7 @@ import { getDatabase, ref, update } from 'firebase/database'
 export default {
   emits: ['close'],
   props: {
-    movie: Object,
+    movieItem: Object,
     sessionToRender: Object
   },
 
@@ -83,6 +83,9 @@ export default {
       if (confirm('Close window?')) {
         this.$emit('close')
       }
+    },
+    closeModalButton () {
+      this.$emit('close')
     },
 
     toggle (seat) {
@@ -109,7 +112,7 @@ export default {
     },
     posterBg () {
       return {
-        'background-image': `url(${this.movie.Poster})`
+        'background-image': `url(${this.movieItem.Poster})`
       }
     }
   }
@@ -119,9 +122,59 @@ export default {
 .modal-window {
   position: fixed;
   top: 70px;
-  width: 800px;
+  width: 900px;
+  padding: 1rem;
+  background: #ff5353;
+  z-index: 100;
+  left: 56%;
+  border-radius: 10px;
+  transform: translateX(-50%);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  opacity: 0.99;
+  display: flex;
+  flex-wrap: wrap;
 }
-
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 10;
+  opacity: 0.99;
+}
+.logo_info {
+  width: 25%px;
+  float: left;
+  height: 280px;
+}
+.logo-poster {
+  position: absolute;
+  top: 20px;
+  bottom: 10px;
+  left: 20px;
+  right: 20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 170px;
+  height: 230px;
+  border-radius: 4px;
+  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.65), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.movie-info {
+  margin: 252px 30px 20px 10px;
+  font-size: 16px;
+  font-weight: bold;
+  width: 150px;
+  display: flex;
+  justify-content: space-between;
+}
+.title_discription {
+  width: 75%;
+  float: right;
+}
 .session-glodal {
   display: flex;
   flex-wrap: wrap;
@@ -196,5 +249,15 @@ li.disabled {
 }
 .btn-flat:hover {
   background-color: #b10000;
+}
+.title {
+  font-size: 24px;
+  margin: 0;
+  text-shadow: 1px 1px 1px rgb(80, 80, 80), -1px 1px 1px rgb(224, 71, 71);
+}
+.close-btn {
+  position: fixed;
+  right: 5px;
+  left: 871px;
 }
 </style>

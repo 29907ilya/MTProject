@@ -37,6 +37,7 @@ const movieStore = {
         const to = currentPage * moviesPerPage
         const result = Object.values(response)
         const moviesToRender = result.slice(from, to)
+        console.log(moviesToRender)
         commit('setMovieBase', moviesToRender)
       } catch (error) {
         console.log(error.message)

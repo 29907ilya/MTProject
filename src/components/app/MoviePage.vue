@@ -1,21 +1,22 @@
 <template>
-
-  <div class="modal-window">
-    <div class="logo_info">
-      <div class="logo-poster" :style="posterBg"></div>
-    </div>
-    <div class="movie-info">
-      <div>&#128357; {{ movie.Runtime }}</div>
-      <div>&#10026; {{ movie.imdbRating }}</div>
-    </div>
-    <div class="title_discription">
-      <div class="title">
-        <p class="title">{{ movie.Title }}, {{ movie.Year }}</p>
+  <div class="movie-page">
+    <div class="movie-page_container">
+      <div class="movie-poster" :style="posterBg">poster {{ movieItem.Title }}</div>
+      <div class="movie-info">
+        <div class="movie-title">
+          <p class="title">{{ movieItem.Title }}, {{ movieItem.Year }}</p>
+        </div>
+        <div class="movie-options">
+          <div>Runtime &#128357; {{ movieItem.Runtime }}</div>
+          <div>imdbRating &#10026; {{ movieItem.imdbRating }}</div>
+        </div>
+        <div class="movie-discription">{{ movieItem.Discription }}</div>
       </div>
-      <div class="discription">{{ movie.Discription }}</div>
     </div>
+  <hr />
 
     <div class="options">
+
       <div
         class="sessions"
         v-for="(item, key) in sortedSession"
@@ -32,7 +33,7 @@
       </div>
       <teleport to="body">
         <order-page
-          :movie="movie"
+          :movieItem="movieItem"
           :sessionToRender="sessionToRender"
           @close="order = false"
           v-if="order"
@@ -44,7 +45,6 @@
       <div class="close-btn">x</div>
     </a>
   </div>
-
 </template>
 
 <script>
@@ -53,16 +53,14 @@ import { ref } from 'vue'
 import OrderPage from './OrderPage.vue'
 
 export default {
+  data () {
+    return {
+      id: this.$route.params.id
+    }
+  },
 
-  // data() {
-  //   return {
-  //     movie: this.$route.params.movie,
-  //   };
-  // },
-  // emits: ['close'],
-  // props: {
-  //   movie: Object
-  // },
+  emits: ['close'],
+  // props: ["id"],
   setup () {
     const order = ref(false)
     return { order }
@@ -86,15 +84,25 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('operations', ['cinemaList', 'sessions', 'sessionToRender']),
     posterBg () {
       return {
-        'background-image': `url(${this.movie.Poster})`
+        'background-image': `url(${this.movieItem.Poster})`
       }
     },
+    movieItem () {
+      const result = Array.from(this.moviesToRender)
+      console.log(result)
+      return this.moviesToRender.find((e) => e.Id === this.id)
+    },
+    ...mapGetters('movies', ['moviesToRender']),
+    ...mapGetters('operations', ['cinemaList', 'sessions', 'sessionToRender']),
+
     sortedSession () {
-      const title = this.movie.Title
+      const title = this.movieItem.Title
+      console.log(title)
       const sessionList = this.sessions
+      console.log(sessionList)
+
       const result = {}
       for (const i in sessionList) {
         const item = sessionList[i]
@@ -102,6 +110,8 @@ export default {
           result[i] = item
         }
       }
+      console.log(result)
+
       return result
     }
   },
@@ -111,63 +121,46 @@ export default {
 }
 </script>
 
-<style>
-.modal-window {
-  /* position: fixed; */
-  top: 70px;
-  width: 800px;
-  padding: 1rem;
-  background: #ff5353;
-  /* z-index: 100; */
-  left: 56%;
-  border-radius: 10px;
-  transform: translateX(-50%);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  opacity: 0.99;
+<style scoped>
+.movie-page {
+  margin: 20px 100px;
+}
+.movie-page_container {
+  margin-bottom: 30px;
   display: flex;
-  flex-wrap: wrap;
 }
-.modal-backdrop {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.55);
-  z-index: 10;
-  opacity: 0.99;
-}
-.logo_info {
-  width: 25%px;
-  float: left;
-  height: 280px;
-}
-.logo-poster {
-  position: absolute;
-  top: 20px;
-  bottom: 10px;
-  left: 20px;
-  right: 20px;
+.movie-poster {
+  /* background-image: url(https://vypechka-online.ru/wp-content/uploads/2019/09/EQgJ4p77Aeo.jpg); */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  width: 170px;
-  height: 230px;
   border-radius: 4px;
   box-shadow: 0 10px 12px rgba(0, 0, 0, 0.65), 0 10px 10px rgba(0, 0, 0, 0.22);
+  width: 16%;
+  min-width: 170px;
+  height: 250px;
 }
 .movie-info {
-  margin: 252px 30px 20px 10px;
-  font-size: 16px;
+  width: 84%;
+  padding-left: 20px;
+}
+.movie-options {
+  margin: 10px 0;
   font-weight: bold;
-  width: 150px;
+  width: 40%;
   display: flex;
   justify-content: space-between;
 }
-.title_discription {
-  width: 75%;
-  float: right;
+.movie-discription {
+  font-size: 18px;
+  line-height: 1.4;
 }
+p {
+  font-size: 26px;
+  margin: 0;
+  text-shadow: 1px 1px 1px rgb(80, 80, 80), -1px 1px 1px rgb(224, 71, 71);
+}
+
 .options {
   display: flex;
   flex-wrap: wrap;
@@ -181,7 +174,7 @@ export default {
 }
 .session-item {
   margin: 2px;
-  background: #ff5353;
+  background: #ff7272;
   border: rgb(59, 59, 59) 2px solid;
   border-radius: 5px;
   display: block;
@@ -203,19 +196,5 @@ export default {
   font-size: 19px;
   margin: 3px;
 }
-.seats {
-  width: 30%;
-  float: right;
-  padding: 5px;
-}
-.title {
-  font-size: 24px;
-  margin: 0;
-  text-shadow: 1px 1px 1px rgb(80, 80, 80), -1px 1px 1px rgb(224, 71, 71);
-}
-.discription {
-  margin-top: 10px;
-  font-size: 18px;
-  line-height: 1.1;
-}
+
 </style>

@@ -2,12 +2,12 @@
   <div class="main">
     <router-link
       tag="div"
-      v-for="(movie, id) in list"
-      :to="`/movies/${movie}`"
-      :key="id"
+      v-for="movie in list"
+      :to="`/movies/` + movie.Id"
+      :key="movie.id"
     >
       <div class="movie-item mb-3">
-        <!-- <div class="movie-item-poster" :style="posterBg"></div> -->
+        <div class="movie-item-poster" >poster {{ movie.Title }}</div>
         <div class="movie-info-wrap">
           <div class="movie-item-info">
             <p class="movie-title">{{ movie.Title }}</p>
@@ -18,38 +18,43 @@
           </div>
         </div>
       </div>
-
-      <!-- <movie-page :movie="movie"></movie-page> -->
     </router-link>
   </div>
 </template>
 
 <script>
-// import MoviePage from "./MoviePage.vue";
+// import MoviePage from './MoviePage.vue'
 
 export default {
   props: {
     list: Object
   },
-  computed: {
-    posterBg () {
-      return {
-        'background-image': `url(${this.movie.Poster})`
-      }
-    }
-  },
+  // data() {
+  //   return {
+  //     movie: this.movie,
+  //   };
+  // },
+  // computed: {
+  //   posterBg() {
+  //     return {
+  //       "background-image": `url(${this.movieItem.Poster})`,
+  //     };
+  //   },
+  // },
   components: {
-    // MoviePage,
+    // MoviePage
   }
 }
 </script>
 
 <style scoped>
+
 .main {
   width: auto;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin-top: 0px;
 }
 .movie-item {
   width: 200px;
@@ -66,6 +71,7 @@ export default {
   transform: scale(1.02);
 }
 .movie-item-poster {
+  background-image: url(https://vypechka-online.ru/wp-content/uploads/2019/09/EQgJ4p77Aeo.jpg);
   position: absolute;
   top: 0;
   bottom: 0;
@@ -74,7 +80,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  z-index: 10000;
+  z-index: -1;
 }
 .movie-info-wrap {
   padding: 10px;
