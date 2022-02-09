@@ -57,8 +57,17 @@
         <input id="discription" type="text" v-model="discription" />
       </div>
       <div class="input-field">
-        <label for="poster">Poster</label>
-        <input id="poster" type="text" v-model="poster" />
+        <label for="poster">Poster</label> <br /><br />
+        <a class="waves-effect waves-light btn" @click="onPickFile"
+          ><i class="material-icons right">cloud</i>Choose file</a
+        >
+        <input
+          type="file"
+          style="display: none"
+          ref="fileInput"
+          accept="image/*"
+          @change="onFilePicked"
+        />
       </div>
       <div class="input-field">
         <label for="poster">ID</label>
@@ -95,12 +104,29 @@ export default {
       runtime: '',
       raiting: '',
       discription: '',
-      poster: '',
+      image: null,
+      Poster: '',
       id: ''
     }
   },
 
   methods: {
+    onPickFile () {
+      this.$refs.fileInput.click()
+    },
+    onFilePicked (event) {
+      const files = event.target.files
+      const filename = files[0].name
+      if (filename.lastIndexOf('.') <= 0) {
+        return alert('Please add a valid file')
+      }
+      const fileReader = new FileReader()
+      fileReader.addEventListener('load', () => {
+        this.imageUrl = fileReader.result
+      })
+      fileReader.readAsDataURL(files[0])
+      this.image = files[0]
+    },
     async addCinema () {
       const cinemaInfo = {
         name: this.name
@@ -128,7 +154,6 @@ export default {
     async removeMovie (id) {
       try {
         await this.$store.dispatch('operations/removeMovie', id)
-        console.log(id)
         window.M.toast({ html: 'Movie removed!' })
       } catch (error) {
         console.log(error)
@@ -142,20 +167,23 @@ export default {
         runtime: this.runtime,
         raiting: this.raiting,
         discription: this.discription,
-        poster: this.poster,
+        image: this.image,
         id: this.id
       }
 
       try {
+        if (!this.image) {
+          return alert('No image choosed')
+        }
         await this.$store.dispatch('operations/createMovie', movieInfo)
         window.M.toast({ html: `Movie "${movieInfo.title}" added` })
-        this.title = ''
-        this.year = ''
-        this.runtime = ''
-        this.raiting = ''
-        this.discription = ''
-        this.poster = ''
-        this.id = ''
+        // this.title = "";
+        // this.year = "";
+        // this.runtime = "";
+        // this.raiting = "";
+        // this.discription = "";
+        // this.image = "";
+        // this.id = "";
         console.log(movieInfo)
       } catch (error) {
         console.log(error)

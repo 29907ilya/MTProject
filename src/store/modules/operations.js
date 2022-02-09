@@ -1,4 +1,5 @@
-import { getDatabase, ref, child, get, push, remove } from 'firebase/database'
+import { getDatabase, ref, child, get, push, remove, update } from 'firebase/database'
+import { getStorage, ref as sRef, uploadBytes, getDownloadURL } from 'firebase/storage'
 
 const operationsStore = {
   namespaced: true,
@@ -76,25 +77,36 @@ const operationsStore = {
       dispatch('getCinema')
     },
 
-    async createMovie ({ commit, dispatch }, {
-      title,
-      year,
-      runtime,
-      raiting,
-      discription,
-      poster,
-      id
-    }) {
+    async createMovie ({ commit, dispatch }, payload) {
+      const movieInfo = {
+        Title: payload.title,
+        Year: payload.year,
+        Runtime: payload.runtime,
+        imdbRating: payload.raiting,
+        Discription: payload.discription,
+        imageUrl: payload.image, // здесь чего-то не хватает
+        Id: payload.id
+      }
+      let imageUrl
+      let key
       const db = getDatabase()
-      await push(ref(db, 'MovieBase'), {
-        Title: title,
-        Year: year,
-        Runtime: runtime,
-        imdbRating: raiting,
-        Discription: discription,
-        Poster: poster,
-        Id: id
-      })
+      await push(ref(db, 'MovieBase'), movieInfo)
+        .then((data) => {
+          key = data.key
+          return key
+        })
+        .then(key => {
+          const storage = getStorage()
+          const storageRef = sRef(storage, 'MovieBase/' + key)
+          return uploadBytes(storageRef, payload.image)
+        })
+        .then(() => {
+          const storage = getStorage()
+          const storageRef = sRef(storage, 'MovieBase/' + key)
+          imageUrl = getDownloadURL(storageRef)
+          const dbRef = ref(getDatabase())
+          return update(child(dbRef, `'MovieBase/${key}'`), { imageUrl: imageUrl })
+        })
       dispatch('getMovie')
     },
 
