@@ -1,7 +1,7 @@
 <template>
   <div class="movie-page">
     <div class="movie-page_container">
-      <div class="movie-poster" :style="posterBg">poster {{ movieItem.Title }}</div>
+      <div class="movie-poster" :style="posterBg"></div>
       <div class="movie-info">
         <div class="movie-title">
           <p class="title">{{ movieItem.Title }}, {{ movieItem.Year }}</p>
@@ -14,7 +14,9 @@
       </div>
     </div>
   <hr />
-
+    <div class="movie-page_sessions">
+      Availible sessions:
+    </div>
     <div class="options">
 
       <div
@@ -160,7 +162,10 @@ p {
   margin: 0;
   text-shadow: 1px 1px 1px rgb(80, 80, 80), -1px 1px 1px rgb(224, 71, 71);
 }
-
+.movie-page_sessions {
+  font-size: 16px;
+  font-weight: bold;
+}
 .options {
   display: flex;
   flex-wrap: wrap;

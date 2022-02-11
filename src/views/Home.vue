@@ -30,7 +30,7 @@ export default {
       moviesPerPage: 10
     }
   },
-  async mounted () {
+  async created () {
     await this.getMovieBase()
     this.loading = false
   },
