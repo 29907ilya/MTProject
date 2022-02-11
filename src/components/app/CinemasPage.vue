@@ -1,24 +1,27 @@
 <template>
   <div class="col xl8">
     <div class="page-info">
-      <div class="page-subtitle">
-        <h5>Add cinema</h5>
-      </div>
+      <form @submit.prevent="onSubmit">
+        <div class="page-subtitle">
+          <h5>Add cinema</h5>
+        </div>
 
-      <h6>Enter cinema title</h6>
-      <div class="input-field">
-        <label for="title">Title</label>
-        <input id="title" type="text" v-model="name" />
-      </div>
+        <h6>Enter cinema title</h6>
+        <div class="input-field">
+          <label for="name">Title</label>
+          <input id="name" type="text" v-model="name" @blur="nBlur" />
+          <small class="helper-text invalid" v-if="nError">{{ nError }}</small>
+        </div>
 
-      <button
-        class="btn waves-effect waves-light"
-        type="submit"
-        @click.prevent="addCinema"
-      >
-        Add Cinema
-        <i class="material-icons right">send</i>
-      </button>
+        <button
+          class="btn waves-effect waves-light"
+          type="submit"
+          @click.prevent="addCinema"
+        >
+          Add Cinema
+          <i class="material-icons right">send</i>
+        </button>
+      </form>
     </div>
 
     <div class="col xl4">
@@ -29,84 +32,233 @@
     </div>
   </div>
 
-  <div class="col xl8">
-    <div>
-      <div class="page-subtitle">
-        <h5>Add movie</h5>
-      </div>
+  <form @submit.prevent="onSubmit">
+    <div class="col xl8">
+      <div>
+        <div class="page-subtitle">
+          <h5>Add movie</h5>
+        </div>
 
-      <h6>Enter movie info</h6>
-      <div class="input-field">
-        <label for="title">Title</label>
-        <input id="title" type="text" v-model="title" />
-      </div>
-      <div class="input-field">
-        <label for="year">Year</label>
-        <input id="year" type="text" v-model="year" />
-      </div>
-      <div class="input-field">
-        <label for="runtime">Runtime</label>
-        <input id="runtime" type="text" v-model="runtime" />
-      </div>
-      <div class="input-field">
-        <label for="raiting">Raiting</label>
-        <input id="raiting" type="text" v-model="raiting" />
-      </div>
-      <div class="input-field">
-        <label for="discription">Discription</label>
-        <input id="discription" type="text" v-model="discription" />
-      </div>
-      <div class="input-field">
-        <label for="poster">Poster</label> <br /><br />
-        <a class="waves-effect waves-light btn" @click="onPickFile"
-          ><i class="material-icons right">cloud</i>Choose file</a
+        <h6>Enter movie info</h6>
+        <div class="input-field">
+          <label for="title">Title</label>
+          <input id="title" type="text" v-model="title" @blur="tBlur" />
+          <small class="helper-text invalid" v-if="tError">{{ tError }}</small>
+        </div>
+        <div class="input-field">
+          <label for="year">Year</label>
+          <input id="year" type="text" v-model="year" @blur="yBlur" />
+          <small class="helper-text invalid" v-if="yError">{{ yError }}</small>
+        </div>
+        <div class="input-field">
+          <label for="runtime">Runtime</label>
+          <input id="runtime" type="text" v-model="runtime" @blur="rtBlur" />
+          <small class="helper-text invalid" v-if="rtError">{{
+            rtError
+          }}</small>
+        </div>
+        <div class="input-field">
+          <label for="raiting">Raiting</label>
+          <input id="raiting" type="text" v-model="raiting" @blur="rBlur" />
+          <small class="helper-text invalid" v-if="rError">{{ rError }}</small>
+        </div>
+        <div class="input-field">
+          <label for="discription">Discription</label>
+          <input
+            id="discription"
+            type="text"
+            v-model="discription"
+            @blur="dBlur"
+          />
+          <small class="helper-text invalid" v-if="dError">{{ dError }}</small>
+        </div>
+        <div class="input-field">
+          <label for="id">ID</label>
+          <input id="id" type="text" v-model="id" @blur="iBlur" />
+          <small class="helper-text invalid" v-if="iError">{{ iError }}</small>
+        </div>
+
+        <h6>Load poster</h6>
+        <div class="input-field">
+          <!-- <label for="poster">Poster</label> <br /><br /> -->
+          <a class="waves-effect waves-light btn" @click="onPickFile"
+            ><i class="material-icons right">cloud</i>Choose file</a
+          >
+          <input
+            type="file"
+            style="display: none"
+            ref="fileInput"
+            accept="image/*"
+            @change="onFilePicked"
+          />
+        </div>
+        <br />
+        <br />
+
+        <button
+          class="btn waves-effect waves-light"
+          type="submit"
+          @click="addMovie"
         >
-        <input
-          type="file"
-          style="display: none"
-          ref="fileInput"
-          accept="image/*"
-          @change="onFilePicked"
-        />
-      </div>
-      <div class="input-field">
-        <label for="poster">ID</label>
-        <input id="poster" type="text" v-model="id" />
+          Add Movie
+          <i class="material-icons right">send</i>
+        </button>
       </div>
 
-      <button
-        class="btn waves-effect waves-light"
-        type="submit"
-        @click="addMovie"
-      >
-        Add Movie
-        <i class="material-icons right">send</i>
-      </button>
+      <div class="col xl4">
+        <remove-movie
+          :list="movieList"
+          @removeMovie="removeMovie"
+        ></remove-movie>
+      </div>
     </div>
-
-    <div class="col xl4">
-      <remove-movie :list="movieList" @removeMovie="removeMovie"></remove-movie>
-    </div>
-  </div>
+  </form>
 </template>
 
 <script>
 import RemoveCinema from './RemoveCinema.vue'
 import RemoveMovie from './RemoveMovie.vue'
 import { mapGetters } from 'vuex'
+import * as yup from 'yup'
+import { useField, useForm } from 'vee-validate'
 
 export default {
-  data () {
+  // data() {
+  //   return {
+  //     name: "",
+  //     title: "",
+  //     year: "",
+  //     runtime: "",
+  //     raiting: "",
+  //     discription: "",
+  //     image: null,
+  //     id: "",
+  //   };
+  // },
+
+  setup () {
+    const { handleSubmit } = useForm()
+    const MIN_LENGTH = 1
+
+    const {
+      value: name,
+      errorMessage: nError,
+      handleBlur: nBlur
+    } = useField(
+      'name',
+      yup
+        .string()
+        .trim()
+        .required('This is a required field')
+        .min(MIN_LENGTH, `Please enter at least ${MIN_LENGTH} sumbol`)
+    )
+    const {
+      value: title,
+      errorMessage: tError,
+      handleBlur: tBlur
+    } = useField(
+      'title',
+      yup
+        .string()
+        .trim()
+        .required('This is a required field')
+        .min(MIN_LENGTH, `Please enter at least ${MIN_LENGTH} sumbol`)
+    )
+    const {
+      value: year,
+      errorMessage: yError,
+      handleBlur: yBlur
+    } = useField(
+      'year',
+      yup
+        .string()
+        .trim()
+        .required('This is a required field')
+        .min(MIN_LENGTH, `Please enter at least ${MIN_LENGTH} sumbol`)
+    )
+    const {
+      value: runtime,
+      errorMessage: rtError,
+      handleBlur: rtBlur
+    } = useField(
+      'runtime',
+      yup
+        .string()
+        .trim()
+        .required('This is a required field')
+        .min(MIN_LENGTH, `Please enter at least ${MIN_LENGTH} sumbol`)
+    )
+    const {
+      value: raiting,
+      errorMessage: rError,
+      handleBlur: rBlur
+    } = useField(
+      'raiting',
+      yup
+        .string()
+        .trim()
+        .required('This is a required field')
+        .min(MIN_LENGTH, `Please enter at least ${MIN_LENGTH} sumbol`)
+    )
+    const {
+      value: discription,
+      errorMessage: dError,
+      handleBlur: dBlur
+    } = useField(
+      'discription',
+      yup
+        .string()
+        .trim()
+        .required('This is a required field')
+        .min(MIN_LENGTH, `Please enter at least ${MIN_LENGTH} sumbol`)
+    )
+    const {
+      value: id,
+      errorMessage: iError,
+      handleBlur: iBlur
+    } = useField(
+      'id',
+      yup
+        .string()
+        .trim()
+        .required('This is a required field')
+        .min(MIN_LENGTH, `Please enter at least ${MIN_LENGTH} sumbol`)
+    )
+
+    const onSubmit = handleSubmit()
+
     return {
-      name: '',
-      title: '',
-      year: '',
-      runtime: '',
-      raiting: '',
-      discription: '',
-      image: null,
-      Poster: '',
-      id: ''
+      name,
+      title,
+      year,
+      runtime,
+      raiting,
+      discription,
+      id,
+      nError,
+      tError,
+      yError,
+      rtError,
+      rError,
+      dError,
+      iError,
+      nBlur,
+      tBlur,
+      yBlur,
+      rtBlur,
+      rBlur,
+      dBlur,
+      iBlur,
+      onSubmit
+
+      // name: "",
+      // title: "",
+      // year: "",
+      // runtime: "",
+      // raiting: "",
+      // discription: "",
+      // image: null,
+      // id: "",
     }
   },
 
@@ -132,6 +284,9 @@ export default {
         name: this.name
       }
       try {
+        if (!this.name) {
+          return
+        }
         await this.$store.dispatch('operations/createCinema', cinemaInfo)
         window.M.toast({ html: `Cinema "${cinemaInfo.name}" added!` })
         this.name = ''
@@ -177,13 +332,13 @@ export default {
         }
         await this.$store.dispatch('operations/createMovie', movieInfo)
         window.M.toast({ html: `Movie "${movieInfo.title}" added` })
-        // this.title = "";
-        // this.year = "";
-        // this.runtime = "";
-        // this.raiting = "";
-        // this.discription = "";
-        // this.image = "";
-        // this.id = "";
+        this.title = ''
+        this.year = ''
+        this.runtime = ''
+        this.raiting = ''
+        this.discription = ''
+        this.image = ''
+        this.id = ''
         console.log(movieInfo)
       } catch (error) {
         console.log(error)

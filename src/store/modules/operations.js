@@ -70,11 +70,15 @@ const operationsStore = {
     },
 
     async createCinema ({ commit, dispatch }, { name }) {
-      const db = getDatabase()
-      await push(ref(db, 'Cinemas'), {
-        name: name
-      })
-      dispatch('getCinema')
+      try {
+        const db = getDatabase()
+        await push(ref(db, 'Cinemas'), {
+          name: name
+        })
+        dispatch('getCinema')
+      } catch (e) {
+        console.log(e)
+      }
     },
 
     createMovie ({ commit, dispatch }, payload) {

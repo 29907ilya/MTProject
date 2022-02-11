@@ -17,7 +17,9 @@
 .auth-submit {
   width: 100%;
 }
-
+.helper-text.invalid {
+  color: #f44336;
+}
 .main-app {
   margin-left: 180px;
   margin-right: 25px;
