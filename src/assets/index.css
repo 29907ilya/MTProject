@@ -175,7 +175,7 @@ li.router-link-exact-active {
 }
 .sort_field select {
   display: inline;
-  width: 80px;
+  width: 110px;
   height: 25px;
   padding: 0px;
   background-color: #ff5353;
@@ -184,6 +184,7 @@ li.router-link-exact-active {
 }
 .search_field input::placeholder {
   color: #020202;
+  font-size: 14px;
 }
 .sort_field {
   display: flex;

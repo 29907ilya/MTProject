@@ -22,7 +22,7 @@ const routes = [
     component: () => import('../views/Register.vue')
   },
   {
-    path: '/movies',
+    path: '/',
     name: 'movies',
     meta: {
       layout: 'main',
@@ -31,7 +31,7 @@ const routes = [
     component: () => import('../views/Home.vue')
   },
   {
-    path: '/movies/:id',
+    path: '/:id',
     meta: {
       layout: 'main',
       requiresAuth: true
@@ -83,7 +83,7 @@ router.beforeEach(async (to, from, next) => {
   if (requriesAuth && !currentUser) {
     next('/login')
   } else if (to.meta.isAdmin && !admin) {
-    next('/movies')
+    next('/')
   } else {
     next()
   }

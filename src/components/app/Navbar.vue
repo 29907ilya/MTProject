@@ -1,9 +1,7 @@
 <template>
   <nav class="navbar red accent-2">
     <div class="nav-wrapper">
-      <a href="#"
-        ><div @click="$router.push('/movies')" class="home">&#8962;</div></a
-      >
+      <a href="#"><div @click="goToMainPage" class="home">&#8962;</div></a>
       <div class="navbar-left">
         <span class="black-text">{{ date }}</span>
       </div>
@@ -14,14 +12,15 @@
 
       <div class="sort_field">
         <select name="" id="" v-model="selectedOption" @change="onChange">
+          <option value="" disabled selected>Sort by year</option>
           <option v-for="item in getUnicYears" :key="item.id">
             {{ item }}
           </option>
         </select>
-        <div >
+        <div>
           <a href="#" @click="clearSorting" v-if="selectedOption">
-          <div class="close-btn_sort" >x</div>
-        </a>
+            <div class="close-btn_sort">x</div>
+          </a>
         </div>
       </div>
 
@@ -79,6 +78,7 @@ export default {
     userName () {
       return this.$store.getters.getUser.name
     },
+
     input: {
       get () {
         return this.searchValue
@@ -92,10 +92,11 @@ export default {
     }
   },
   watch: {
-    searchValue: 'onSearchValueChanged'
+    searchValue: 'onSearchValueChanged',
+    selectedOption: 'onChange'
   },
   methods: {
-    ...mapActions('movies', ['searchMovies', 'getMovieBase']),
+    ...mapActions('movies', ['searchMovies', 'getMovieBase', 'goToMainPage']),
     async logout () {
       await this.$store.dispatch('logout')
       window.M.toast({ html: 'You are logged out!' })
@@ -108,8 +109,13 @@ export default {
       } else this.getMovieBase()
     },
     async onChange () {
-      console.log(this.selectedOption)
-      await this.$store.dispatch('movies/sortByYear', this.selectedOption)
+      if (this.selectedOption) {
+        await this.$store.dispatch('movies/sortByYear', this.selectedOption)
+      } else this.getMovieBase()
+    },
+    async goToMainPage () {
+      await this.$store.dispatch('movies/goToMainPage')
+      this.$router.push('/')
     },
     clearSorting () {
       this.selectedOption = ''

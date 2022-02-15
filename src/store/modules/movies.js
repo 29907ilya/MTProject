@@ -24,6 +24,9 @@ const movieStore = {
     },
     setCurrentPage (state, value) {
       state.currentPage = value
+    },
+    setMainPage (state, value) {
+      state.currentPage = value
     }
   },
   actions: {
@@ -64,18 +67,22 @@ const movieStore = {
       }
     },
 
-    async sortByYear ({ getters, dispatch, commit }, payload) {
+    async sortByYear ({ getters, commit }, payload) {
       try {
         const { fullBase } = getters
         console.log(fullBase)
         const newMovieRenderList = Object.values(fullBase).filter((value) => value.Year === payload)
         console.log(newMovieRenderList)
         commit('setFullBase', newMovieRenderList)
-
         commit('setMovieBase', newMovieRenderList)
       } catch (e) {
         console.log(e)
       }
+    },
+    async goToMainPage ({ commit }) {
+      const currentPage = 1
+      commit('setMainPage', currentPage)
+      // commit('setFullBase')
     }
   }
 }

@@ -3,7 +3,7 @@
     <router-link
       tag="div"
       v-for="movie in list"
-      :to="`/movies/` + movie.Id"
+      :to="`/` + movie.Id"
       :key="movie.id"
     >
       <div class="movie-item">
