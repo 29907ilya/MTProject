@@ -6,13 +6,14 @@
       :to="`/movies/` + movie.Id"
       :key="movie.id"
     >
-      <div class="movie-item mb-3">
-        <div class="movie-item-poster" ></div>
+      <div class="movie-item">
+        <div class="movie-item-poster">
+          <movie-poster :movie="movie"></movie-poster>
+        </div>
         <div class="movie-info-wrap">
           <div class="movie-item-info">
             <p class="movie-title">{{ movie.Title }}</p>
             <span class="movie-year"> {{ movie.Year }} </span>
-            <!-- {{movie.Poster}} -->
           </div>
           <div class="movie-item-control">
             <a class="waves-effect waves-red btn-flat">Buy tickets</a>
@@ -24,23 +25,16 @@
 </template>
 
 <script>
-
+import MoviePoster from './MoviePoster.vue'
 export default {
   props: {
     list: Object
-  }
-  // computed: {
-  //   posterBg() {
-  //     return {
-  //       "background-image": `url(${this.movie.Poster})`,
-  //     };
-  //   },
-  // },
+  },
+  components: { MoviePoster }
 }
 </script>
 
 <style scoped>
-
 .main {
   width: auto;
   display: flex;

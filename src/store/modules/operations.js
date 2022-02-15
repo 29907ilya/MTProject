@@ -127,9 +127,7 @@ const operationsStore = {
                 case 'storage/canceled':
                   // User canceled the upload
                   break
-
                   // ...
-
                 case 'storage/unknown':
                   // Unknown error occurred, inspect error.serverResponse
                   break
@@ -145,7 +143,6 @@ const operationsStore = {
             }
           )
         })
-
       dispatch('getMovie')
     },
 

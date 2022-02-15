@@ -1,14 +1,27 @@
 <template>
   <nav class="navbar red accent-2">
     <div class="nav-wrapper">
-      <a href="#"><div @click="$router.push('/movies')" class="home">&#8962;</div></a>
+      <a href="#"
+        ><div @click="$router.push('/movies')" class="home">&#8962;</div></a
+      >
       <div class="navbar-left">
         <span class="black-text">{{ date }}</span>
       </div>
 
       <div class="search_field">
-        <div>
-          <input type="text" placeholder="Search" v-model="input" />
+        <input type="text" placeholder="Click for search" v-model="input" />
+      </div>
+
+      <div class="sort_field">
+        <select name="" id="" v-model="selectedOption" @change="onChange">
+          <option v-for="item in getUnicYears" :key="item.id">
+            {{ item }}
+          </option>
+        </select>
+        <div >
+          <a href="#" @click="clearSorting" v-if="selectedOption">
+          <div class="close-btn_sort" >x</div>
+        </a>
         </div>
       </div>
 
@@ -21,7 +34,7 @@
             ref="dropdown"
           >
             Good day
-            <!-- {{ userName || '"name"' }}! -->
+            {{ userName || '"name"' }}!
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
@@ -45,19 +58,27 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   data () {
     return {
       date: new Date(),
       interval: null,
-      searchValue: ''
+      searchValue: '',
+      selectedOption: ''
     }
   },
   computed: {
-    // userName () {
-    //   return this.$store.getters.getUser.name
-    // },
+    ...mapGetters('movies', ['fullBase']),
+    getUnicYears () {
+      const fullBase = this.fullBase
+      const result = Object.values(fullBase)
+      const unicYears = result.reduce((a, b) => a.add(b.Year), new Set())
+      return unicYears
+    },
+    userName () {
+      return this.$store.getters.getUser.name
+    },
     input: {
       get () {
         return this.searchValue
@@ -85,6 +106,13 @@ export default {
       if (value) {
         this.searchMovies(value)
       } else this.getMovieBase()
+    },
+    async onChange () {
+      console.log(this.selectedOption)
+      await this.$store.dispatch('movies/sortByYear', this.selectedOption)
+    },
+    clearSorting () {
+      this.selectedOption = ''
     }
   },
   mounted () {

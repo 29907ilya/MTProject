@@ -62,6 +62,20 @@ const movieStore = {
       } catch (e) {
         console.warn(e.message)
       }
+    },
+
+    async sortByYear ({ getters, dispatch, commit }, payload) {
+      try {
+        const { fullBase } = getters
+        console.log(fullBase)
+        const newMovieRenderList = Object.values(fullBase).filter((value) => value.Year === payload)
+        console.log(newMovieRenderList)
+        commit('setFullBase', newMovieRenderList)
+
+        commit('setMovieBase', newMovieRenderList)
+      } catch (e) {
+        console.log(e)
+      }
     }
   }
 }

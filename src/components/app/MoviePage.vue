@@ -62,7 +62,6 @@ export default {
   },
 
   emits: ['close'],
-  // props: ["id"],
   setup () {
     const order = ref(false)
     return { order }

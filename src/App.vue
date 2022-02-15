@@ -17,7 +17,6 @@ export default {
   },
   computed: {
     ...mapActions(['logout']),
-
     layout () {
       return (this.$route.meta.layout || 'empty') + '-layout'
     }
