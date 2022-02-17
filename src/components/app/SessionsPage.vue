@@ -1,6 +1,6 @@
 <template>
-  <div class="col xl8">
-    <div>
+  <div>
+    <div class="col">
       <div class="page-subtitle">
         <h5>Add session</h5>
       </div>
@@ -36,7 +36,7 @@
       </button>
     </div>
 
-    <div class="col xl4">
+    <div class="col">
       <div>
         <div class="page-subtitle">
           <h5>Existing sessions</h5>

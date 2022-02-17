@@ -133,6 +133,7 @@ export default {
   opacity: 0.99;
   display: flex;
   flex-wrap: wrap;
+  z-index: 100;
 }
 .modal-backdrop {
   position: fixed;

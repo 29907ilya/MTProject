@@ -41,6 +41,9 @@
   margin-right: auto;
   min-height: 100%;
 }
+.col {
+  width: 450px;
+}
 .app-sidenav {
   padding-top: 5px;
   position: absolute;
@@ -50,7 +53,8 @@
   transition: transform 0.3s, -webkit-transform 0.3s;
   height: auto;
   background-color: #eee8f6;
-  box-shadow: none !important;  
+  box-shadow: none !important;
+  z-index: 1;
 }
 .app-sidenav.open {
   -webkit-transform: translateX(0);

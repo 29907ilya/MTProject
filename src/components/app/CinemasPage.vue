@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <div class="col xl8">
+    <div class="col">
       <div class="page-info">
         <div class="page-subtitle">
           <h5>Add cinema</h5>
@@ -23,7 +23,7 @@
         </button>
       </div>
 
-      <div class="col xl4">
+      <div class="col">
         <remove-cinema
           :list="cinemaList"
           @removeCinema="removeCinema"
@@ -33,7 +33,7 @@
   </form>
 
   <form @submit.prevent="onSubmit">
-    <div class="col xl8 addMovieForm">
+    <div class="col">
       <div>
         <div class="page-subtitle">
           <h5>Add movie</h5>
@@ -105,7 +105,7 @@
         </button>
       </div>
 
-      <div class="col xl4">
+      <div class="col">
         <remove-movie
           :list="movieList"
           @removeMovie="removeMovie"
