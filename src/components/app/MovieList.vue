@@ -43,15 +43,14 @@ export default {
   flex-wrap: wrap;
 }
 .movie-item {
-  width: 230px;
+  width: 233px;
   position: relative;
   cursor: pointer;
   border-radius: 5px;
   overflow: hidden;
   transition: all 0.2s ease;
   height: 330px;
-  margin-bottom: 25px;
-  margin-right: 20px;
+  margin: 0 12px 25px 12px;
 }
 .movie-item:hover {
   box-shadow: 0px 5px 20px rgb(0, 0, 0, 0.7);

@@ -21,8 +21,7 @@
   color: #f44336;
 }
 .main-app {
-  padding-left: 180px;
-  padding-right: 15px;
+  padding-left: 170px;
   padding-top: 90px;
   margin-left: auto;
   margin-right: auto;
@@ -40,18 +39,18 @@
   width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  min-height: 100%;
 }
 .app-sidenav {
   padding-top: 5px;
   position: absolute;
   top: 64px;
-  left: 2px;
   width: 150px;
   transition: transform 0.3s;
   transition: transform 0.3s, -webkit-transform 0.3s;
-  bottom: 0 !important;
-  height: auto !important;
+  height: auto;
   background-color: #eee8f6;
+  box-shadow: none !important;  
 }
 .app-sidenav.open {
   -webkit-transform: translateX(0);
@@ -204,3 +203,4 @@ html {
   overflow-y: scroll;
   background-color: #eee8f6;
 }
+
