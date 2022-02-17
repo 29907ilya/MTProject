@@ -91,6 +91,9 @@
   margin: 0;
   font-size: 2rem;
 }
+.addMovieForm {
+  margin-bottom: 40px
+}
 .page-subtitle h4,
 .page-title {
   margin-bottom: 2rem;

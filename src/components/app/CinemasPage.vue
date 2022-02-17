@@ -33,7 +33,7 @@
   </div>
 
   <form @submit.prevent="onSubmit">
-    <div class="col xl8">
+    <div class="col xl8 addMovieForm" >
       <div>
         <div class="page-subtitle">
           <h5>Add movie</h5>
@@ -123,19 +123,6 @@ import * as yup from 'yup'
 import { useField, useForm } from 'vee-validate'
 
 export default {
-  // data() {
-  //   return {
-  //     name: "",
-  //     title: "",
-  //     year: "",
-  //     runtime: "",
-  //     raiting: "",
-  //     discription: "",
-  //     image: null,
-  //     id: "",
-  //   };
-  // },
-
   setup () {
     const { handleSubmit } = useForm()
     const MIN_LENGTH = 1
@@ -149,7 +136,7 @@ export default {
       yup
         .string()
         .trim()
-        .required('This is a required field')
+        // .required('This is a required field')
         .min(MIN_LENGTH, `Please enter at least ${MIN_LENGTH} sumbol`)
     )
     const {
@@ -161,7 +148,7 @@ export default {
       yup
         .string()
         .trim()
-        .required('This is a required field')
+        // .required('This is a required field')
         .min(MIN_LENGTH, `Please enter at least ${MIN_LENGTH} sumbol`)
     )
     const {
@@ -173,7 +160,7 @@ export default {
       yup
         .string()
         .trim()
-        .required('This is a required field')
+        // .required('This is a required field')
         .min(MIN_LENGTH, `Please enter at least ${MIN_LENGTH} sumbol`)
     )
     const {
@@ -185,7 +172,7 @@ export default {
       yup
         .string()
         .trim()
-        .required('This is a required field')
+        // .required('This is a required field')
         .min(MIN_LENGTH, `Please enter at least ${MIN_LENGTH} sumbol`)
     )
     const {
@@ -197,7 +184,7 @@ export default {
       yup
         .string()
         .trim()
-        .required('This is a required field')
+        // .required('This is a required field')
         .min(MIN_LENGTH, `Please enter at least ${MIN_LENGTH} sumbol`)
     )
     const {
@@ -209,7 +196,7 @@ export default {
       yup
         .string()
         .trim()
-        .required('This is a required field')
+        // .required('This is a required field')
         .min(MIN_LENGTH, `Please enter at least ${MIN_LENGTH} sumbol`)
     )
     const {
@@ -221,7 +208,7 @@ export default {
       yup
         .string()
         .trim()
-        .required('This is a required field')
+        // .required('This is a required field')
         .min(MIN_LENGTH, `Please enter at least ${MIN_LENGTH} sumbol`)
     )
 
@@ -251,14 +238,6 @@ export default {
       iBlur,
       onSubmit
 
-      // name: "",
-      // title: "",
-      // year: "",
-      // runtime: "",
-      // raiting: "",
-      // discription: "",
-      // image: null,
-      // id: "",
     }
   },
 
