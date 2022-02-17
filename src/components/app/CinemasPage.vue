@@ -1,7 +1,7 @@
 <template>
-  <div class="col xl8">
-    <div class="page-info">
-      <form @submit.prevent="onSubmit">
+  <form @submit.prevent="onSubmit">
+    <div class="col xl8">
+      <div class="page-info">
         <div class="page-subtitle">
           <h5>Add cinema</h5>
         </div>
@@ -21,19 +21,19 @@
           Add Cinema
           <i class="material-icons right">send</i>
         </button>
-      </form>
-    </div>
+      </div>
 
-    <div class="col xl4">
-      <remove-cinema
-        :list="cinemaList"
-        @removeCinema="removeCinema"
-      ></remove-cinema>
+      <div class="col xl4">
+        <remove-cinema
+          :list="cinemaList"
+          @removeCinema="removeCinema"
+        ></remove-cinema>
+      </div>
     </div>
-  </div>
+  </form>
 
   <form @submit.prevent="onSubmit">
-    <div class="col xl8 addMovieForm" >
+    <div class="col xl8 addMovieForm">
       <div>
         <div class="page-subtitle">
           <h5>Add movie</h5>
@@ -237,7 +237,6 @@ export default {
       dBlur,
       iBlur,
       onSubmit
-
     }
   },
 
@@ -307,7 +306,7 @@ export default {
 
       try {
         if (!this.image) {
-          return alert('No image choosed')
+          return alert('No image choosen')
         }
         await this.$store.dispatch('operations/createMovie', movieInfo)
         window.M.toast({ html: `Movie "${movieInfo.title}" added` })

@@ -36,21 +36,22 @@ export default {
 
 <style scoped>
 .main {
+  max-width: 1150px;
   width: auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  margin-top: 0px;
 }
 .movie-item {
-  width: 200px;
+  width: 230px;
   position: relative;
   cursor: pointer;
   border-radius: 5px;
   overflow: hidden;
   transition: all 0.2s ease;
-  height: 300px;
+  height: 330px;
   margin-bottom: 25px;
+  margin-right: 20px;
 }
 .movie-item:hover {
   box-shadow: 0px 5px 20px rgb(0, 0, 0, 0.7);

@@ -131,7 +131,6 @@ export default {
   display: flex;
 }
 .movie-poster {
-  /* background-image: url(https://vypechka-online.ru/wp-content/uploads/2019/09/EQgJ4p77Aeo.jpg); */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

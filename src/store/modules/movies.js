@@ -4,7 +4,7 @@ const movieStore = {
   namespaced: true,
   state: {
     movieBase: {},
-    moviesPerPage: 10,
+    moviesPerPage: 8,
     currentPage: 1,
     fullBase: {}
   },
@@ -79,10 +79,10 @@ const movieStore = {
         console.log(e)
       }
     },
-    async goToMainPage ({ commit }) {
+    async goToMainPage ({ dispatch, commit }) {
       const currentPage = 1
       commit('setMainPage', currentPage)
-      // commit('setFullBase')
+      dispatch('getMovieBase')
     }
   }
 }
